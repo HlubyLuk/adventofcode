@@ -38,8 +38,8 @@ public final class Main {
     for (int i = 0; i < days.size(); i += 1) {
       IDay day = days.get(i);
 
-      System.out.printf("Day %d, first is %d, second is %d %d millis.%n", i + 1, day.solveFirst(), day.solveSecond(),
-          Duration.between(start, Instant.now()).toMillis());
+      System.out.printf("Day %7d, first is %7d, second is %7d, duration %d millis.%n", i + 1, day.solveFirst(),
+          day.solveSecond(), Duration.between(start, Instant.now()).toMillis());
     }
 
     System.out.printf("Total %d millis.%n", Duration.between(start, Instant.now()).toMillis());
