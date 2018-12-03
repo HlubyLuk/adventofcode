@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.hlubyluk.adventofcode2018.day.Day1;
+import cz.hlubyluk.adventofcode2018.day.Day2;
 import cz.hlubyluk.adventofcode2018.day.IDay;
 
 /**
@@ -34,11 +35,12 @@ public final class Main {
 
     List<IDay> days = new ArrayList<>();
     days.add(new Day1());
+    days.add(new Day2());
 
     for (int i = 0; i < days.size(); i += 1) {
       IDay day = days.get(i);
 
-      System.out.printf("Day %7d, first is %7d, second is %7d, duration %d millis.%n", i + 1, day.solveFirst(),
+      System.out.printf("Day %7d, first is %7s, second is %25s, duration %7d millis.%n", i + 1, day.solveFirst(),
           day.solveSecond(), Duration.between(start, Instant.now()).toMillis());
     }
 

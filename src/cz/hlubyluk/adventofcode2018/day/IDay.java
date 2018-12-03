@@ -16,12 +16,12 @@ public interface IDay {
    *
    * @return value.
    */
-  int solveFirst();
+  String solveFirst();
 
   /**
    * Solve second part.
    *
    * @return value.
    */
-  int solveSecond();
+  String solveSecond();
 }

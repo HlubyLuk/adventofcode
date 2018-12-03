@@ -14,18 +14,18 @@ import java.util.stream.Collectors;
 public final class Day1 implements IDay1 {
 
   @Override
-  public int solveFirst() {
+  public String solveFirst() {
     int tmp = 0;
 
     for (String item : Day1.INPUT.split("\n")) {
       tmp += Integer.valueOf(item);
     }
 
-    return tmp;
+    return String.valueOf(tmp);
   }
 
   @Override
-  public int solveSecond() {
+  public String solveSecond() {
     int tmp = 0;
 
     List<Integer> freqs = Arrays.asList(Day1.INPUT.split("\n")).stream().map(x -> Integer.valueOf(x))
@@ -46,6 +46,6 @@ public final class Day1 implements IDay1 {
       }
     }
 
-    return tmp;
+    return String.valueOf(tmp);
   }
 }
