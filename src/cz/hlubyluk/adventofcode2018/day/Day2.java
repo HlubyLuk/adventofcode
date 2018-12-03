@@ -4,7 +4,6 @@ import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,14 +32,6 @@ public final class Day2 implements IDay2 {
       for (Character c = it.first(); c != StringCharacterIterator.DONE; c = it.next()) {
         int get = cache.getOrDefault(c, 0);
         cache.put(c, get + 1);
-      }
-
-      for (Iterator<Entry<Character, Integer>> itr = cache.entrySet().iterator(); itr.hasNext();) {
-        Entry<Character, Integer> next = itr.next();
-
-        if (next.getValue() != 2 && next.getValue() != 3) {
-          itr.remove();
-        }
       }
 
       boolean addA = false, addB = false;
