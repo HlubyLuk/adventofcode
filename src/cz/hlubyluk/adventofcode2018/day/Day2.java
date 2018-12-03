@@ -26,31 +26,24 @@ public final class Day2 implements IDay2 {
     List<String> tokens = Arrays.asList(Day2.INPUT.split("\n"));
 
     for (String token : tokens) {
-      Map<Character, Integer> cache = new HashMap<>();
-
-      StringCharacterIterator it = new StringCharacterIterator(token);
-      for (Character c = it.first(); c != StringCharacterIterator.DONE; c = it.next()) {
-        int get = cache.getOrDefault(c, 0);
-        cache.put(c, get + 1);
-      }
-
-      for (Iterator<Entry<Character, Integer>> itr = cache.entrySet().iterator(); itr.hasNext();) {
-        Entry<Character, Integer> next = itr.next();
-        if (next.getValue() != 2 && next.getValue() != 3) {
-          itr.remove();
-        }
-      }
       boolean addA = false, addB = false;
+      String x = token;
+      while (!x.isEmpty()) {
+        int lenghtX = x.length();
+        String y = x.replaceAll(String.valueOf(x.charAt(0)), "");
+        int diff = lenghtX - y.length();
+        if (diff > 1) {
+          if (!addA && diff == 2) {
+            a += 1;
+            addA = true;
+          }
 
-      for (Entry<Character, Integer> item : cache.entrySet()) {
-        if (item.getValue() == 2 && !addA) {
-          addA = true;
-          a += 1;
+          if (!addB && diff == 3) {
+            b += 1;
+            addB = true;
+          }
         }
-
-        if (item.getValue() == 3 && !addB) {
-          b += 1;
-        }
+        x = y;
       }
     }
 

@@ -34,7 +34,7 @@ public final class Main {
     Instant start = Instant.now();
 
     List<IDay> days = new ArrayList<>();
-    days.add(new Day1());
+//    days.add(new Day1());
     days.add(new Day2());
 
     for (int i = 0; i < days.size(); i += 1) {
