@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.hlubyluk.adventofcode2018.day.Day1;
+import cz.hlubyluk.adventofcode2018.day.Day2;
 import cz.hlubyluk.adventofcode2018.day.IDay;
 
 /**
@@ -34,6 +35,7 @@ public final class Main {
 
     List<IDay> days = new ArrayList<>();
     days.add(new Day1());
+    days.add(new Day2());
 
     for (int i = 0; i < days.size(); i += 1) {
       IDay day = days.get(i);
