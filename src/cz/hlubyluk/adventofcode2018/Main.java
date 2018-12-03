@@ -31,17 +31,26 @@ public final class Main {
    * @param args
    */
   public static void main(String[] args) {
-    Instant start = Instant.now();
-
     List<IDay> days = new ArrayList<>();
     days.add(new Day1());
     days.add(new Day2());
 
+    Instant tmp = null;
+    Instant start = Instant.now();
+
     for (int i = 0; i < days.size(); i += 1) {
       IDay day = days.get(i);
 
-      System.out.printf("Day %7d, first is %7s, second is %25s, duration %7d millis.%n", i + 1, day.solveFirst(),
-          day.solveSecond(), Duration.between(start, Instant.now()).toMillis());
+      tmp = Instant.now();
+      String firstResult = day.solveFirst();
+      Duration firstBetween = Duration.between(tmp, Instant.now());
+
+      tmp = Instant.now();
+      String secondResult = day.solveSecond();
+      Duration secondBetween = Duration.between(tmp, Instant.now());
+
+      System.out.printf("Day %d%n" + "\tpart 1 result %25s, duration %7d%n" + "\tpart 2 result %25s, duration %7d%n", i,
+          firstResult, firstBetween.toMillis(), secondResult, secondBetween.toMillis());
     }
 
     System.out.printf("Total %d millis.%n", Duration.between(start, Instant.now()).toMillis());

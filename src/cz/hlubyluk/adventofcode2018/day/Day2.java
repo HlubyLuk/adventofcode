@@ -37,10 +37,12 @@ public final class Day2 implements IDay2 {
 
       for (Iterator<Entry<Character, Integer>> itr = cache.entrySet().iterator(); itr.hasNext();) {
         Entry<Character, Integer> next = itr.next();
+
         if (next.getValue() != 2 && next.getValue() != 3) {
           itr.remove();
         }
       }
+
       boolean addA = false, addB = false;
 
       for (Entry<Character, Integer> item : cache.entrySet()) {

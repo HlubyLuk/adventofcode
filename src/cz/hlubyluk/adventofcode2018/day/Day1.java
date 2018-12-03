@@ -27,10 +27,10 @@ public final class Day1 implements IDay1 {
   @Override
   public String solveSecond() {
     int tmp = 0;
-
-    List<Integer> freqs = Arrays.asList(Day1.INPUT.split("\n")).stream().map(x -> Integer.valueOf(x))
-        .collect(Collectors.toList());
     Set<Integer> cache = new HashSet<>();
+
+    String[] split = Day1.INPUT.split("\n");
+    List<Integer> freqs = Arrays.asList(split).stream().map(x -> Integer.valueOf(x)).collect(Collectors.toList());
 
     for (Integer item : freqs) {
       tmp += item;
@@ -41,6 +41,7 @@ public final class Day1 implements IDay1 {
     for (int i = 0;; i += 1) {
       int get = Integer.valueOf(freqs.get(i % size));
       tmp += get;
+
       if (cache.contains(tmp)) {
         break;
       }
