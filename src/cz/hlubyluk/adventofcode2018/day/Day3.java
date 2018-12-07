@@ -2,6 +2,7 @@ package cz.hlubyluk.adventofcode2018.day;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * https://adventofcode.com/2018/day/3
@@ -55,7 +56,29 @@ public class Day3 implements IDay3 {
    */
   @Override
   public String solveSecond() {
-    return null;
+    String[][] matrix = new String[1000][1000];
+    List<Coordinate> coordinates = new ArrayList<>();
+
+    for (String item : Day3.INPUT.split("\n")) {
+      coordinates.add(new Coordinate(item));
+    }
+
+    List<String> ids = coordinates.stream().map(x -> x.id).collect(Collectors.toList());
+
+    for (Coordinate coordinate : coordinates) {
+      for (int i = coordinate.y, a = 0; a < coordinate.h; i += 1, a += 1) {
+        for (int j = coordinate.x, b = 0; b < coordinate.w; j += 1, b += 1) {
+          if (matrix[i][j] == null) {
+            matrix[i][j] = coordinate.id;
+          } else {
+            ids.remove(matrix[i][j]);
+            ids.remove(coordinate.id);
+          }
+        }
+      }
+    }
+
+    return ids.size() == 1 ? String.valueOf(ids.get(0)) : null;
   }
 
   private static class Coordinate {
