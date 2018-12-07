@@ -49,7 +49,7 @@ public final class Main {
       String secondResult = day.solveSecond();
       Duration secondBetween = Duration.between(tmp, Instant.now());
 
-      System.out.printf("Day %d%n" + "\tpart 1 result %25s, duration %7d%n" + "\tpart 2 result %25s, duration %7d%n", i,
+      System.out.printf("Day %d%n\tpart 1 result %25s, duration %7d%n\tpart 2 result %25s, duration %7d%n", i,
           firstResult, firstBetween.toMillis(), secondResult, secondBetween.toMillis());
     }
 
