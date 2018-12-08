@@ -187,7 +187,7 @@ public class Day4 implements IDay4 {
   private Map<Integer, int[]> shared() {
     Set<Record> records = new TreeSet<>();
 
-    for (String line : Day4.INPUT.split("\n")) {
+    for (String line : IDay4.INPUT.split("\n")) {
       records.add(RecordFactory.create(line));
     }
 

@@ -16,7 +16,7 @@ public class Day5 implements IDay5 {
    */
   @Override
   public String solveFirst() {
-    return String.valueOf(this.shared(Day5.INPUT).length());
+    return String.valueOf(this.shared(IDay5.INPUT).length());
   }
 
   /*
@@ -29,7 +29,7 @@ public class Day5 implements IDay5 {
     String ret = null;
 
     for (char a = 'A'; a <= 'Z'; a += 1) {
-      StringBuilder tmp = this.shared(Day5.INPUT.replaceAll(String.format("[%c%c]", a, a + Day5.ALPHABET_LENGHT), ""));
+      StringBuilder tmp = this.shared(IDay5.INPUT.replaceAll(String.format("[%c%c]", a, a + Day5.ALPHABET_LENGHT), ""));
 
       if (ret == null || ret.length() > tmp.length()) {
         ret = tmp.toString();

@@ -17,7 +17,7 @@ public final class Day1 implements IDay1 {
   public String solveFirst() {
     int tmp = 0;
 
-    for (String item : Day1.INPUT.split("\n")) {
+    for (String item : IDay1.INPUT.split("\n")) {
       tmp += Integer.valueOf(item);
     }
 
@@ -29,7 +29,7 @@ public final class Day1 implements IDay1 {
     int tmp = 0;
     Set<Integer> cache = new HashSet<>();
 
-    String[] split = Day1.INPUT.split("\n");
+    String[] split = IDay1.INPUT.split("\n");
     List<Integer> freqs = Arrays.asList(split).stream().map(x -> Integer.valueOf(x)).collect(Collectors.toList());
 
     for (Integer item : freqs) {

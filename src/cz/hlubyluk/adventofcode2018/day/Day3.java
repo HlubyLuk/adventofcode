@@ -22,7 +22,7 @@ public class Day3 implements IDay3 {
     String[][] matrix = new String[1000][1000];
     List<Coordinate> coordinates = new ArrayList<>();
 
-    for (String item : Day3.INPUT.split("\n")) {
+    for (String item : IDay3.INPUT.split("\n")) {
       coordinates.add(new Coordinate(item));
     }
 
@@ -59,7 +59,7 @@ public class Day3 implements IDay3 {
     String[][] matrix = new String[1000][1000];
     List<Coordinate> coordinates = new ArrayList<>();
 
-    for (String item : Day3.INPUT.split("\n")) {
+    for (String item : IDay3.INPUT.split("\n")) {
       coordinates.add(new Coordinate(item));
     }
 

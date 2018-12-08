@@ -1,5 +1,6 @@
 package cz.hlubyluk.adventofcode2018.day;
 
+import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,13 +24,13 @@ public final class Day2 implements IDay2 {
   @Override
   public String solveFirst() {
     int a = 0, b = 0;
-    List<String> tokens = Arrays.asList(Day2.INPUT.split("\n"));
+    List<String> tokens = Arrays.asList(IDay2.INPUT.split("\n"));
 
     for (String token : tokens) {
       Map<Character, Integer> cache = new HashMap<>();
 
       StringCharacterIterator it = new StringCharacterIterator(token);
-      for (Character c = it.first(); c != StringCharacterIterator.DONE; c = it.next()) {
+      for (Character c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
         int get = cache.getOrDefault(c, 0);
         cache.put(c, get + 1);
       }
@@ -61,7 +62,7 @@ public final class Day2 implements IDay2 {
     String a = null;
     int position = Integer.MIN_VALUE;
 
-    List<String> tokens = Arrays.asList(Day2.INPUT.split("\n"));
+    List<String> tokens = Arrays.asList(IDay2.INPUT.split("\n"));
 
     int size = tokens.size();
     for (int k = 0; k < size; k += 1) {
