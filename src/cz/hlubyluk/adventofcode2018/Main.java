@@ -35,10 +35,10 @@ public final class Main {
    */
   public static void main(String[] args) {
     List<IDay> days = new ArrayList<>();
-//    days.add(new Day1());
-//    days.add(new Day2());
-//    days.add(new Day3());
-//    days.add(new Day4());
+    days.add(new Day1());
+    days.add(new Day2());
+    days.add(new Day3());
+    days.add(new Day4());
     days.add(new Day5());
 
     Instant tmp = null;

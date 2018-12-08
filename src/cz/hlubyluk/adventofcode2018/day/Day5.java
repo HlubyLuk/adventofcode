@@ -16,20 +16,45 @@ public class Day5 implements IDay5 {
    */
   @Override
   public String solveFirst() {
-    StringBuilder tmp = new StringBuilder(Day5.INPUT);
+    return String.valueOf(this.shared(Day5.INPUT).length());
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see cz.hlubyluk.adventofcode2018.day.IDay#solveSecond()
+   */
+  @Override
+  public String solveSecond() {
+    String ret = null;
+
+    for (char a = 'A'; a <= 'Z'; a += 1) {
+      StringBuilder tmp = this.shared(Day5.INPUT.replaceAll(String.format("[%c%c]", a, a + Day5.ALPHABET_LENGHT), ""));
+
+      if (ret == null || ret.length() > tmp.length()) {
+        ret = tmp.toString();
+      }
+    }
+
+    return String.valueOf(ret.length());
+  }
+
+  private StringBuilder shared(String input) {
+    StringBuilder builder = new StringBuilder(input);
+
     boolean run = true;
     int j = 0;
 
     while (run) {
       run = false;
 
-      for (int i = j < 0 ? 0 : j; i < tmp.length() - 1;) {
-        char current = tmp.charAt(i);
-        char next = tmp.charAt(i + 1);
+      for (int i = j < 0 ? 0 : j; i < builder.length() - 1;) {
+        char current = builder.charAt(i);
+        char next = builder.charAt(i + 1);
 
         if (current + Day5.ALPHABET_LENGHT == next || current - Day5.ALPHABET_LENGHT == next) {
-          tmp.delete(i, i + 2);
-//          tmp.deleteCharAt(i + 1).deleteCharAt(i);
+          builder.delete(i, i + 2);
+//          builder.deleteCharAt(i + 1).deleteCharAt(i);
 
           j = i - 1;
 
@@ -41,18 +66,6 @@ public class Day5 implements IDay5 {
       }
     }
 
-    return String.valueOf(tmp.length());
+    return builder;
   }
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode2018.day.IDay#solveSecond()
-   */
-  @Override
-  public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
 }
