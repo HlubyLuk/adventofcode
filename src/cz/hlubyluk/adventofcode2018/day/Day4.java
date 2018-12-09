@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -143,7 +142,6 @@ public class Day4 implements IDay4 {
 
   private static class Guard extends Record {
     private final int id;
-    public final int[] counts = new int[60];
 
     private Guard(String input, int id) {
       super(input);
@@ -154,11 +152,6 @@ public class Day4 implements IDay4 {
     @Override
     public int getType() {
       return id;
-    }
-
-    @Override
-    public String getText() {
-      return String.format("%s %s", super.getText(), Arrays.toString(this.counts));
     }
   }
 
@@ -204,7 +197,7 @@ public class Day4 implements IDay4 {
         if (guards.containsKey(guard.id)) {
           row = guards.get(guard.id);
         } else {
-          row = guard.counts;
+          row = new int[60];
         }
 
         guards.put(guard.id, row);
