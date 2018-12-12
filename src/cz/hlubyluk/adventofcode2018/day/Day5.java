@@ -6,8 +6,6 @@ package cz.hlubyluk.adventofcode2018.day;
  * @author HlubyLuk
  */
 public class Day5 implements IDay5 {
-  private static final char ZERO = 'A';
-  private static final char ALPHABET_LENGHT = 'a' - Day5.ZERO;
 
   /*
    * (non-Javadoc)

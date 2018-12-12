@@ -5,11 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode2018.day.Day1;
-import cz.hlubyluk.adventofcode2018.day.Day2;
-import cz.hlubyluk.adventofcode2018.day.Day3;
-import cz.hlubyluk.adventofcode2018.day.Day4;
-import cz.hlubyluk.adventofcode2018.day.Day5;
+import cz.hlubyluk.adventofcode2018.day.Day6;
 import cz.hlubyluk.adventofcode2018.day.IDay;
 
 /**
@@ -35,11 +31,12 @@ public final class Main {
    */
   public static void main(String[] args) {
     List<IDay> days = new ArrayList<>();
-    days.add(new Day1());
-    days.add(new Day2());
-    days.add(new Day3());
-    days.add(new Day4());
-    days.add(new Day5());
+//    days.add(new Day1());
+//    days.add(new Day2());
+//    days.add(new Day3());
+//    days.add(new Day4());
+//    days.add(new Day5());
+    days.add(new Day6());
 
     Instant tmp = null;
     Instant start = Instant.now();

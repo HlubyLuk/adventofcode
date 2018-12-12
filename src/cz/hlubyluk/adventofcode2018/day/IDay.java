@@ -10,6 +10,8 @@ public interface IDay {
    * Default value.
    */
   int NOT_IMPLEMENT = Integer.MIN_VALUE;
+  char ZERO_CHARACTER = 'A';
+  char ALPHABET_LENGHT = 'a' - IDay.ZERO_CHARACTER;
 
   /**
    * Solve first part.
