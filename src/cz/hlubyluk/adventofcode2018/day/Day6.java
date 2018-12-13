@@ -22,12 +22,9 @@ public class Day6 implements IDay6 {
   @Override
   public String solveFirst() {
     String[] rows = IDay6.INPUT.split("\n");
-    Set<Point> interferences = new HashSet<>(rows.length);
-    Set<Point> points = new LinkedHashSet<>();
-    Set<Integer> edge = new HashSet<>();
-    Map<Integer, Integer> counter = new HashMap<>();
     int maxX = 0, maxY = 0;
 
+    Set<Point> interferences = new HashSet<>(rows.length);
     for (int i = 0; i < rows.length; i += 1) {
       String[] split = rows[i].split(", ");
 
@@ -43,14 +40,14 @@ public class Day6 implements IDay6 {
       }
     }
 
-    Matrix matrix = new Matrix(maxX, maxY);
-
+    Set<Point> points = new LinkedHashSet<>();
     for (int y = 0; y < maxY; y += 1) {
       for (int x = 0; x < maxX; x += 1) {
         points.add(new Point(x, y));
       }
     }
 
+    Matrix matrix = new Matrix(maxX, maxY);
     for (Point point : points) {
       int min = Integer.MAX_VALUE;
 
@@ -73,12 +70,14 @@ public class Day6 implements IDay6 {
       matrix.setPoint(point);
     }
 
+    Set<Integer> edge = new HashSet<>();
     for (Point point : points) {
       if (point.y == 0 || point.y == maxY - 1 || point.x == 0 || point.x == maxX - 1) {
         edge.add(point.what);
       }
     }
 
+    Map<Integer, Integer> counter = new HashMap<>();
     for (Point point : points) {
       if (!edge.contains(point.what)) {
         counter.put(point.what, counter.getOrDefault(point.what, 1) + 1);
@@ -96,8 +95,42 @@ public class Day6 implements IDay6 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    String[] rows = IDay6.INPUT.split("\n");
+    int maxX = 0, maxY = 0;
+
+    Set<Point> interferences = new HashSet<>(rows.length);
+    for (int i = 0; i < rows.length; i += 1) {
+      String[] split = rows[i].split(", ");
+
+      Point point = new Point(Integer.valueOf(split[0]), Integer.valueOf(split[1]), i);
+      interferences.add(point);
+
+      if (maxX < point.x) {
+        maxX = point.x + 1;
+      }
+
+      if (maxY < point.y) {
+        maxY = point.y + 1;
+      }
+    }
+
+    int counter = 0;
+    for (int y = 0; y < maxY; y += 1) {
+      for (int x = 0; x < maxX; x += 1) {
+        int distance = 0;
+        Point point = new Point(x, y);
+
+        for (Point interfence : interferences) {
+          distance += point.manhattanDisntance(interfence);
+        }
+
+        if (distance < 10000) {
+          counter += 1;
+        }
+      }
+    }
+
+    return String.valueOf(counter);
   }
 
   private static class Matrix {
