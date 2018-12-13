@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
  * @author HlubyLuk
  */
 public class Day6 implements IDay6 {
-  private static final int MATRIX_EDGE = 400;
 
   /*
    * (non-Javadoc)
@@ -24,20 +23,30 @@ public class Day6 implements IDay6 {
   public String solveFirst() {
     String[] rows = IDay6.INPUT.split("\n");
     Set<Point> interferences = new HashSet<>(rows.length);
-    Matrix matrix = new Matrix(Day6.MATRIX_EDGE);
+    Set<Point> points = new LinkedHashSet<>();
     Set<Integer> edge = new HashSet<>();
     Map<Integer, Integer> counter = new HashMap<>();
+    int maxX = 0, maxY = 0;
 
     for (int i = 0; i < rows.length; i += 1) {
       String[] split = rows[i].split(", ");
 
       Point point = new Point(Integer.valueOf(split[0]), Integer.valueOf(split[1]), i);
       interferences.add(point);
+
+      if (maxX < point.x) {
+        maxX = point.x + 1;
+      }
+
+      if (maxY < point.y) {
+        maxY = point.y + 1;
+      }
     }
 
-    Set<Point> points = new LinkedHashSet<>();
-    for (int y = 0; y < Day6.MATRIX_EDGE; y += 1) {
-      for (int x = 0; x < Day6.MATRIX_EDGE; x += 1) {
+    Matrix matrix = new Matrix(maxX, maxY);
+
+    for (int y = 0; y < maxY; y += 1) {
+      for (int x = 0; x < maxX; x += 1) {
         points.add(new Point(x, y));
       }
     }
@@ -65,7 +74,7 @@ public class Day6 implements IDay6 {
     }
 
     for (Point point : points) {
-      if (point.y == 0 || point.y == Day6.MATRIX_EDGE - 1 || point.x == 0 || point.x == Day6.MATRIX_EDGE - 1) {
+      if (point.y == 0 || point.y == maxY - 1 || point.x == 0 || point.x == maxX - 1) {
         edge.add(point.what);
       }
     }
@@ -94,8 +103,8 @@ public class Day6 implements IDay6 {
   private static class Matrix {
     private int[][] matrix;
 
-    public Matrix(int edge) {
-      this.matrix = new int[edge][edge];
+    public Matrix(int x, int y) {
+      this.matrix = new int[y][x];
     }
 
     public void setPoint(Point point) {
