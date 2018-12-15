@@ -5,6 +5,12 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.hlubyluk.adventofcode2018.day.Day1;
+import cz.hlubyluk.adventofcode2018.day.Day2;
+import cz.hlubyluk.adventofcode2018.day.Day3;
+import cz.hlubyluk.adventofcode2018.day.Day4;
+import cz.hlubyluk.adventofcode2018.day.Day5;
+import cz.hlubyluk.adventofcode2018.day.Day6;
 import cz.hlubyluk.adventofcode2018.day.Day7;
 import cz.hlubyluk.adventofcode2018.day.IDay;
 
@@ -31,12 +37,12 @@ public final class Main {
    */
   public static void main(String[] args) {
     List<IDay> days = new ArrayList<>();
-//    days.add(new Day1());
-//    days.add(new Day2());
-//    days.add(new Day3());
-//    days.add(new Day4());
-//    days.add(new Day5());
-//    days.add(new Day6());
+    days.add(new Day1());
+    days.add(new Day2());
+    days.add(new Day3());
+    days.add(new Day4());
+    days.add(new Day5());
+    days.add(new Day6());
     days.add(new Day7());
 
     Instant tmp = null;
@@ -53,7 +59,7 @@ public final class Main {
       String secondResult = day.solveSecond();
       Duration secondBetween = Duration.between(tmp, Instant.now());
 
-      System.out.printf("Day %d%n\tpart 1 result %25s, duration %7d%n\tpart 2 result %25s, duration %7d%n", i + 1,
+      System.out.printf("Day %d%n\tpart 1 result %26s, duration %7d%n\tpart 2 result %26s, duration %7d%n", i + 1,
           firstResult, firstBetween.toMillis(), secondResult, secondBetween.toMillis());
     }
 

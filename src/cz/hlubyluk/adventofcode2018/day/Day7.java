@@ -1,10 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -21,42 +18,52 @@ public class Day7 implements IDay7 {
    */
   @Override
   public String solveFirst() {
-    Set<Instruction> instructions = new TreeSet<>();
-    for (String line : IDay7.INPUT.split("\n")) {
-      instructions.add(new Instruction(line));
-    }
-
-    Map<Character, Set<Character>> cache = new TreeMap<>();
-    for (Instruction instruction : instructions) {
-      cache.put(instruction.from, new TreeSet<>());
-      cache.put(instruction.to, new TreeSet<>());
-    }
-    for (Instruction instruction : instructions) {
-      cache.get(instruction.to).add(instruction.from);
-    }
-
+    Set<Node> cache = shared();
     StringBuilder buffer = new StringBuilder();
     char first = ' ';
     while (!cache.isEmpty()) {
-      Set<Entry<Character, Set<Character>>> entries = cache.entrySet();
+      for (Iterator<Node> iterator = cache.iterator(); iterator.hasNext();) {
+        Node entry = iterator.next();
 
-      for (Iterator<Entry<Character, Set<Character>>> iterator = entries.iterator(); iterator.hasNext();) {
-        Entry<Character, Set<Character>> entry = iterator.next();
-
-        if (entry.getValue().isEmpty()) {
-          first = entry.getKey();
+        if (entry.parents.isEmpty()) {
+          first = entry.data;
           buffer.append(first);
           iterator.remove();
           break;
         }
       }
 
-      for (Entry<Character, Set<Character>> entry : entries) {
-        entry.getValue().remove(first);
+      for (Iterator<Node> it = cache.iterator(); it.hasNext();) {
+        Node node = it.next();
+        node.parents.remove(first);
       }
     }
 
     return buffer.toString();
+  }
+
+  private Set<Node> shared() {
+    Set<Instruction> instructions = new TreeSet<>();
+    for (String line : IDay7.INPUT.split("\n")) {
+      instructions.add(new Instruction(line));
+    }
+
+    Set<Node> cache = new TreeSet<>();
+
+    for (Instruction instruction : instructions) {
+      cache.add(new Node(instruction.from));
+      cache.add(new Node(instruction.to));
+    }
+
+    for (Instruction instruction : instructions) {
+      for (Node node : cache) {
+        if (node.data == instruction.to) {
+          node.parents.add(instruction.from);
+        }
+      }
+    }
+
+    return cache;
   }
 
   /*
@@ -66,8 +73,57 @@ public class Day7 implements IDay7 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    int seconds = 0;
+    int worker = 5;
+
+    Set<Node> cache = shared();
+    Set<Node> work = new TreeSet<>();
+    StringBuilder buffer = new StringBuilder();
+    while (!cache.isEmpty() || !work.isEmpty()) {
+      for (Iterator<Node> iterator = cache.iterator(); iterator.hasNext();) {
+        Node entry = iterator.next();
+
+        if (entry.parents.isEmpty() && work.size() < worker) {
+          work.add(entry);
+          iterator.remove();
+        }
+      }
+
+      for (Iterator<Node> it = work.iterator(); it.hasNext();) {
+        Node node = it.next();
+        node.seconds -= 1;
+
+        if (node.seconds == 0) {
+          buffer.append(node.data);
+          it.remove();
+
+          for (Node c : cache) {
+            c.parents.remove(node.data);
+          }
+        }
+      }
+
+      seconds += 1;
+    }
+
+    return String.valueOf(seconds);
+  }
+
+  private static class Node implements Comparable<Node> {
+    private final char data;
+    private final Set<Character> parents = new TreeSet<>();
+    private int seconds;
+
+    public Node(char data) {
+      super();
+      this.seconds = 1 + data - 'A' + 60;
+      this.data = data;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+      return Character.compare(this.data, o.data);
+    }
   }
 
   private static class Instruction implements Comparable<Instruction> {
