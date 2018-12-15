@@ -27,7 +27,7 @@ public class Day5 implements IDay5 {
     String ret = null;
 
     for (char a = 'A'; a <= 'Z'; a += 1) {
-      StringBuilder tmp = this.shared(IDay5.INPUT.replaceAll(String.format("[%c%c]", a, a + Day5.ALPHABET_LENGHT), ""));
+      StringBuilder tmp = this.shared(IDay5.INPUT.replaceAll(String.format("[%c%c]", a, a + IDay.ALPHABET_LENGHT), ""));
 
       if (ret == null || ret.length() > tmp.length()) {
         ret = tmp.toString();
@@ -50,7 +50,7 @@ public class Day5 implements IDay5 {
         char current = builder.charAt(i);
         char next = builder.charAt(i + 1);
 
-        if (current + Day5.ALPHABET_LENGHT == next || current - Day5.ALPHABET_LENGHT == next) {
+        if (current + IDay.ALPHABET_LENGHT == next || current - IDay.ALPHABET_LENGHT == next) {
           builder.delete(i, i + 2);
 //          builder.deleteCharAt(i + 1).deleteCharAt(i);
 
