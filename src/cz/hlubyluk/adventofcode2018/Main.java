@@ -14,6 +14,7 @@ import cz.hlubyluk.adventofcode2018.day.Day5;
 import cz.hlubyluk.adventofcode2018.day.Day6;
 import cz.hlubyluk.adventofcode2018.day.Day7;
 import cz.hlubyluk.adventofcode2018.day.Day8;
+import cz.hlubyluk.adventofcode2018.day.Day9;
 import cz.hlubyluk.adventofcode2018.day.IDay;
 
 /**
@@ -47,7 +48,7 @@ public final class Main {
     days.add(new Day6());
     days.add(new Day7());
     days.add(new Day8());
-//    days.add(new Day9());
+    days.add(new Day9());
     days.add(new Day10());
 
     Instant tmp = null;
