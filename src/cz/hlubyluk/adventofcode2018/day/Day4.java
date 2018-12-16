@@ -116,10 +116,6 @@ public class Day4 implements IDay4 {
     LocalDateTime getTime();
 
     int getType();
-
-    default String getText() {
-      return String.format("%s, %5d", this.getTime(), this.getType());
-    }
   }
 
   private static abstract class Record implements Rec<Record> {
