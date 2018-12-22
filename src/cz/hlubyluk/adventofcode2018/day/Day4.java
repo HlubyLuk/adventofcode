@@ -214,4 +214,9 @@ public class Day4 implements IDay4 {
 
     return guards;
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 4";
+  }
 }

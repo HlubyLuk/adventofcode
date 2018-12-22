@@ -1,9 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -102,5 +100,10 @@ public class Day9 implements IDay9 {
         }
       }
     }
+  }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 9";
   }
 }

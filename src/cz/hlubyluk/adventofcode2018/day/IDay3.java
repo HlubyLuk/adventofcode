@@ -3,6 +3,8 @@
  */
 package cz.hlubyluk.adventofcode2018.day;
 
+import cz.hlubyluk.adventofcode2018.IDay;
+
 public interface IDay3 extends IDay {
   String TEST_INPUT = "#1 @ 1,3: 4x4\n" + "#2 @ 3,1: 4x4\n" + "#3 @ 5,5: 2x2";
   String INPUT = "#1 @ 755,138: 26x19\n" + "#2 @ 952,518: 15x24\n" + "#3 @ 304,90: 28x12\n" + "#4 @ 237,265: 17x13\n"

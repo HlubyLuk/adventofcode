@@ -1,5 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
+import cz.hlubyluk.adventofcode2018.IDay;
+
 public interface IDay10 extends IDay {
   String INPUT_TEST = "position=< 9,  1> velocity=< 0,  2>\n" + "position=< 7,  0> velocity=<-1,  0>\n"
       + "position=< 3, -2> velocity=<-1,  1>\n" + "position=< 6, 10> velocity=<-2, -1>\n"

@@ -1,5 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
+import cz.hlubyluk.adventofcode2018.IDay;
+
 public interface IDay2 extends IDay {
   String INPUT = "cnjxpritdzhubeseewfmqagkul\n" + "cwyxpgitdzhvbosyewfmqagkul\n" + "cnfxpritdzhebosywwfmqagkul\n"
       + "cnjxpritdzgvbosyawfiqagkul\n" + "cnkxpritdzhvbosyewfmgagkuh\n" + "gnjxprhtdzhebosyewfmqagkul\n"

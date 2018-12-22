@@ -148,4 +148,9 @@ public class Day7 implements IDay7 {
       return Long.compare(this.from * 1000 + this.to, o.from * 1000 + o.to);
     }
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 7";
+  }
 }

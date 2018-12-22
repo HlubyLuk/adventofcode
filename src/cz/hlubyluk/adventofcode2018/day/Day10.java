@@ -199,4 +199,9 @@ public class Day10 implements IDay10 {
 //      System.out.println(builder);
     }
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 10";
+  }
 }

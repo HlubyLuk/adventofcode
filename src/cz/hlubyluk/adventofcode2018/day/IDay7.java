@@ -1,5 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
+import cz.hlubyluk.adventofcode2018.IDay;
+
 public interface IDay7 extends IDay {
   String TEST_INPUT = "Step C must be finished before step A can begin.\n"
       + "Step C must be finished before step F can begin.\n" + "Step A must be finished before step B can begin.\n"

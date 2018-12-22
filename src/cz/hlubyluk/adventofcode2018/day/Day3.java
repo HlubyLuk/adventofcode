@@ -100,4 +100,9 @@ public class Day3 implements IDay3 {
       this.h = Integer.valueOf(square[1]);
     }
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 3";
+  }
 }

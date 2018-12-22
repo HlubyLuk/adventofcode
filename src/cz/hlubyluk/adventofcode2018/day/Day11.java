@@ -82,4 +82,9 @@ public class Day11 implements IDay11 {
 
     return String.format("%d,%d,%d", mx, my, me);
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 11";
+  }
 }

@@ -87,4 +87,9 @@ public class Day8 implements IDay8 {
       return "Node [childers=" + childers + ", metadatas=" + metadatas + "]";
     }
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 8";
+  }
 }

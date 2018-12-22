@@ -1,5 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
+import cz.hlubyluk.adventofcode2018.IDay;
+
 public interface IDay6 extends IDay {
   String TEST_INPUT = "1, 1\n" + "1, 6\n" + "8, 3\n" + "3, 4\n" + "5, 5\n" + "8, 9";
   String INPUT = "137, 140\n" + "318, 75\n" + "205, 290\n" + "104, 141\n" + "163, 104\n" + "169, 164\n" + "238, 324\n"

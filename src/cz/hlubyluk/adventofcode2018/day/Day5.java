@@ -1,5 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
+import cz.hlubyluk.adventofcode2018.IDay;
+
 /**
  * https://adventofcode.com/2018/day/5
  *
@@ -65,5 +67,10 @@ public class Day5 implements IDay5 {
     }
 
     return builder;
+  }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 5";
   }
 }

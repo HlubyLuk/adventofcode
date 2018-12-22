@@ -215,4 +215,9 @@ public class Day6 implements IDay6 {
       return "Point [what=" + what + "]";
     }
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 6";
+  }
 }

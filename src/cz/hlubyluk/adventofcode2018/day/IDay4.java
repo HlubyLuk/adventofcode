@@ -1,5 +1,7 @@
 package cz.hlubyluk.adventofcode2018.day;
 
+import cz.hlubyluk.adventofcode2018.IDay;
+
 public interface IDay4 extends IDay {
   String TEST_INPUT = "[1518-11-01 00:00] Guard #10 begins shift\n" + "[1518-11-01 00:05] falls asleep\n"
       + "[1518-11-01 00:25] wakes up\n" + "[1518-11-01 00:30] falls asleep\n" + "[1518-11-01 00:55] wakes up\n"

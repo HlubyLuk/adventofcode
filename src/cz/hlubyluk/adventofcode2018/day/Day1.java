@@ -49,4 +49,9 @@ public final class Day1 implements IDay1 {
 
     return String.valueOf(tmp);
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 1";
+  }
 }

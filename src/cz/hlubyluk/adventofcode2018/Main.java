@@ -16,7 +16,6 @@ import cz.hlubyluk.adventofcode2018.day.Day6;
 import cz.hlubyluk.adventofcode2018.day.Day7;
 import cz.hlubyluk.adventofcode2018.day.Day8;
 import cz.hlubyluk.adventofcode2018.day.Day9;
-import cz.hlubyluk.adventofcode2018.day.IDay;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -56,9 +55,7 @@ public final class Main {
     Instant tmp = null;
     Instant start = Instant.now();
 
-    for (int i = 0; i < days.size(); i += 1) {
-      IDay day = days.get(i);
-
+    for (IDay day : days) {
       tmp = Instant.now();
       String firstResult = day.solveFirst();
       Duration firstBetween = Duration.between(tmp, Instant.now());
@@ -67,7 +64,7 @@ public final class Main {
       String secondResult = day.solveSecond();
       Duration secondBetween = Duration.between(tmp, Instant.now());
 
-      System.out.printf("Day %d%n\tpart 1 result %26s, duration %7d%n\tpart 2 result %26s, duration %7d%n", i + 1,
+      System.out.printf("%s%n\tpart 1 result %26s, duration %7d%n\tpart 2 result %26s, duration %7d%n", day.getTag(),
           firstResult, firstBetween.toMillis(), secondResult, secondBetween.toMillis());
     }
 

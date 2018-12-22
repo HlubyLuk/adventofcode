@@ -93,4 +93,9 @@ public final class Day2 implements IDay2 {
 
     return String.format("%s%s", a.substring(0, position), a.substring(position + 1));
   }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 2";
+  }
 }
