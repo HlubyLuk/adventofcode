@@ -1,22 +1,25 @@
 package cz.hlubyluk.adventofcode2018.day;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.LinkedBlockingDeque;
 
 public class Day9 implements IDay9 {
 
   @Override
   public String solveFirst() {
-    return String.valueOf(this.parse().whoWin());
+    Game game = this.parse();
+    return String.valueOf(new Solver(game.players).play(game.mirable));
   }
 
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    Game game = this.parse();
+    return String.valueOf(new Solver(game.players).play(game.mirable * 100));
   }
 
   private Game parse() {
@@ -54,42 +57,50 @@ public class Day9 implements IDay9 {
       this.mirable = mirable;
     }
 
-    public int whoWin() {
-      Map<Integer, Integer> map = new HashMap<>();
-
-      List<Integer> list = new ArrayList<>();
-      list.add(0);
-
-      int index = 1;
-      for (int mirable = 1; mirable <= this.mirable; mirable += 1) {
-        if (mirable % 23 == 0) {
-          index -= 7;
-
-          if (index < 1) {
-            index += list.size();
-          }
-
-          int key = mirable % this.players;
-          map.put(key, map.getOrDefault(key, 0) + mirable + list.remove(index));
-        } else {
-          index += 2;
-          if (index > list.size()) {
-            index = 1;
-          }
-          list.add(index, mirable);
-        }
-
-//        System.out.printf("[%d] ", mirable % this.players);
-//        list.stream().forEach(x -> System.out.printf("%02d ", x));
-//        System.out.println();
-      }
-
-      return map.values().stream().reduce(Integer::max).orElseGet(() -> 0);
-    }
-
     @Override
     public String toString() {
       return "Game [player=" + players + ", score=" + mirable + "]";
+    }
+  }
+
+  public static class Solver {
+    private final int players;
+
+    public Solver(int players) {
+      super();
+      this.players = players;
+    }
+
+    public long play(int mirables) {
+      Map<Integer, Long> sc = new HashMap<>();
+      Deque<Integer> deque = new LinkedBlockingDeque<Integer>();
+      deque.add(0);
+
+      for (int i = 1; i <= mirables; i += 1) {
+        if (i % 23 != 0) {
+          Solver.rotate(deque, -2);
+          deque.add(i);
+        } else {
+          Solver.rotate(deque, 6);
+          Integer removed = deque.removeFirst();
+
+          int key = i % this.players;
+
+          sc.put(key, sc.getOrDefault(key, 0L) + i + removed);
+        }
+      }
+
+      return sc.values().stream().reduce(Math::max).orElseGet(() -> 0L);
+    }
+
+    private static void rotate(Deque<Integer> deque, int count) {
+      for (int i = 0; i < Math.abs(count); i += 1) {
+        if (0 < count) {
+          deque.addLast(deque.removeFirst());
+        } else {
+          deque.addFirst(deque.removeLast());
+        }
+      }
     }
   }
 }
