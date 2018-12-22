@@ -49,9 +49,9 @@ public final class Main {
 //    days.add(new Day6());
 //    days.add(new Day7());
 //    days.add(new Day8());
-//    days.add(new Day9());
+    days.add(new Day9());
 //    days.add(new Day10());
-    days.add(new Day11());
+//    days.add(new Day11());
 
     Instant tmp = null;
     Instant start = Instant.now();
