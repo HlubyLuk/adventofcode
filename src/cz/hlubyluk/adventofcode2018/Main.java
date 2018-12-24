@@ -5,18 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode2018.day.Day1;
-import cz.hlubyluk.adventofcode2018.day.Day10;
-import cz.hlubyluk.adventofcode2018.day.Day11;
-import cz.hlubyluk.adventofcode2018.day.Day14;
-import cz.hlubyluk.adventofcode2018.day.Day2;
-import cz.hlubyluk.adventofcode2018.day.Day3;
-import cz.hlubyluk.adventofcode2018.day.Day4;
-import cz.hlubyluk.adventofcode2018.day.Day5;
-import cz.hlubyluk.adventofcode2018.day.Day6;
-import cz.hlubyluk.adventofcode2018.day.Day7;
-import cz.hlubyluk.adventofcode2018.day.Day8;
-import cz.hlubyluk.adventofcode2018.day.Day9;
+import cz.hlubyluk.adventofcode2018.day.Day16;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -52,7 +41,8 @@ public final class Main {
 //    days.add(new Day9());
 //    days.add(new Day10());
 //    days.add(new Day11());
-    days.add(new Day14());
+//    days.add(new Day14());
+    days.add(new Day16());
 
     Instant tmp = null;
     Instant start = Instant.now();
