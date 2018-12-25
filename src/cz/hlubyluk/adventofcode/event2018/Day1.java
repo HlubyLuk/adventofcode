@@ -1,4 +1,4 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
  * @author HlubyLuk
  */
 public final class Day1 implements IDay1 {
+
+  @Override
+  public String getTag() {
+    return "2018 Day 1";
+  }
 
   @Override
   public String solveFirst() {
@@ -48,10 +53,5 @@ public final class Day1 implements IDay1 {
     }
 
     return String.valueOf(tmp);
-  }
-
-  @Override
-  public String getTag() {
-    return "2018 Day 1";
   }
 }

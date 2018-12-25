@@ -1,4 +1,4 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -15,6 +15,11 @@ import java.util.Map.Entry;
  * @author HlubyLuk
  */
 public final class Day2 implements IDay2 {
+
+  @Override
+  public String getTag() {
+    return "2018 Day 2";
+  }
 
   /*
    * (non-Javadoc)
@@ -92,10 +97,5 @@ public final class Day2 implements IDay2 {
     }
 
     return String.format("%s%s", a.substring(0, position), a.substring(position + 1));
-  }
-
-  @Override
-  public String getTag() {
-    return "2018 Day 2";
   }
 }

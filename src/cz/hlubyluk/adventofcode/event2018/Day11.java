@@ -1,8 +1,25 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 public class Day11 implements IDay11 {
 
   private static final int EDGE = 301;
+
+  @Override
+  public String getTag() {
+    return "2018 Day 11";
+  }
+
+  private int powerLevel(int x, int y, int serialNumber) {
+    int r = x + 10;
+    int p = r * y;
+    p += serialNumber;
+    p *= r;
+    p /= 100;
+    p %= 10;
+    p -= 5;
+
+    return p;
+  }
 
   @Override
   public String solveFirst() {
@@ -28,18 +45,6 @@ public class Day11 implements IDay11 {
     }
 
     return String.format("%d,%d", mx, my);
-  }
-
-  private int powerLevel(int x, int y, int serialNumber) {
-    int r = x + 10;
-    int p = r * y;
-    p += serialNumber;
-    p *= r;
-    p /= 100;
-    p %= 10;
-    p -= 5;
-
-    return p;
   }
 
   @Override
@@ -81,10 +86,5 @@ public class Day11 implements IDay11 {
     }
 
     return String.format("%d,%d,%d", mx, my, me);
-  }
-
-  @Override
-  public String getTag() {
-    return "2018 Day 11";
   }
 }

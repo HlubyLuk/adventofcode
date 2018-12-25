@@ -1,9 +1,24 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Day14 implements IDay14 {
+
+  private char[] add(char a, char b) {
+    int c = (a - '0') + (b - '0');
+
+    return String.valueOf(c).toCharArray();
+  }
+
+  @Override
+  public String getTag() {
+    return "2018 Day14";
+  }
+
+  private int index(List<Character> scores, int idx) {
+    return (idx + Integer.valueOf(String.valueOf(scores.get(idx))) + 1) % scores.size();
+  }
 
   @Override
   public String solveFirst() {
@@ -34,23 +49,8 @@ public class Day14 implements IDay14 {
     return builder.toString();
   }
 
-  private char[] add(char a, char b) {
-    int c = (a - '0') + (b - '0');
-
-    return String.valueOf(c).toCharArray();
-  }
-
-  private int index(List<Character> scores, int idx) {
-    return (idx + Integer.valueOf(String.valueOf(scores.get(idx))) + 1) % scores.size();
-  }
-
   @Override
   public String solveSecond() {
     return null;
-  }
-
-  @Override
-  public String getTag() {
-    return "2018 Day14";
   }
 }

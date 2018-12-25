@@ -1,4 +1,4 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 import java.util.Deque;
 import java.util.HashMap;
@@ -7,44 +7,6 @@ import java.util.Scanner;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class Day9 implements IDay9 {
-
-  @Override
-  public String solveFirst() {
-    Game game = this.parse();
-    return String.valueOf(new Solver(game.players).play(game.mirable));
-  }
-
-  @Override
-  public String solveSecond() {
-    Game game = this.parse();
-    return String.valueOf(new Solver(game.players).play(game.mirable * 100));
-  }
-
-  private Game parse() {
-    int players = 0, points = 0, c = 0;
-
-    Scanner scanner = new Scanner(IDay9.INPUT);
-    while (scanner.hasNext()) {
-      if (scanner.hasNextInt()) {
-        switch (c % 2) {
-        case 0:
-          players = scanner.nextInt();
-          break;
-
-        case 1:
-          points = scanner.nextInt();
-          break;
-        }
-
-        c += 1;
-      } else {
-        scanner.next();
-      }
-    }
-    scanner.close();
-
-    return new Game(players, points);
-  }
 
   private static class Game {
     private final int players, mirable;
@@ -62,6 +24,16 @@ public class Day9 implements IDay9 {
   }
 
   public static class Solver {
+    private static void rotate(Deque<Integer> deque, int count) {
+      for (int i = 0; i < Math.abs(count); i += 1) {
+        if (0 < count) {
+          deque.addLast(deque.removeFirst());
+        } else {
+          deque.addFirst(deque.removeLast());
+        }
+      }
+    }
+
     private final int players;
 
     public Solver(int players) {
@@ -90,20 +62,48 @@ public class Day9 implements IDay9 {
 
       return sc.values().stream().reduce(Math::max).orElseGet(() -> 0L);
     }
-
-    private static void rotate(Deque<Integer> deque, int count) {
-      for (int i = 0; i < Math.abs(count); i += 1) {
-        if (0 < count) {
-          deque.addLast(deque.removeFirst());
-        } else {
-          deque.addFirst(deque.removeLast());
-        }
-      }
-    }
   }
 
   @Override
   public String getTag() {
     return "2018 Day 9";
+  }
+
+  private Game parse() {
+    int players = 0, points = 0, c = 0;
+
+    Scanner scanner = new Scanner(IDay9.INPUT);
+    while (scanner.hasNext()) {
+      if (scanner.hasNextInt()) {
+        switch (c % 2) {
+        case 0:
+          players = scanner.nextInt();
+          break;
+
+        case 1:
+          points = scanner.nextInt();
+          break;
+        }
+
+        c += 1;
+      } else {
+        scanner.next();
+      }
+    }
+    scanner.close();
+
+    return new Game(players, points);
+  }
+
+  @Override
+  public String solveFirst() {
+    Game game = this.parse();
+    return String.valueOf(new Solver(game.players).play(game.mirable));
+  }
+
+  @Override
+  public String solveSecond() {
+    Game game = this.parse();
+    return String.valueOf(new Solver(game.players).play(game.mirable * 100));
   }
 }

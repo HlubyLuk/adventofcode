@@ -1,17 +1,8 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
-import cz.hlubyluk.adventofcode2018.IDay;
+import cz.hlubyluk.adventofcode.IDay;
 
 public interface IDay4 extends IDay {
-  String TEST_INPUT = "[1518-11-01 00:00] Guard #10 begins shift\n" + "[1518-11-01 00:05] falls asleep\n"
-      + "[1518-11-01 00:25] wakes up\n" + "[1518-11-01 00:30] falls asleep\n" + "[1518-11-01 00:55] wakes up\n"
-      + "[1518-11-01 23:58] Guard #99 begins shift\n" + "[1518-11-02 00:40] falls asleep\n"
-      + "[1518-11-02 00:50] wakes up\n" + "[1518-11-03 00:05] Guard #10 begins shift\n"
-      + "[1518-11-03 00:24] falls asleep\n" + "[1518-11-03 00:29] wakes up\n"
-      + "[1518-11-04 00:02] Guard #99 begins shift\n" + "[1518-11-04 00:36] falls asleep\n"
-      + "[1518-11-04 00:46] wakes up\n" + "[1518-11-05 00:03] Guard #99 begins shift\n"
-      + "[1518-11-05 00:45] falls asleep\n" + "[1518-11-05 00:55] wakes up";
-
   String INPUT = "[1518-05-11 00:47] wakes up\n" + "[1518-07-13 00:59] wakes up\n" + "[1518-06-16 00:49] falls asleep\n"
       + "[1518-08-17 00:01] Guard #3529 begins shift\n" + "[1518-07-07 00:21] falls asleep\n"
       + "[1518-03-28 23:56] Guard #1069 begins shift\n" + "[1518-08-03 00:04] Guard #3137 begins shift\n"
@@ -496,4 +487,13 @@ public interface IDay4 extends IDay {
       + "[1518-09-04 00:33] falls asleep\n" + "[1518-04-18 23:57] Guard #401 begins shift";
 
   String RESULT = "103720";
+
+  String TEST_INPUT = "[1518-11-01 00:00] Guard #10 begins shift\n" + "[1518-11-01 00:05] falls asleep\n"
+      + "[1518-11-01 00:25] wakes up\n" + "[1518-11-01 00:30] falls asleep\n" + "[1518-11-01 00:55] wakes up\n"
+      + "[1518-11-01 23:58] Guard #99 begins shift\n" + "[1518-11-02 00:40] falls asleep\n"
+      + "[1518-11-02 00:50] wakes up\n" + "[1518-11-03 00:05] Guard #10 begins shift\n"
+      + "[1518-11-03 00:24] falls asleep\n" + "[1518-11-03 00:29] wakes up\n"
+      + "[1518-11-04 00:02] Guard #99 begins shift\n" + "[1518-11-04 00:36] falls asleep\n"
+      + "[1518-11-04 00:46] wakes up\n" + "[1518-11-05 00:03] Guard #99 begins shift\n"
+      + "[1518-11-05 00:45] falls asleep\n" + "[1518-11-05 00:55] wakes up";
 }

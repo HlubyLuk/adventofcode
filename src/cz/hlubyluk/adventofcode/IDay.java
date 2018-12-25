@@ -1,4 +1,4 @@
-package cz.hlubyluk.adventofcode2018;
+package cz.hlubyluk.adventofcode;
 
 /**
  * Day abstraction.
@@ -6,10 +6,17 @@ package cz.hlubyluk.adventofcode2018;
  * @author HlubyLuk
  */
 public interface IDay {
+  char ALPHABET_LENGHT = 'a' - IDay.ZERO_CHARACTER;
   /** Default value. */
   int NOT_IMPLEMENT = Integer.MIN_VALUE;
   char ZERO_CHARACTER = 'A';
-  char ALPHABET_LENGHT = 'a' - IDay.ZERO_CHARACTER;
+
+  /**
+   * Get day tag.
+   *
+   * @return name for puzzle.
+   */
+  String getTag();
 
   /**
    * Solve first part.
@@ -24,11 +31,4 @@ public interface IDay {
    * @return value.
    */
   String solveSecond();
-
-  /**
-   * Get day tag.
-   *
-   * @return name for puzzle.
-   */
-  String getTag();
 }

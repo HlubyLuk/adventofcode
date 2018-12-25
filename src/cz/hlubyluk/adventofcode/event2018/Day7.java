@@ -1,4 +1,4 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -10,6 +10,75 @@ import java.util.TreeSet;
  * @author HlubyLuk
  */
 public class Day7 implements IDay7 {
+
+  private static class Instruction implements Comparable<Instruction> {
+    private char from, to;
+
+    public Instruction(String line) {
+      super();
+
+      String[] split = line.split(" ");
+
+      this.from = split[1].charAt(0);
+      this.to = split[7].charAt(0);
+    }
+
+    @Override
+    public int compareTo(Instruction o) {
+      return Long.compare(this.from * 1000 + this.to, o.from * 1000 + o.to);
+    }
+
+    @Override
+    public String toString() {
+      return String.format("Instruction [%c ~> %c]", this.from, this.to);
+    }
+  }
+
+  private static class Node implements Comparable<Node> {
+    private final char data;
+    private final Set<Character> parents = new TreeSet<>();
+    private int seconds;
+
+    public Node(char data) {
+      super();
+      this.seconds = 1 + data - 'A' + 60;
+      this.data = data;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+      return Character.compare(this.data, o.data);
+    }
+  }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 7";
+  }
+
+  private Set<Node> shared() {
+    Set<Instruction> instructions = new TreeSet<>();
+    for (String line : IDay7.INPUT.split("\n")) {
+      instructions.add(new Instruction(line));
+    }
+
+    Set<Node> cache = new TreeSet<>();
+
+    for (Instruction instruction : instructions) {
+      cache.add(new Node(instruction.from));
+      cache.add(new Node(instruction.to));
+    }
+
+    for (Instruction instruction : instructions) {
+      for (Node node : cache) {
+        if (node.data == instruction.to) {
+          node.parents.add(instruction.from);
+        }
+      }
+    }
+
+    return cache;
+  }
 
   /*
    * (non-Javadoc)
@@ -40,30 +109,6 @@ public class Day7 implements IDay7 {
     }
 
     return buffer.toString();
-  }
-
-  private Set<Node> shared() {
-    Set<Instruction> instructions = new TreeSet<>();
-    for (String line : IDay7.INPUT.split("\n")) {
-      instructions.add(new Instruction(line));
-    }
-
-    Set<Node> cache = new TreeSet<>();
-
-    for (Instruction instruction : instructions) {
-      cache.add(new Node(instruction.from));
-      cache.add(new Node(instruction.to));
-    }
-
-    for (Instruction instruction : instructions) {
-      for (Node node : cache) {
-        if (node.data == instruction.to) {
-          node.parents.add(instruction.from);
-        }
-      }
-    }
-
-    return cache;
   }
 
   /*
@@ -107,50 +152,5 @@ public class Day7 implements IDay7 {
     }
 
     return String.valueOf(seconds);
-  }
-
-  private static class Node implements Comparable<Node> {
-    private final char data;
-    private final Set<Character> parents = new TreeSet<>();
-    private int seconds;
-
-    public Node(char data) {
-      super();
-      this.seconds = 1 + data - 'A' + 60;
-      this.data = data;
-    }
-
-    @Override
-    public int compareTo(Node o) {
-      return Character.compare(this.data, o.data);
-    }
-  }
-
-  private static class Instruction implements Comparable<Instruction> {
-    private char from, to;
-
-    public Instruction(String line) {
-      super();
-
-      String[] split = line.split(" ");
-
-      this.from = split[1].charAt(0);
-      this.to = split[7].charAt(0);
-    }
-
-    @Override
-    public String toString() {
-      return String.format("Instruction [%c ~> %c]", this.from, this.to);
-    }
-
-    @Override
-    public int compareTo(Instruction o) {
-      return Long.compare(this.from * 1000 + this.to, o.from * 1000 + o.to);
-    }
-  }
-
-  @Override
-  public String getTag() {
-    return "2018 Day 7";
   }
 }

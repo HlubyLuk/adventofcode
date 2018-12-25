@@ -1,6 +1,6 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
-import cz.hlubyluk.adventofcode2018.IDay;
+import cz.hlubyluk.adventofcode.IDay;
 
 public interface IDay9 extends IDay {
   String INPUT = "464 players; last marble is worth 70918 points";

@@ -1,12 +1,11 @@
 /**
  * 
  */
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
-import cz.hlubyluk.adventofcode2018.IDay;
+import cz.hlubyluk.adventofcode.IDay;
 
 public interface IDay3 extends IDay {
-  String TEST_INPUT = "#1 @ 1,3: 4x4\n" + "#2 @ 3,1: 4x4\n" + "#3 @ 5,5: 2x2";
   String INPUT = "#1 @ 755,138: 26x19\n" + "#2 @ 952,518: 15x24\n" + "#3 @ 304,90: 28x12\n" + "#4 @ 237,265: 17x13\n"
       + "#5 @ 219,97: 26x24\n" + "#6 @ 512,74: 19x21\n" + "#7 @ 868,291: 22x25\n" + "#8 @ 908,272: 17x11\n"
       + "#9 @ 432,455: 10x8\n" + "#10 @ 309,778: 13x25\n" + "#11 @ 569,720: 28x29\n" + "#12 @ 557,222: 26x15\n"
@@ -344,4 +343,5 @@ public interface IDay3 extends IDay {
       + "#1298 @ 486,627: 22x23\n" + "#1299 @ 180,820: 22x15\n" + "#1300 @ 141,206: 11x15\n"
       + "#1301 @ 833,914: 16x25\n" + "#1302 @ 536,596: 17x21\n" + "#1303 @ 18,870: 25x16\n" + "#1304 @ 550,445: 13x24\n"
       + "#1305 @ 163,257: 22x24\n" + "#1306 @ 932,665: 19x11\n" + "#1307 @ 42,472: 13x14";
+  String TEST_INPUT = "#1 @ 1,3: 4x4\n" + "#2 @ 3,1: 4x4\n" + "#3 @ 5,5: 2x2";
 }

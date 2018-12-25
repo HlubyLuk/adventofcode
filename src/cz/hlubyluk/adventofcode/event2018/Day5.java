@@ -1,6 +1,6 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
-import cz.hlubyluk.adventofcode2018.IDay;
+import cz.hlubyluk.adventofcode.IDay;
 
 /**
  * https://adventofcode.com/2018/day/5
@@ -9,34 +9,9 @@ import cz.hlubyluk.adventofcode2018.IDay;
  */
 public class Day5 implements IDay5 {
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode2018.day.IDay#solveFirst()
-   */
   @Override
-  public String solveFirst() {
-    return String.valueOf(this.shared(IDay5.INPUT).length());
-  }
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode2018.day.IDay#solveSecond()
-   */
-  @Override
-  public String solveSecond() {
-    String ret = null;
-
-    for (char a = 'A'; a <= 'Z'; a += 1) {
-      StringBuilder tmp = this.shared(IDay5.INPUT.replaceAll(String.format("[%c%c]", a, a + IDay.ALPHABET_LENGHT), ""));
-
-      if (ret == null || ret.length() > tmp.length()) {
-        ret = tmp.toString();
-      }
-    }
-
-    return String.valueOf(ret.length());
+  public String getTag() {
+    return "2018 Day 5";
   }
 
   private StringBuilder shared(String input) {
@@ -69,8 +44,33 @@ public class Day5 implements IDay5 {
     return builder;
   }
 
+  /*
+   * (non-Javadoc)
+   *
+   * @see cz.hlubyluk.adventofcode2018.day.IDay#solveFirst()
+   */
   @Override
-  public String getTag() {
-    return "2018 Day 5";
+  public String solveFirst() {
+    return String.valueOf(this.shared(IDay5.INPUT).length());
+  }
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see cz.hlubyluk.adventofcode2018.day.IDay#solveSecond()
+   */
+  @Override
+  public String solveSecond() {
+    String ret = null;
+
+    for (char a = 'A'; a <= 'Z'; a += 1) {
+      StringBuilder tmp = this.shared(IDay5.INPUT.replaceAll(String.format("[%c%c]", a, a + IDay.ALPHABET_LENGHT), ""));
+
+      if (ret == null || ret.length() > tmp.length()) {
+        ret = tmp.toString();
+      }
+    }
+
+    return String.valueOf(ret.length());
   }
 }

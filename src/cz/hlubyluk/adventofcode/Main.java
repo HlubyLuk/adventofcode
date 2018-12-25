@@ -1,11 +1,11 @@
-package cz.hlubyluk.adventofcode2018;
+package cz.hlubyluk.adventofcode;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode2018.day.Day16;
+import cz.hlubyluk.adventofcode.event2018.Day16;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a

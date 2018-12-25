@@ -1,4 +1,4 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,31 @@ import java.util.stream.Collectors;
  * @author HlubyLuk
  */
 public class Day3 implements IDay3 {
+
+  private static class Coordinate {
+    private final String id;
+    private final int w, h;
+    private final int x, y;
+
+    private Coordinate(String input) {
+      String[] split = input.split(" ");
+
+      this.id = split[0].substring(1);
+
+      String[] point = split[2].split(",");
+      this.x = Integer.valueOf(point[0]);
+      this.y = Integer.valueOf(point[1].replaceAll(":", ""));
+
+      String[] square = split[3].split("x");
+      this.w = Integer.valueOf(square[0]);
+      this.h = Integer.valueOf(square[1]);
+    }
+  }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 3";
+  }
 
   /*
    * (non-Javadoc)
@@ -79,30 +104,5 @@ public class Day3 implements IDay3 {
     }
 
     return ids.size() == 1 ? String.valueOf(ids.get(0)) : null;
-  }
-
-  private static class Coordinate {
-    private final String id;
-    private final int x, y;
-    private final int w, h;
-
-    private Coordinate(String input) {
-      String[] split = input.split(" ");
-
-      this.id = split[0].substring(1);
-
-      String[] point = split[2].split(",");
-      this.x = Integer.valueOf(point[0]);
-      this.y = Integer.valueOf(point[1].replaceAll(":", ""));
-
-      String[] square = split[3].split("x");
-      this.w = Integer.valueOf(square[0]);
-      this.h = Integer.valueOf(square[1]);
-    }
-  }
-
-  @Override
-  public String getTag() {
-    return "2018 Day 3";
   }
 }

@@ -1,4 +1,4 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,6 +13,94 @@ import java.util.stream.Collectors;
  * @author HlubyLuk
  */
 public class Day6 implements IDay6 {
+
+  private static class Matrix {
+    private int[][] matrix;
+
+    public Matrix(int x, int y) {
+      this.matrix = new int[y][x];
+    }
+
+    public void setPoint(Point point) {
+      this.matrix[point.y][point.x] = point.what;
+    }
+
+    @Override
+    public String toString() {
+      StringBuilder builder = new StringBuilder("Matrix [\n");
+
+      for (int[] row : this.matrix) {
+        for (int cell : row) {
+          builder.append(cell);
+        }
+        builder.append('\n');
+      }
+      builder.append(']');
+
+      return builder.toString();
+    }
+  }
+
+  private static class Point {
+    private int what = -1;
+    private final int x, y;
+
+    public Point(int x, int y) {
+      super();
+      this.x = x;
+      this.y = y;
+    }
+
+    public Point(int x, int y, int what) {
+      super();
+      this.x = x;
+      this.y = y;
+      this.what = what;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj)
+        return true;
+      if (obj == null)
+        return false;
+      if (getClass() != obj.getClass())
+        return false;
+      Point other = (Point) obj;
+      if (x != other.x)
+        return false;
+      if (y != other.y)
+        return false;
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + x;
+      result = prime * result + y;
+      return result;
+    }
+
+    public int manhattanDisntance(Point o) {
+      return Math.abs(o.x - this.x) + Math.abs(o.y - this.y);
+    }
+
+    public void setWhat(int what) {
+      this.what = what;
+    }
+
+    @Override
+    public String toString() {
+      return "Point [what=" + what + "]";
+    }
+  }
+
+  @Override
+  public String getTag() {
+    return "2018 Day 6";
+  }
 
   /*
    * (non-Javadoc)
@@ -131,93 +219,5 @@ public class Day6 implements IDay6 {
     }
 
     return String.valueOf(counter);
-  }
-
-  private static class Matrix {
-    private int[][] matrix;
-
-    public Matrix(int x, int y) {
-      this.matrix = new int[y][x];
-    }
-
-    public void setPoint(Point point) {
-      this.matrix[point.y][point.x] = point.what;
-    }
-
-    @Override
-    public String toString() {
-      StringBuilder builder = new StringBuilder("Matrix [\n");
-
-      for (int[] row : this.matrix) {
-        for (int cell : row) {
-          builder.append(cell);
-        }
-        builder.append('\n');
-      }
-      builder.append(']');
-
-      return builder.toString();
-    }
-  }
-
-  private static class Point {
-    private final int x, y;
-    private int what = -1;
-
-    public Point(int x, int y) {
-      super();
-      this.x = x;
-      this.y = y;
-    }
-
-    public Point(int x, int y, int what) {
-      super();
-      this.x = x;
-      this.y = y;
-      this.what = what;
-    }
-
-    public void setWhat(int what) {
-      this.what = what;
-    }
-
-    public int manhattanDisntance(Point o) {
-      return Math.abs(o.x - this.x) + Math.abs(o.y - this.y);
-    }
-
-    @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + x;
-      result = prime * result + y;
-      return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj)
-        return true;
-      if (obj == null)
-        return false;
-      if (getClass() != obj.getClass())
-        return false;
-      Point other = (Point) obj;
-      if (x != other.x)
-        return false;
-      if (y != other.y)
-        return false;
-      return true;
-    }
-
-    @Override
-    public String toString() {
-      return "Point [what=" + what + "]";
-    }
-  }
-
-  @Override
-  public String getTag() {
-    return "2018 Day 6";
   }
 }

@@ -1,13 +1,8 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
-import cz.hlubyluk.adventofcode2018.IDay;
+import cz.hlubyluk.adventofcode.IDay;
 
 public interface IDay7 extends IDay {
-  String TEST_INPUT = "Step C must be finished before step A can begin.\n"
-      + "Step C must be finished before step F can begin.\n" + "Step A must be finished before step B can begin.\n"
-      + "Step A must be finished before step D can begin.\n" + "Step B must be finished before step E can begin.\n"
-      + "Step D must be finished before step E can begin.\n" + "Step F must be finished before step E can begin.";
-
   String INPUT = "Step G must be finished before step W can begin.\n"
       + "Step X must be finished before step S can begin.\n" + "Step F must be finished before step V can begin.\n"
       + "Step C must be finished before step Y can begin.\n" + "Step M must be finished before step J can begin.\n"
@@ -59,4 +54,9 @@ public interface IDay7 extends IDay {
       + "Step I must be finished before step P can begin.\n" + "Step F must be finished before step J can begin.\n"
       + "Step H must be finished before step B can begin.\n" + "Step G must be finished before step Z can begin.\n"
       + "Step C must be finished before step K can begin.\n" + "Step D must be finished before step E can begin.";
+
+  String TEST_INPUT = "Step C must be finished before step A can begin.\n"
+      + "Step C must be finished before step F can begin.\n" + "Step A must be finished before step B can begin.\n"
+      + "Step A must be finished before step D can begin.\n" + "Step B must be finished before step E can begin.\n"
+      + "Step D must be finished before step E can begin.\n" + "Step F must be finished before step E can begin.";
 }

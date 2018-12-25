@@ -1,24 +1,8 @@
-package cz.hlubyluk.adventofcode2018.day;
+package cz.hlubyluk.adventofcode.event2018;
 
-import cz.hlubyluk.adventofcode2018.IDay;
+import cz.hlubyluk.adventofcode.IDay;
 
 public interface IDay10 extends IDay {
-  String INPUT_TEST = "position=< 9,  1> velocity=< 0,  2>\n" + "position=< 7,  0> velocity=<-1,  0>\n"
-      + "position=< 3, -2> velocity=<-1,  1>\n" + "position=< 6, 10> velocity=<-2, -1>\n"
-      + "position=< 2, -4> velocity=< 2,  2>\n" + "position=<-6, 10> velocity=< 2, -2>\n"
-      + "position=< 1,  8> velocity=< 1, -1>\n" + "position=< 1,  7> velocity=< 1,  0>\n"
-      + "position=<-3, 11> velocity=< 1, -2>\n" + "position=< 7,  6> velocity=<-1, -1>\n"
-      + "position=<-2,  3> velocity=< 1,  0>\n" + "position=<-4,  3> velocity=< 2,  0>\n"
-      + "position=<10, -3> velocity=<-1,  1>\n" + "position=< 5, 11> velocity=< 1, -2>\n"
-      + "position=< 4,  7> velocity=< 0, -1>\n" + "position=< 8, -2> velocity=< 0,  1>\n"
-      + "position=<15,  0> velocity=<-2,  0>\n" + "position=< 1,  6> velocity=< 1,  0>\n"
-      + "position=< 8,  9> velocity=< 0, -1>\n" + "position=< 3,  3> velocity=<-1,  1>\n"
-      + "position=< 0,  5> velocity=< 0, -1>\n" + "position=<-2,  2> velocity=< 2,  0>\n"
-      + "position=< 5, -2> velocity=< 1,  2>\n" + "position=< 1,  4> velocity=< 2,  1>\n"
-      + "position=<-2,  7> velocity=< 2, -2>\n" + "position=< 3,  6> velocity=<-1, -1>\n"
-      + "position=< 5,  0> velocity=< 1,  0>\n" + "position=<-6,  0> velocity=< 2,  0>\n"
-      + "position=< 5,  9> velocity=< 1, -2>\n" + "position=<14,  7> velocity=<-2,  0>\n"
-      + "position=<-3,  6> velocity=< 2, -1>";
   String INPUT = "position=< 20247,  40241> velocity=<-2, -4>\n" + "position=< 10184, -29948> velocity=<-1,  3>\n"
       + "position=< 50313, -39966> velocity=<-5,  4>\n" + "position=<-19870, -19921> velocity=< 2,  2>\n"
       + "position=< 10224, -49995> velocity=<-1,  5>\n" + "position=<-19904,  20191> velocity=< 2, -2>\n"
@@ -211,4 +195,20 @@ public interface IDay10 extends IDay {
       + "position=< 50316, -29946> velocity=<-5,  3>\n" + "position=< -9838,  30214> velocity=< 1, -3>\n"
       + "position=< 50305,  50269> velocity=<-5, -5>\n" + "position=<-49933,  -9891> velocity=< 5,  1>\n"
       + "position=< 50321,  30215> velocity=<-5, -3>";
+  String INPUT_TEST = "position=< 9,  1> velocity=< 0,  2>\n" + "position=< 7,  0> velocity=<-1,  0>\n"
+      + "position=< 3, -2> velocity=<-1,  1>\n" + "position=< 6, 10> velocity=<-2, -1>\n"
+      + "position=< 2, -4> velocity=< 2,  2>\n" + "position=<-6, 10> velocity=< 2, -2>\n"
+      + "position=< 1,  8> velocity=< 1, -1>\n" + "position=< 1,  7> velocity=< 1,  0>\n"
+      + "position=<-3, 11> velocity=< 1, -2>\n" + "position=< 7,  6> velocity=<-1, -1>\n"
+      + "position=<-2,  3> velocity=< 1,  0>\n" + "position=<-4,  3> velocity=< 2,  0>\n"
+      + "position=<10, -3> velocity=<-1,  1>\n" + "position=< 5, 11> velocity=< 1, -2>\n"
+      + "position=< 4,  7> velocity=< 0, -1>\n" + "position=< 8, -2> velocity=< 0,  1>\n"
+      + "position=<15,  0> velocity=<-2,  0>\n" + "position=< 1,  6> velocity=< 1,  0>\n"
+      + "position=< 8,  9> velocity=< 0, -1>\n" + "position=< 3,  3> velocity=<-1,  1>\n"
+      + "position=< 0,  5> velocity=< 0, -1>\n" + "position=<-2,  2> velocity=< 2,  0>\n"
+      + "position=< 5, -2> velocity=< 1,  2>\n" + "position=< 1,  4> velocity=< 2,  1>\n"
+      + "position=<-2,  7> velocity=< 2, -2>\n" + "position=< 3,  6> velocity=<-1, -1>\n"
+      + "position=< 5,  0> velocity=< 1,  0>\n" + "position=<-6,  0> velocity=< 2,  0>\n"
+      + "position=< 5,  9> velocity=< 1, -2>\n" + "position=<14,  7> velocity=<-2,  0>\n"
+      + "position=<-3,  6> velocity=< 2, -1>";
 }
