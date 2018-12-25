@@ -2,19 +2,43 @@ package cz.hlubyluk.adventofcode2018.day;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Day16 implements IDay16 {
 
   @Override
   public String solveFirst() {
-    return String.valueOf(new Parser(IDay16.INPUT_1).threeOrMore());
+    int count = 0;
+
+    List<Mapper> list = new Parser().parseFirst();
+    for (Mapper mapper : list) {
+      if (mapper.solve() >= 3) {
+        count += 1;
+      }
+    }
+
+    return String.valueOf(count);
   }
 
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
+    Set<Instruction> instructions = new HashSet<>();
+
+    Parser parser = new Parser();
+    for (Mapper mapper : parser.parseFirst()) {
+      for (Instruction instruction : parser.parseSecond()) {
+        mapper.setIns(instruction);
+        if (mapper.solve() == 1) {
+          instructions.add(instruction);
+        }
+      }
+    }
+
+    System.out.println(instructions.size());
+
     return null;
   }
 
@@ -24,10 +48,13 @@ public class Day16 implements IDay16 {
   }
 
   private static class Parser {
-    public final List<Mapper> mappers = new ArrayList<>();
 
-    public Parser(String input) {
-      Scanner sc = new Scanner(input);
+    public Parser() {
+    }
+
+    public List<Mapper> parseFirst() {
+      List<Mapper> mappers = new ArrayList<>();
+      Scanner sc = new Scanner(IDay16.INPUT_1);
 
       while (sc.hasNext()) {
         String b = sc.nextLine();
@@ -40,22 +67,26 @@ public class Day16 implements IDay16 {
           sc.nextLine();
         }
 
-        this.mappers.add(mapper);
+        mappers.add(mapper);
       }
 
       sc.close();
+
+      return mappers;
     }
 
-    public int threeOrMore() {
-      int counter = 0;
+    public List<Instruction> parseSecond() {
+      List<Instruction> instructions = new ArrayList<>();
+      Scanner sc = new Scanner(IDay16.INPUT_2);
 
-      for (Mapper mapper : mappers) {
-        if (mapper.solve() >= 3) {
-          counter += 1;
-        }
+      while (sc.hasNext()) {
+        Instruction instruction = new Instruction(sc.nextLine());
+        instructions.add(instruction);
       }
 
-      return counter;
+      sc.close();
+
+      return instructions;
     }
   }
 
@@ -76,6 +107,28 @@ public class Day16 implements IDay16 {
       }
 
       sc.close();
+    }
+
+    @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + Arrays.hashCode(instruction);
+      return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj)
+        return true;
+      if (obj == null)
+        return false;
+      if (getClass() != obj.getClass())
+        return false;
+      Instruction other = (Instruction) obj;
+      if (!Arrays.equals(instruction, other.instruction))
+        return false;
+      return true;
     }
 
     @Override
@@ -112,12 +165,16 @@ public class Day16 implements IDay16 {
 
   public static class Mapper {
     private final int[] b;
-    private final int[] i;
+    private int[] i;
     private final int[] a;
 
     public Mapper(Register b, Instruction i, Register a) {
       this.b = b.register;
       this.a = a.register;
+      this.i = i.instruction;
+    }
+
+    public void setIns(Instruction i) {
       this.i = i.instruction;
     }
 
