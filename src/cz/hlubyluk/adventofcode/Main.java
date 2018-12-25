@@ -5,7 +5,12 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode.event2015.*;
+import cz.hlubyluk.adventofcode.event2015.E15D01;
+import cz.hlubyluk.adventofcode.event2015.E15D02;
+import cz.hlubyluk.adventofcode.event2015.E15D03;
+import cz.hlubyluk.adventofcode.event2015.E15D04;
+import cz.hlubyluk.adventofcode.event2015.E15D05;
+import cz.hlubyluk.adventofcode.event2015.E15D06;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -30,11 +35,12 @@ public final class Main {
    */
   public static void main(String[] args) {
     List<IDay> days = new ArrayList<>();
-//    days.add(new E15D01());
-//    days.add(new E15D02());
-//    days.add(new E15D03());
-//    days.add(new E15D04());
+    days.add(new E15D01());
+    days.add(new E15D02());
+    days.add(new E15D03());
+    days.add(new E15D04());
     days.add(new E15D05());
+    days.add(new E15D06());
 
     Instant tmp = null;
     Instant start = Instant.now();

@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public final class Utils {
   public static class Point {
-    private final int x, y, z;
+    public final int x, y, z;
 
     /**
      * Constructor.
