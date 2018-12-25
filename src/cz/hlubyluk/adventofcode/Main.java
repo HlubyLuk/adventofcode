@@ -30,10 +30,11 @@ public final class Main {
    */
   public static void main(String[] args) {
     List<IDay> days = new ArrayList<>();
-    days.add(new E15D01());
-    days.add(new E15D02());
-    days.add(new E15D03());
-    days.add(new E15D04());
+//    days.add(new E15D01());
+//    days.add(new E15D02());
+//    days.add(new E15D03());
+//    days.add(new E15D04());
+    days.add(new E15D05());
 
     Instant tmp = null;
     Instant start = Instant.now();
