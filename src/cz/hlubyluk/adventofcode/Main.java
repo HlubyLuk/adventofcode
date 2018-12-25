@@ -5,8 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode.event2015.E15D01;
-import cz.hlubyluk.adventofcode.event2015.E15D02;
+import cz.hlubyluk.adventofcode.event2015.*;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -33,6 +32,7 @@ public final class Main {
     List<IDay> days = new ArrayList<>();
     days.add(new E15D01());
     days.add(new E15D02());
+    days.add(new E15D03());
 
     Instant tmp = null;
     Instant start = Instant.now();
