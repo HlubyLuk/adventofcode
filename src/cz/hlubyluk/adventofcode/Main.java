@@ -33,6 +33,7 @@ public final class Main {
     days.add(new E15D01());
     days.add(new E15D02());
     days.add(new E15D03());
+    days.add(new E15D04());
 
     Instant tmp = null;
     Instant start = Instant.now();
