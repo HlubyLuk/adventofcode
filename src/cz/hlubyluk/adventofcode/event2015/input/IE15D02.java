@@ -1,5 +1,9 @@
 package cz.hlubyluk.adventofcode.event2015.input;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import cz.hlubyluk.adventofcode.IDay;
 
 /**
@@ -136,4 +140,62 @@ public interface IE15D02 extends IDay {
       + "13x22x4\n" + "3x12x19\n" + "22x16x23\n" + "11x8x19\n" + "8x11x6\n" + "7x14x7\n" + "29x17x29\n" + "21x8x12\n"
       + "21x9x11\n" + "20x1x27\n" + "1x22x11\n" + "5x28x4\n" + "26x7x26\n" + "30x12x18\n" + "29x11x20\n" + "3x12x15\n"
       + "24x25x17\n" + "14x6x11";
+
+  static class Parser {
+    public Parser() {
+    }
+
+    public List<Box> parseBoxes() {
+      List<Box> boxs = new ArrayList<>();
+
+      Scanner scanner = new Scanner(IE15D02.INPUT);
+      while (scanner.hasNext()) {
+        boxs.add(new Box(scanner.nextLine()));
+      }
+      scanner.close();
+
+      return boxs;
+    }
+  }
+
+  static class Box {
+    private final int l, w, h;
+
+    private Box(String line) {
+      String[] split = line.split("x");
+
+      this.l = Integer.valueOf(split[0]);
+      this.w = Integer.valueOf(split[1]);
+      this.h = Integer.valueOf(split[2]);
+    }
+
+    private int surface() {
+      return 2 * l * w + 2 * w * h + 2 * h * l;
+    }
+
+    private int extra() {
+      return Math.min(this.l * this.w, Math.min(this.w * this.h, this.h * this.l));
+    }
+
+    public int totalPaper() {
+      return this.surface() + this.extra();
+    }
+
+    private int smallestPerimeter() {
+      return 2 * this.l + 2 * this.w + 2 * this.h - 2 * Math.max(this.l, Math.max(this.w, this.h));
+    }
+
+    private int cubic() {
+      return this.l * this.w * this.h;
+    }
+
+    public int totalRibbon() {
+      return this.cubic() + this.smallestPerimeter();
+    }
+
+    @Override
+    public String toString() {
+      return "Box [l=" + l + ", w=" + w + ", h=" + h + "]";
+    }
+  }
 }
