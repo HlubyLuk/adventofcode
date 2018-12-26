@@ -1,5 +1,7 @@
 package cz.hlubyluk.adventofcode.event2015;
 
+import java.util.HashMap;
+
 import cz.hlubyluk.adventofcode.event2015.input.IE15D07;
 
 /**
@@ -16,8 +18,7 @@ public class E15D07 implements IE15D07 {
    */
   @Override
   public String getTag() {
-    // TODO Auto-generated method stub
-    return null;
+    return "2015 day 7";
   }
 
   /*
@@ -27,8 +28,7 @@ public class E15D07 implements IE15D07 {
    */
   @Override
   public String solveFirst() {
-    // TODO Auto-generated method stub
-    return null;
+    return String.valueOf(new Mapper().mapMap().get("a"));
   }
 
   /*
@@ -38,8 +38,12 @@ public class E15D07 implements IE15D07 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    Mapper mapper = new Mapper();
+
+    HashMap<String, Integer> map = new HashMap<>();
+    map.put("b", mapper.mapMap().get("a"));
+
+    return String.valueOf(mapper.mapMap(map).get("a"));
   }
 
 }

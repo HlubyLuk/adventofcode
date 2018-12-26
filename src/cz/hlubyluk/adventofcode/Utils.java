@@ -83,4 +83,14 @@ public final class Utils {
     }
     return null;
   }
+
+  public static boolean isDigit(String input) {
+    for (char c : input.toCharArray()) {
+      if (!Character.isDigit(c)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 }
