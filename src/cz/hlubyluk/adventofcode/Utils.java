@@ -93,4 +93,8 @@ public final class Utils {
 
     return true;
   }
+
+  public static String hexToString(String input) {
+    return String.format("%c", Integer.parseInt(input, 16));
+  }
 }
