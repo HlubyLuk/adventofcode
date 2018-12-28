@@ -1,5 +1,6 @@
 package cz.hlubyluk.adventofcode.event2015;
 
+import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class E15D03 implements IE15D03 {
     int x = 0, y = 0;
 
     StringCharacterIterator it = new StringCharacterIterator(IE15D03.INPUT);
-    for (char c = it.first(); it.current() != StringCharacterIterator.DONE; c = it.next()) {
+    for (char c = it.first(); it.current() != CharacterIterator.DONE; c = it.next()) {
       switch (c) {
       case '^':
         y += 1;
@@ -57,7 +58,7 @@ public class E15D03 implements IE15D03 {
     int xS = 0, yS = 0, xR = 0, yR = 0;
 
     StringCharacterIterator it = new StringCharacterIterator(IE15D03.INPUT);
-    for (char santa = it.first(), robot = it.next(); it.current() != StringCharacterIterator.DONE; santa = it
+    for (char santa = it.first(), robot = it.next(); it.current() != CharacterIterator.DONE; santa = it
         .next(), robot = it.next()) {
       switch (santa) {
       case '^':

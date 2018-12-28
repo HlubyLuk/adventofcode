@@ -5,6 +5,13 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.hlubyluk.adventofcode.event2015.E15D01;
+import cz.hlubyluk.adventofcode.event2015.E15D02;
+import cz.hlubyluk.adventofcode.event2015.E15D03;
+import cz.hlubyluk.adventofcode.event2015.E15D04;
+import cz.hlubyluk.adventofcode.event2015.E15D05;
+import cz.hlubyluk.adventofcode.event2015.E15D06;
+import cz.hlubyluk.adventofcode.event2015.E15D07;
 import cz.hlubyluk.adventofcode.event2015.E15D08;
 
 /**
@@ -30,13 +37,13 @@ public final class Main {
    */
   public static void main(String[] args) {
     List<IDay> days = new ArrayList<>();
-//    days.add(new E15D01());
-//    days.add(new E15D02());
-//    days.add(new E15D03());
-//    days.add(new E15D04());
-//    days.add(new E15D05());
-//    days.add(new E15D06());
-//    days.add(new E15D07());
+    days.add(new E15D01());
+    days.add(new E15D02());
+    days.add(new E15D03());
+    days.add(new E15D04());
+    days.add(new E15D05());
+    days.add(new E15D06());
+    days.add(new E15D07());
     days.add(new E15D08());
 
     Instant tmp = null;

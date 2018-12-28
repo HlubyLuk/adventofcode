@@ -3,10 +3,6 @@
  */
 package cz.hlubyluk.adventofcode.event2015.input;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import cz.hlubyluk.adventofcode.IDay;
 
 /**
@@ -15,98 +11,6 @@ import cz.hlubyluk.adventofcode.IDay;
  * @author HlubyLuk
  */
 public interface IE15D05 extends IDay {
-  String INPUT_TEST_1 = "ugknbfddgicrmopn";
-  String INPUT_TEST_2 = "haegwjzuvuyypxyu";
-  String INPUT_TEST_3 = "jchzalrnumimnmhp";
-  String INPUT_TEST_4 = "dvszwmarrgswjxmb";
-  String INPUT_TEST_5 = "aaa";
-
-  static class Parser {
-    public Parser() {
-    }
-
-    public List<NiceString> parseInput() {
-      List<NiceString> list = new ArrayList<>();
-
-      Scanner sc = new Scanner(IE15D05.INPUT);
-      while (sc.hasNextLine()) {
-        list.add(new NiceString(sc.nextLine()));
-      }
-      sc.close();
-
-      return list;
-    }
-
-    public List<NiceString> parseTest() {
-      List<NiceString> list = new ArrayList<>();
-      list.add(new NiceString(INPUT_TEST_1));
-      list.add(new NiceString(INPUT_TEST_2));
-      list.add(new NiceString(INPUT_TEST_3));
-      list.add(new NiceString(INPUT_TEST_4));
-      list.add(new NiceString(INPUT_TEST_5));
-
-      return list;
-    }
-  }
-
-  static class NiceString {
-    private final String line;
-    private static final char[] VOWELS = { 'a', 'e', 'i', 'o', 'u' };
-    private static final String[] RESTRICTIONS = { "ab", "cd", "pq", "xy" };
-
-    /**
-     * Constructor.
-     *
-     * @param line from file.
-     */
-    public NiceString(String line) {
-      this.line = line;
-    }
-
-    private int countVowels() {
-      int count = 0;
-
-      for (char c : this.line.toCharArray()) {
-        for (char v : NiceString.VOWELS) {
-          if (c == v) {
-            count += 1;
-          }
-        }
-      }
-
-      return count;
-    }
-
-    private int countTwiceCharacters() {
-      int count = 0;
-
-      char[] characters = this.line.toCharArray();
-      for (int i = 1; i < characters.length; i += 1) {
-        if (characters[i - 1] == characters[i]) {
-          count += 1;
-        }
-      }
-
-      return count;
-    }
-
-    private int countRestrictions() {
-      int count = 0;
-
-      for (String restriction : NiceString.RESTRICTIONS) {
-        if (this.line.contains(restriction)) {
-          count += 1;
-        }
-      }
-
-      return count;
-    }
-
-    public boolean analyze() {
-      return this.countVowels() >= 3 && this.countTwiceCharacters() >= 1 && this.countRestrictions() == 0;
-    }
-  }
-
   String INPUT = "uxcplgxnkwbdwhrp\n" + "suerykeptdsutidb\n" + "dmrtgdkaimrrwmej\n" + "ztxhjwllrckhakut\n"
       + "gdnzurjbbwmgayrg\n" + "gjdzbtrcxwprtery\n" + "fbuqqaatackrvemm\n" + "pcjhsshoveaodyko\n" + "lrpprussbesniilv\n"
       + "mmsebhtqqjiqrusd\n" + "vumllmrrdjgktmnb\n" + "ptsqjcfbmgwdywgi\n" + "mmppavyjgcfebgpl\n" + "zexyxksqrqyonhui\n"
@@ -308,4 +212,9 @@ public interface IE15D05 extends IDay {
       + "mxzgwhaqobyvckcm\n" + "qboxojoykxvwexav\n" + "jcpzfjnmvguwjnum\n" + "ohpsxnspfwxkkuqe\n" + "nyekrqjlizztwjqp\n"
       + "thuynotacpxjzroj\n" + "wymbolrlwosnbxqx\n" + "iyaqihnqvewxdtjm\n" + "hdvdbtvfpdrejenu\n" + "gtjscincktlwwkkf\n"
       + "wtebigbaythklkbd";
+  String INPUT_TEST_1 = "ugknbfddgicrmopn";
+  String INPUT_TEST_2 = "haegwjzuvuyypxyu";
+  String INPUT_TEST_3 = "jchzalrnumimnmhp";
+  String INPUT_TEST_4 = "dvszwmarrgswjxmb";
+  String INPUT_TEST_5 = "aaa";
 }

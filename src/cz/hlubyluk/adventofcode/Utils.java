@@ -34,16 +34,6 @@ public final class Utils {
     }
 
     @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + x;
-      result = prime * result + y;
-      result = prime * result + z;
-      return result;
-    }
-
-    @Override
     public boolean equals(Object obj) {
       if (this == obj)
         return true;
@@ -62,12 +52,33 @@ public final class Utils {
     }
 
     @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + x;
+      result = prime * result + y;
+      result = prime * result + z;
+      return result;
+    }
+
+    @Override
     public String toString() {
       return "Point [x=" + x + ", y=" + y + ", z=" + z + "]";
     }
   }
 
-  private Utils() {
+  public static String hexToString(String input) {
+    return String.format("%c", Integer.parseInt(input, 16));
+  }
+
+  public static boolean isDigit(String input) {
+    for (char c : input.toCharArray()) {
+      if (!Character.isDigit(c)) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   public static String MD5(String md5) {
@@ -84,17 +95,6 @@ public final class Utils {
     return null;
   }
 
-  public static boolean isDigit(String input) {
-    for (char c : input.toCharArray()) {
-      if (!Character.isDigit(c)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  public static String hexToString(String input) {
-    return String.format("%c", Integer.parseInt(input, 16));
+  private Utils() {
   }
 }

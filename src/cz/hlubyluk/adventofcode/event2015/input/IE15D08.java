@@ -1,10 +1,5 @@
 package cz.hlubyluk.adventofcode.event2015.input;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
 import cz.hlubyluk.adventofcode.IDay;
 
 /**
@@ -13,50 +8,6 @@ import cz.hlubyluk.adventofcode.IDay;
  * @author HlubyLuk
  */
 public interface IE15D08 extends IDay {
-  static class Parser {
-    public Parser() {
-    }
-
-    public List<Line> parseInput() {
-      List<Line> lines = new ArrayList<>();
-
-      Scanner sc = new Scanner(IE15D08.INPUT);
-      while (sc.hasNextLine()) {
-        lines.add(new Line(sc.nextLine()));
-      }
-      sc.close();
-
-      return lines;
-    }
-  }
-
-  static class Line {
-    private static final Pattern PART1 = Pattern.compile(
-        "(" + Pattern.quote("\\") + "x[0-9a-f]{2})|(" + Pattern.quote("\\\"") + ")|(" + Pattern.quote("\\\\") + ")");
-    private final int line, part1;
-    private final int part2;
-
-    public Line(String line) {
-      this.line = line.length();
-      this.part1 = Line.PART1.matcher(line).replaceAll("R").replaceAll("\"", "").length();
-      this.part2 = line.replaceAll("^\"|\"$|\\\\|\\\"", "\\\\\"").length() + 2;
-    }
-
-    public int diff1() {
-      return this.line - this.part1;
-    }
-
-    public int diff2() {
-      return this.part2 - this.line;
-    }
-
-    @Override
-    public String toString() {
-      return "Line [part2=" + part2 + "]";
-    }
-  }
-
-  String INPUT_TEST = "\"\"\n" + "\"abc\"\n" + "\"aaa\\\"aaa\"\n" + "\"\\x27\"";
   String INPUT = "\"qxfcsmh\"\n" + "\"ffsfyxbyuhqkpwatkjgudo\"\n"
       + "\"byc\\x9dyxuafof\\\\\\xa6uf\\\\axfozomj\\\\olh\\x6a\"\n" + "\"jtqvz\"\n" + "\"uzezxa\\\"jgbmojtwyfbfguz\"\n"
       + "\"vqsremfk\\x8fxiknektafj\"\n" + "\"wzntebpxnnt\\\"vqndz\\\"i\\x47vvjqo\\\"\"\n"
@@ -159,4 +110,5 @@ public interface IE15D08 extends IDay {
       + "\"aackfgndqcqiy\"\n" + "\"\\x22unqdlsrvgzfaohoffgxzfpir\\\"s\"\n" + "\"abh\\\"ydv\\\"kbpdhrerl\"\n"
       + "\"bdzpg\"\n" + "\"ekwgkywtmzp\"\n" + "\"wtoodejqmrrgslhvnk\\\"pi\\\"ldnogpth\"\n"
       + "\"njro\\x68qgbx\\xe4af\\\"\\\\suan\"";
+  String INPUT_TEST = "\"\"\n" + "\"abc\"\n" + "\"aaa\\\"aaa\"\n" + "\"\\x27\"";
 }

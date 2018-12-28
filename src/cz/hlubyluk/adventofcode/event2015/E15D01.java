@@ -1,5 +1,6 @@
 package cz.hlubyluk.adventofcode.event2015;
 
+import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
 import cz.hlubyluk.adventofcode.IDay;
@@ -17,7 +18,7 @@ public class E15D01 implements IE15D01 {
     int floor = 0;
 
     StringCharacterIterator it = new StringCharacterIterator(IE15D01.INPUT);
-    for (char c = it.first(); c != StringCharacterIterator.DONE; c = it.next()) {
+    for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
       if (c == '(') {
         floor += 1;
       } else if (c == ')') {
@@ -33,7 +34,7 @@ public class E15D01 implements IE15D01 {
     int floor = 0;
 
     StringCharacterIterator it = new StringCharacterIterator(IE15D01.INPUT);
-    for (char c = it.first(); c != StringCharacterIterator.DONE; c = it.next()) {
+    for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
       if (c == '(') {
         floor += 1;
       } else if (c == ')') {

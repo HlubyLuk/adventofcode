@@ -8,6 +8,6 @@ import cz.hlubyluk.adventofcode.IDay;
  * @author HlubyLuk
  */
 public interface IE15D04 extends IDay {
-  String INPUT_TEST = "abcdef";
   String INPUT = "bgvyzdsv";
+  String INPUT_TEST = "abcdef";
 }
