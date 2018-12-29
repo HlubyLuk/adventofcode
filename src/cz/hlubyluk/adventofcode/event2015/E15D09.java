@@ -184,12 +184,7 @@ public class E15D09 implements IE15D09 {
     public Solver() {
     }
 
-    public int solve() {
-      int min = Integer.MAX_VALUE;
-
-      Parser parser = new Parser();
-      parser.parse();
-
+    private Map<Pair, Integer> map(Parser parser) {
       Map<Pair, Integer> map = new TreeMap<>();
       Set<Distance> distances = parser.getDistances();
       Set<City> cities = parser.getCities();
@@ -201,22 +196,34 @@ public class E15D09 implements IE15D09 {
         });
       }
 
-      for (City city : cities) {
+      return map;
+    }
+
+    public int solveMin() {
+      int min = Integer.MAX_VALUE;
+
+      Parser parser = new Parser();
+      parser.parse();
+
+      Map<Pair, Integer> map = this.map(parser);
+
+      for (City city : parser.getCities()) {
         List<City> into = new ArrayList<>();
-        into.add(city);
         List<Integer> units = new ArrayList<>();
 
-        this.s(city, map.entrySet(), into, units);
+        into.add(city);
 
-        Integer current = units.stream().reduce((x, y) -> x + y).orElseGet(() -> Integer.MAX_VALUE);
+        this.min(city, map.entrySet(), into, units);
 
-        min = Math.min(min, current);
+        min = Math.min(min, units.stream().reduce((x, y) -> x + y).orElseGet(() -> Integer.MAX_VALUE));
+
+        System.out.printf("%s %s %s%n", into, units, units.stream().reduce((x, y) -> x + y));
       }
 
       return min;
     }
 
-    private void s(City city, Set<Entry<Pair, Integer>> entries, List<City> into, List<Integer> units) {
+    private void min(City city, Set<Entry<Pair, Integer>> entries, List<City> into, List<Integer> units) {
       Entry<Pair, Integer> next = entries.stream()
           .filter(x -> city.equals(x.getKey().a) && !into.contains(x.getKey().b))
           .reduce((x, y) -> x.getValue() < y.getValue() ? x : y).orElseGet(() -> null);
@@ -225,7 +232,43 @@ public class E15D09 implements IE15D09 {
         into.add(next.getKey().b);
         units.add(next.getValue());
 
-        this.s(next.getKey().b, entries, into, units);
+        this.min(next.getKey().b, entries, into, units);
+      }
+    }
+
+    public int solveMax() {
+      int max = Integer.MIN_VALUE;
+
+      Parser parser = new Parser();
+      parser.parse();
+
+      Map<Pair, Integer> map = this.map(parser);
+
+      for (City city : parser.getCities()) {
+        List<City> into = new ArrayList<>();
+        into.add(city);
+        List<Integer> units = new ArrayList<>();
+
+        this.max(city, map.entrySet(), into, units);
+
+        max = Math.max(max, units.stream().reduce((x, y) -> x + y).orElseGet(() -> Integer.MIN_VALUE));
+
+        System.out.printf("%s %s %s%n", into, units, units.stream().reduce((x, y) -> x + y));
+      }
+
+      return max;
+    }
+
+    private void max(City city, Set<Entry<Pair, Integer>> entries, List<City> into, List<Integer> units) {
+      Entry<Pair, Integer> next = entries.stream()
+          .filter(x -> city.equals(x.getKey().a) && !into.contains(x.getKey().b))
+          .reduce((x, y) -> x.getValue() < y.getValue() ? y : x).orElseGet(() -> null);
+
+      if (next != null) {
+        into.add(next.getKey().b);
+        units.add(next.getValue());
+
+        this.max(next.getKey().b, entries, into, units);
       }
     }
   }
@@ -310,7 +353,7 @@ public class E15D09 implements IE15D09 {
    */
   @Override
   public String solveFirst() {
-    return String.valueOf(new Solver().solve());
+    return String.valueOf(new Solver().solveMin());
   }
 
   /*
@@ -320,7 +363,9 @@ public class E15D09 implements IE15D09 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    System.out.println();
+    System.out.println();
+    System.out.println();
+    return String.valueOf(new Solver().solveMax());
   }
 }
