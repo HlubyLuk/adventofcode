@@ -1,7 +1,10 @@
 package cz.hlubyluk.adventofcode.event2015;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
@@ -195,13 +198,35 @@ public class E15D09 implements IE15D09 {
         distances.stream().filter(x -> x.f.equals(city) || x.t.equals(city)).forEach(x -> {
           City other = city.equals(x.f) ? x.t : x.f;
           map.put(Pair.create(city, other), x.d);
-          map.put(Pair.create(other, city), x.d);
         });
       }
 
-      map.entrySet().forEach(System.out::println);
+      for (City city : cities) {
+        List<City> into = new ArrayList<>();
+        into.add(city);
+        List<Integer> units = new ArrayList<>();
+
+        this.s(city, map.entrySet(), into, units);
+
+        Integer current = units.stream().reduce((x, y) -> x + y).orElseGet(() -> Integer.MAX_VALUE);
+
+        min = Math.min(min, current);
+      }
 
       return min;
+    }
+
+    private void s(City city, Set<Entry<Pair, Integer>> entries, List<City> into, List<Integer> units) {
+      Entry<Pair, Integer> next = entries.stream()
+          .filter(x -> city.equals(x.getKey().a) && !into.contains(x.getKey().b))
+          .reduce((x, y) -> x.getValue() < y.getValue() ? x : y).orElseGet(() -> null);
+
+      if (next != null) {
+        into.add(next.getKey().b);
+        units.add(next.getValue());
+
+        this.s(next.getKey().b, entries, into, units);
+      }
     }
   }
 
