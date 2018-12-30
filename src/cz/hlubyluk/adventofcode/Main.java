@@ -38,14 +38,14 @@ public final class Main {
    */
   public static void main(String[] args) {
     List<IDay> days = new ArrayList<>();
-//    days.add(new E15D01());
-//    days.add(new E15D02());
-//    days.add(new E15D03());
-//    days.add(new E15D04());
-//    days.add(new E15D05());
-//    days.add(new E15D06());
-//    days.add(new E15D07());
-//    days.add(new E15D08());
+    days.add(new E15D01());
+    days.add(new E15D02());
+    days.add(new E15D03());
+    days.add(new E15D04());
+    days.add(new E15D05());
+    days.add(new E15D06());
+    days.add(new E15D07());
+    days.add(new E15D08());
     days.add(new E15D09());
 
     Instant tmp = null;

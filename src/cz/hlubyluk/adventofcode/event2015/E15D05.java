@@ -3,6 +3,7 @@ package cz.hlubyluk.adventofcode.event2015;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import cz.hlubyluk.adventofcode.event2015.input.IE15D05;
 
@@ -10,62 +11,16 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D05;
  * @author HlubyLuk
  */
 public class E15D05 implements IE15D05 {
-
   private static class NiceString {
-    private static final String[] RESTRICTIONS = { "ab", "cd", "pq", "xy" };
-    private static final char[] VOWELS = { 'a', 'e', 'i', 'o', 'u' };
     private final String line;
 
-    /**
-     * Constructor.
-     *
-     * @param line from file.
-     */
     public NiceString(String line) {
       this.line = line;
     }
 
-    public boolean analyze() {
-      return this.countVowels() >= 3 && this.countTwiceCharacters() >= 1 && this.countRestrictions() == 0;
-    }
-
-    private int countRestrictions() {
-      int count = 0;
-
-      for (String restriction : NiceString.RESTRICTIONS) {
-        if (this.line.contains(restriction)) {
-          count += 1;
-        }
-      }
-
-      return count;
-    }
-
-    private int countTwiceCharacters() {
-      int count = 0;
-
-      char[] characters = this.line.toCharArray();
-      for (int i = 1; i < characters.length; i += 1) {
-        if (characters[i - 1] == characters[i]) {
-          count += 1;
-        }
-      }
-
-      return count;
-    }
-
-    private int countVowels() {
-      int count = 0;
-
-      for (char c : this.line.toCharArray()) {
-        for (char v : NiceString.VOWELS) {
-          if (c == v) {
-            count += 1;
-          }
-        }
-      }
-
-      return count;
+    @Override
+    public String toString() {
+      return "NiceString [line=" + line + "]";
     }
   }
 
@@ -85,15 +40,34 @@ public class E15D05 implements IE15D05 {
       return list;
     }
 
-    public List<NiceString> parseTest() {
-      List<NiceString> list = new ArrayList<>();
-      list.add(new NiceString(INPUT_TEST_1));
-      list.add(new NiceString(INPUT_TEST_2));
-      list.add(new NiceString(INPUT_TEST_3));
-      list.add(new NiceString(INPUT_TEST_4));
-      list.add(new NiceString(INPUT_TEST_5));
+//    public List<NiceString> parseTest() {
+//      List<NiceString> list = new ArrayList<>();
+//      list.add(new NiceString(INPUT_TEST_1));
+//      list.add(new NiceString(INPUT_TEST_2));
+//      list.add(new NiceString(INPUT_TEST_3));
+//      list.add(new NiceString(INPUT_TEST_4));
+//      list.add(new NiceString(INPUT_TEST_5));
+//
+//      return list;
+//    }
+  }
 
-      return list;
+  public static class Mapper {
+    private static final Pattern P1 = Pattern
+        .compile("^(?=(?:.*(.)\\1))(?=(?:.*[aeiou].*){3,})(?!.*(?:ab|cd|pq|xy)).*$");
+    private static final Pattern P2 = Pattern.compile("^(?=.*(.).\\1)(?=.*(..).*\\2).*$");
+
+    public Mapper() {
+    }
+
+    public long part1() {
+      return new Parser().parseInput().stream().map(x -> Mapper.P1.matcher(x.line).find()).filter(x -> x == true)
+          .count();
+    }
+
+    public long part2() {
+      return new Parser().parseInput().stream().map(x -> Mapper.P2.matcher(x.line).find()).filter(x -> x == true)
+          .count();
     }
   }
 
@@ -114,7 +88,7 @@ public class E15D05 implements IE15D05 {
    */
   @Override
   public String solveFirst() {
-    return String.valueOf(new Parser().parseInput().stream().filter(x -> x.analyze()).count());
+    return String.valueOf(new Mapper().part1());
   }
 
   /*
@@ -124,6 +98,6 @@ public class E15D05 implements IE15D05 {
    */
   @Override
   public String solveSecond() {
-    return null;
+    return String.valueOf(new Mapper().part2());
   }
 }
