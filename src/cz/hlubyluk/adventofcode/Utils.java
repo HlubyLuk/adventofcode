@@ -2,8 +2,15 @@ package cz.hlubyluk.adventofcode;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 public final class Utils {
+  public static final Pattern DOUBLE_CHARACTER_WITHOUT_OVERLAP = Pattern.compile("^.*(?=(?:(.)\\1.*(.)\\2)).*$");
+
+  public static Pattern restriction(String restricted) {
+    return Pattern.compile(String.format("^.*(?!(?:%s)).*$", restricted));
+  }
+
   public static class Point {
     public final int x, y, z;
 
