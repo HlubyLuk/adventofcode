@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -135,7 +134,7 @@ public class E15D13 implements IE15D13 {
     private static final String GAIN = "gain", LOSE = "lose";
     private static final Pattern LINE = Pattern
         .compile("^(.*) would (.*) (.*) happiness units by sitting next to (.*).$");
-    private final Set<Name> names = new TreeSet<>();
+    private final Set<Name> names = new HashSet<>();
     private final Set<Relation> relations = new HashSet<>();
 
     public Parser() {
@@ -166,8 +165,8 @@ public class E15D13 implements IE15D13 {
       sc.close();
     }
 
-    public Set<Name> getNames() {
-      return names;
+    public List<Name> getNames() {
+      return new ArrayList<>(this.names);
     }
 
     public Set<Relation> getRelations() {
@@ -181,7 +180,7 @@ public class E15D13 implements IE15D13 {
       Mapper.PARSER.parse();
     }
 
-    public int map() {
+    public Map<Same<Name>, Integer> cache() {
       Map<Same<Name>, Integer> cache = new HashMap<>();
 
       Set<Relation> relations = Mapper.PARSER.getRelations();
@@ -189,9 +188,30 @@ public class E15D13 implements IE15D13 {
         cache.put(new Same<E15D13.Name>(rel.a, rel.b), rel.unit);
       }
 
-      int max = IDay.NOT_IMPLEMENT;
+      return cache;
+    }
 
-      List<Name> names = new ArrayList<>(Mapper.PARSER.getNames());
+    public int map1() {
+      Map<Same<Name>, Integer> cache = this.cache();
+      return this.solveMax(cache, Mapper.PARSER.getNames());
+    }
+
+    public int map2() {
+      Map<Same<Name>, Integer> cache = this.cache();
+      List<Name> names = Mapper.PARSER.getNames();
+
+      Name me = new Name("me");
+      for (Name name : names) {
+        cache.put(new Same<E15D13.Name>(me, name), 0);
+        cache.put(new Same<E15D13.Name>(name, me), 0);
+      }
+      names.add(me);
+
+      return this.solveMax(cache, names);
+    }
+
+    private int solveMax(Map<Same<Name>, Integer> cache, List<Name> names) {
+      int max = IDay.NOT_IMPLEMENT;
 
       do {
         int units = 0;
@@ -199,20 +219,17 @@ public class E15D13 implements IE15D13 {
         for (int i = 1; i <= size; i += 1) {
           int indexA = (i - 1) % size;
           int indexB = i % size;
-//          int indexC = (i + 1) % size;
 
           Name a = names.get(indexA);
           Name b = names.get(indexB);
-//          Name c = names.get(indexC);
 
-          Same<Name> left = new Same<>(b, a);
-          Same<Name> right = new Same<>(a, b);
+          Same<Name> one = new Same<>(b, a);
+          Same<Name> two = new Same<>(a, b);
 
-          Integer getA = cache.get(left);
-          Integer getC = cache.get(right);
+          int getOne = cache.get(one);
+          int getTwo = cache.get(two);
 
-          units += getA + getC;
-
+          units += getOne + getTwo;
         }
 
         max = Math.max(max, units);
@@ -262,7 +279,7 @@ public class E15D13 implements IE15D13 {
     // Wrong!!!
     // 234
     // 347
-    return String.valueOf(new Mapper().map());
+    return String.valueOf(new Mapper().map1());
   }
 
   /*
@@ -272,8 +289,6 @@ public class E15D13 implements IE15D13 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    return String.valueOf(new Mapper().map2());
   }
-
 }
