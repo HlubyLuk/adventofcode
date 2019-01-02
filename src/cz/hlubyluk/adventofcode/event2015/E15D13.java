@@ -4,7 +4,6 @@
 package cz.hlubyluk.adventofcode.event2015;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cz.hlubyluk.adventofcode.IDay;
+import cz.hlubyluk.adventofcode.Utils;
 import cz.hlubyluk.adventofcode.Utils.Same;
 import cz.hlubyluk.adventofcode.event2015.input.IE15D13;
 
@@ -211,52 +211,46 @@ public class E15D13 implements IE15D13 {
     }
 
     private int solveMax(Map<Same<Name>, Integer> cache, List<Name> names) {
-      int max = IDay.NOT_IMPLEMENT;
-
-      do {
-        int units = 0;
-        int size = names.size();
-        for (int i = 1; i <= size; i += 1) {
-          int indexA = (i - 1) % size;
-          int indexB = i % size;
-
-          Name a = names.get(indexA);
-          Name b = names.get(indexB);
-
-          Same<Name> one = new Same<>(b, a);
-          Same<Name> two = new Same<>(a, b);
-
-          int getOne = cache.get(one);
-          int getTwo = cache.get(two);
-
-          units += getOne + getTwo;
-        }
-
-        max = Math.max(max, units);
-      } while (E15D13.nextPermutation(names));
-
-      return max;
+      Max l = new Max(cache);
+      Utils.Generator.heapPermutation(names, l);
+      return l.getMax();
     }
   }
 
-  /* Generic list version */
-  public static <T extends Comparable<? super T>> boolean nextPermutation(List<T> array) {
-    // Find non-increasing suffix
-    int i = array.size() - 1;
-    while (i > 0 && array.get(i - 1).compareTo(array.get(i)) >= 0)
-      i--;
-    if (i <= 0)
-      return false;
+  private static class Max implements Utils.Generator.Permutation<Name> {
+    private int max = IDay.NOT_IMPLEMENT;
+    private final Map<Same<Name>, Integer> cache;
 
-    // Find successor to pivot
-    int j = array.size() - 1;
-    while (array.get(j).compareTo(array.get(i - 1)) <= 0)
-      j--;
-    Collections.swap(array, i - 1, j);
+    public Max(Map<Same<Name>, Integer> cache) {
+      this.cache = cache;
+    }
 
-    // Reverse suffix
-    Collections.reverse(array.subList(i, array.size()));
-    return true;
+    @Override
+    public void compute(List<Name> list) {
+      int units = 0;
+      int size = list.size();
+      for (int i = 1; i <= size; i += 1) {
+        int indexA = (i - 1) % size;
+        int indexB = i % size;
+
+        Name a = list.get(indexA);
+        Name b = list.get(indexB);
+
+        Same<Name> one = new Same<>(b, a);
+        Same<Name> two = new Same<>(a, b);
+
+        int getOne = this.cache.get(one);
+        int getTwo = this.cache.get(two);
+
+        units += getOne + getTwo;
+      }
+
+      this.max = Math.max(this.max, units);
+    }
+
+    public int getMax() {
+      return max;
+    }
   }
 
   /*
@@ -276,10 +270,13 @@ public class E15D13 implements IE15D13 {
    */
   @Override
   public String solveFirst() {
-    // Wrong!!!
-    // 234
-    // 347
-    return String.valueOf(new Mapper().map1());
+    int result = new Mapper().map1();
+
+    if (result != 709) {
+      throw new RuntimeException("Wrong!!!");
+    }
+
+    return String.valueOf(result);
   }
 
   /*
@@ -289,6 +286,12 @@ public class E15D13 implements IE15D13 {
    */
   @Override
   public String solveSecond() {
-    return String.valueOf(new Mapper().map2());
+    int result = new Mapper().map2();
+
+    if (result != 668) {
+      throw new RuntimeException("Wrong!!!");
+    }
+
+    return String.valueOf(result);
   }
 }

@@ -2,6 +2,8 @@ package cz.hlubyluk.adventofcode;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public final class Utils {
@@ -29,6 +31,7 @@ public final class Utils {
       return result;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object obj) {
       if (this == obj) {
@@ -76,7 +79,7 @@ public final class Utils {
     }
   }
 
-  public static class Point {
+  public static final class Point {
     public final int x, y, z;
 
     /**
@@ -168,5 +171,63 @@ public final class Utils {
   }
 
   private Utils() {
+  }
+
+  /**
+   * Generator.
+   *
+   * @author HlubyLuk
+   */
+  public static final class Generator {
+    /**
+     * Generate permutations.
+     *
+     * @param n    count of repeats. 0 < n <= list.size().
+     * @param list of items.
+     * @param      <T> type if items in list.
+     */
+    public static <T> void heapPermutation(int n, List<T> list, Permutation<T> lambda) {
+      if (n == 1) {
+        lambda.compute(list);
+      } else {
+        for (int i = 0; i < n - 1; i += 1) {
+          Generator.<T>heapPermutation(n - 1, list, lambda);
+
+          if (n % 2 == 0) {
+            Collections.swap(list, i, n - 1);
+          } else {
+            Collections.swap(list, 0, n - 1);
+          }
+        }
+
+        Generator.<T>heapPermutation(n - 1, list, lambda);
+      }
+    }
+
+    /**
+     * Generate permutations.
+     *
+     * @param list of items.
+     * @param      <T> type if items in list.
+     */
+    public static <T> void heapPermutation(List<T> list, Permutation<T> lambda) {
+      Generator.<T>heapPermutation(list.size(), list, lambda);
+    }
+
+    /**
+     * Private constructor.
+     */
+    private Generator() {
+    }
+
+    /**
+     * Compute permutation result.
+     *
+     * @param <T> type of item in list.
+     * @param <O> type of result.
+     */
+    public interface Permutation<T> {
+      /*O*/ void compute(List<T> list);
+    }
   }
 }
