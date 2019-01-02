@@ -44,7 +44,7 @@ public class E15D10 implements IE15D10 {
    */
   @Override
   public String getTag() {
-    return "Event 2015 day 10";
+    return "2015 day 10";
   }
 
   /*

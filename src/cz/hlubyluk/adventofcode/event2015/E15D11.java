@@ -64,7 +64,7 @@ public class E15D11 implements IE15D11 {
    */
   @Override
   public String getTag() {
-    return "Event 2015 day 11";
+    return "2015 day 11";
   }
 
   private static class Generator {
