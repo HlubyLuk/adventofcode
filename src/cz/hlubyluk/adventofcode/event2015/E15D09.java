@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import cz.hlubyluk.adventofcode.Utils;
 import cz.hlubyluk.adventofcode.event2015.input.IE15D09;
 
 /**
@@ -181,52 +181,68 @@ public class E15D09 implements IE15D09 {
   }
 
   private static class Solver {
+    private static final Parser PARSER = new Parser();
+    static {
+      Solver.PARSER.parse();
+    }
+
     public Solver() {
     }
 
-    public int solve() {
-      int min = Integer.MAX_VALUE;
+    public int part1() {
+      CB lambda = new CB(this.buildCache(), Math::min, Integer.MAX_VALUE);
+      Utils.Generator.heapPermutation(new ArrayList<>(Solver.PARSER.getCities()), lambda);
+      return lambda.getResult();
+    }
 
-      Parser parser = new Parser();
-      parser.parse();
+    public int part2() {
+      CB lambda = new CB(this.buildCache(), Math::max, Integer.MIN_VALUE);
+      Utils.Generator.heapPermutation(new ArrayList<>(Solver.PARSER.getCities()), lambda);
+      return lambda.getResult();
+    }
 
+    private Map<Pair, Integer> buildCache() {
       Map<Pair, Integer> map = new TreeMap<>();
-      Set<Distance> distances = parser.getDistances();
-      Set<City> cities = parser.getCities();
 
-      for (City city : cities) {
-        distances.stream().filter(x -> x.f.equals(city) || x.t.equals(city)).forEach(x -> {
+      for (City city : Solver.PARSER.getCities()) {
+        Solver.PARSER.getDistances().stream().filter(x -> x.f.equals(city) || x.t.equals(city)).forEach(x -> {
           City other = city.equals(x.f) ? x.t : x.f;
           map.put(Pair.create(city, other), x.d);
         });
       }
 
-      for (City city : cities) {
-        List<City> into = new ArrayList<>();
-        into.add(city);
-        List<Integer> units = new ArrayList<>();
+      return map;
+    }
+  }
 
-        this.s(city, map.entrySet(), into, units);
+  private static class CB implements Utils.Generator.Permutation<City> {
+    private int result;
+    private final Map<Pair, Integer> cache;
+    private final F lambda;
 
-        Integer current = units.stream().reduce((x, y) -> x + y).orElseGet(() -> Integer.MAX_VALUE);
-
-        min = Math.min(min, current);
-      }
-
-      return min;
+    private CB(Map<Pair, Integer> cache, F lambda, int init) {
+      this.cache = cache;
+      this.lambda = lambda;
+      this.result = init;
     }
 
-    private void s(City city, Set<Entry<Pair, Integer>> entries, List<City> into, List<Integer> units) {
-      Entry<Pair, Integer> next = entries.stream()
-          .filter(x -> city.equals(x.getKey().a) && !into.contains(x.getKey().b))
-          .reduce((x, y) -> x.getValue() < y.getValue() ? x : y).orElseGet(() -> null);
+    public int getResult() {
+      return this.result;
+    }
 
-      if (next != null) {
-        into.add(next.getKey().b);
-        units.add(next.getValue());
+    @Override
+    public void compute(List<City> list) {
+      int current = 0;
 
-        this.s(next.getKey().b, entries, into, units);
+      for (int i = 1; i < list.size(); i += 1) {
+        current += this.cache.get(Pair.create(list.get(i - 1), list.get(i)));
       }
+
+      this.result = this.lambda.f(this.result, current);
+    }
+
+    private interface F {
+      int f(int a, int b);
     }
   }
 
@@ -310,7 +326,13 @@ public class E15D09 implements IE15D09 {
    */
   @Override
   public String solveFirst() {
-    return String.valueOf(new Solver().solve());
+    int result = new Solver().part1();
+
+    if (result != 207) {
+      throw new RuntimeException(String.format("Result %d is wrong!!!", result));
+    }
+
+    return String.valueOf(result);
   }
 
   /*
@@ -320,7 +342,12 @@ public class E15D09 implements IE15D09 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    int result = new Solver().part2();
+
+    if (result != 804) {
+      throw new RuntimeException(String.format("Result %d is wrong!!!", result));
+    }
+
+    return String.valueOf(result);
   }
 }
