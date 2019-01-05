@@ -31,4 +31,20 @@ public interface IDay {
    * @return value.
    */
   String solveSecond();
+
+  default String result(String expected, String result) {
+    if (!expected.equals(result)) {
+      throw new RuntimeException("Wrong!!!");
+    }
+
+    return result;
+  }
+
+  default String result(int expected, int result) {
+    if (expected != result) {
+      throw new RuntimeException("Wrong!!!");
+    }
+
+    return String.valueOf(result);
+  }
 }

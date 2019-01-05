@@ -1,8 +1,13 @@
 package cz.hlubyluk.adventofcode.event2015;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +19,8 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D14;
  * @author HlubyLuk
  */
 public class E15D14 implements IE15D14 {
+  private static final Mapper MAPPER = new Mapper();
+
   private static class Reindeer {
     private final String name;
     private final int speed, time, rest;
@@ -128,6 +135,32 @@ public class E15D14 implements IE15D14 {
 
       return max;
     }
+
+    public int part2() {
+      Map<Reindeer, Integer> leaderBoard = new HashMap<>();
+
+      for (int currentSecond = 1; currentSecond <= IE15D14.SECONDS; currentSecond += 1) {
+        TreeMap<Integer, List<Reindeer>> round = new TreeMap<>();
+
+        for (Reindeer reindeer : Mapper.PARSER.getReindeers()) {
+          int distance = reindeer.computeDistance(currentSecond);
+
+          List<Reindeer> get = round.getOrDefault(distance, new ArrayList<>());
+          get.add(reindeer);
+
+          round.put(distance, get);
+        }
+
+        for (Reindeer reindeer : round.lastEntry().getValue()) {
+          int points = leaderBoard.getOrDefault(reindeer, 0) + 1;
+
+          leaderBoard.put(reindeer, points);
+        }
+      }
+
+      return leaderBoard.entrySet().stream().sorted(Map.Entry.comparingByValue())
+          .reduce((a, b) -> a.getValue() < b.getValue() ? b : a).orElseGet(() -> null).getValue();
+    }
   }
 
   /*
@@ -147,13 +180,7 @@ public class E15D14 implements IE15D14 {
    */
   @Override
   public String solveFirst() {
-    String result = String.valueOf(new Mapper().part1());
-
-    if (!"2655".equals(result)) {
-      throw new RuntimeException("Wrong!!!");
-    }
-
-    return result;
+    return this.result(2655, E15D14.MAPPER.part1());
   }
 
   /*
@@ -163,7 +190,6 @@ public class E15D14 implements IE15D14 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.result(1059, E15D14.MAPPER.part2());
   }
 }
