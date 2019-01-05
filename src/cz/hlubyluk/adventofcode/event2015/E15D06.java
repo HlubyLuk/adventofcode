@@ -50,13 +50,14 @@ public class E15D06 implements IE15D06 {
   }
 
   private static class Mapper {
-    public Mapper() {
+    private static final Parser PARSER = new Parser();
 
+    public Mapper() {
     }
 
     public String solvePartFirst() {
       boolean[][] grid = new boolean[1000][1000];
-      for (Instruction instruction : new Parser().parserInput()) {
+      for (Instruction instruction : Mapper.PARSER.parserInput()) {
         for (int y = instruction.from.y; y <= instruction.to.y; y += 1) {
           for (int x = instruction.from.x; x <= instruction.to.x; x += 1) {
             switch (instruction.cmd) {
@@ -90,7 +91,7 @@ public class E15D06 implements IE15D06 {
 
     public String solvePartSecond() {
       int[][] grid = new int[1000][1000];
-      for (Instruction instruction : new Parser().parserInput()) {
+      for (Instruction instruction : Mapper.PARSER.parserInput()) {
         for (int y = instruction.from.y; y <= instruction.to.y; y += 1) {
           for (int x = instruction.from.x; x <= instruction.to.x; x += 1) {
             switch (instruction.cmd) {
@@ -138,6 +139,8 @@ public class E15D06 implements IE15D06 {
     }
   }
 
+  private static final Mapper MAPPER = new Mapper();
+
   /*
    * (non-Javadoc)
    *
@@ -155,7 +158,7 @@ public class E15D06 implements IE15D06 {
    */
   @Override
   public String solveFirst() {
-    return new Mapper().solvePartFirst();
+    return this.result("569999", E15D06.MAPPER.solvePartFirst()); // new Mapper().solvePartFirst();
   }
 
   /*
@@ -165,7 +168,6 @@ public class E15D06 implements IE15D06 {
    */
   @Override
   public String solveSecond() {
-    return new Mapper().solvePartSecond();
+    return this.result("17836115", E15D06.MAPPER.solvePartSecond()); // new Mapper().solvePartSecond();
   }
-
 }

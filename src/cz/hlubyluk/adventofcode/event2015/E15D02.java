@@ -69,6 +69,8 @@ public class E15D02 implements IE15D02 {
     }
   }
 
+  private static final Parser PARSER = new Parser();
+
   /*
    * (non-Javadoc)
    * 
@@ -86,8 +88,8 @@ public class E15D02 implements IE15D02 {
    */
   @Override
   public String solveFirst() {
-    return String.valueOf(
-        new Parser().parseBoxes().stream().map(box -> box.totalPaper()).reduce(Integer::sum).orElseGet(() -> 0));
+    return this.result(1588178,
+        E15D02.PARSER.parseBoxes().stream().map(box -> box.totalPaper()).reduce(Integer::sum).orElseGet(() -> 0));
   }
 
   /*
@@ -97,7 +99,7 @@ public class E15D02 implements IE15D02 {
    */
   @Override
   public String solveSecond() {
-    return String.valueOf(
-        new Parser().parseBoxes().stream().map(box -> box.totalRibbon()).reduce(Integer::sum).orElseGet(() -> 0));
+    return this.result(3783758,
+        E15D02.PARSER.parseBoxes().stream().map(box -> box.totalRibbon()).reduce(Integer::sum).orElseGet(() -> 0));
   }
 }

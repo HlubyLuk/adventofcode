@@ -26,12 +26,12 @@ public class E15D01 implements IE15D01 {
       }
     }
 
-    return String.valueOf(floor);
+    return this.result(138, floor); // String.valueOf(floor);
   }
 
   @Override
   public String solveSecond() {
-    int floor = 0;
+    int floor = 0, result = IDay.NOT_IMPLEMENT;
 
     StringCharacterIterator it = new StringCharacterIterator(IE15D01.INPUT);
     for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
@@ -42,10 +42,12 @@ public class E15D01 implements IE15D01 {
       }
 
       if (floor == -1) {
-        return String.valueOf(it.getIndex() + 1);
+        result = it.getIndex() + 1;
+        break;
+//        return String.valueOf(it.getIndex() + 1);
       }
     }
 
-    return String.valueOf(IDay.NOT_IMPLEMENT);
+    return this.result(1771, result);
   }
 }

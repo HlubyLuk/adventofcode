@@ -18,6 +18,30 @@ public interface IDay {
    */
   String getTag();
 
+  default String result(final int expected, final int result) {
+    if (expected != result) {
+      throw new RuntimeException("Wrong!!!");
+    }
+
+    return String.valueOf(result);
+  }
+
+  default String result(final int expected, final long result) {
+    if (expected != result) {
+      throw new RuntimeException("Wrong!!!");
+    }
+
+    return String.valueOf(result);
+  }
+
+  default String result(final String expected, final String result) {
+    if (!expected.equals(result)) {
+      throw new RuntimeException("Wrong!!!");
+    }
+
+    return result;
+  }
+
   /**
    * Solve first part.
    *
@@ -31,20 +55,4 @@ public interface IDay {
    * @return value.
    */
   String solveSecond();
-
-  default String result(String expected, String result) {
-    if (!expected.equals(result)) {
-      throw new RuntimeException("Wrong!!!");
-    }
-
-    return result;
-  }
-
-  default String result(int expected, int result) {
-    if (expected != result) {
-      throw new RuntimeException("Wrong!!!");
-    }
-
-    return String.valueOf(result);
-  }
 }

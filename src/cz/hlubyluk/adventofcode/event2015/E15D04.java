@@ -28,7 +28,7 @@ public class E15D04 implements IE15D04 {
     for (int i = 0;; i += 1) {
       String md5 = Utils.MD5(String.format("%s%d", IE15D04.INPUT, i));
       if (md5.startsWith("00000")) {
-        return String.valueOf(i);
+        return this.result(254575, i); // String.valueOf(i);
       }
     }
   }
@@ -43,7 +43,7 @@ public class E15D04 implements IE15D04 {
     for (int i = 0;; i += 1) {
       String md5 = Utils.MD5(String.format("%s%d", IE15D04.INPUT, i));
       if (md5.startsWith("000000")) {
-        return String.valueOf(i);
+        return this.result(1038736, i); // String.valueOf(i);
       }
     }
   }

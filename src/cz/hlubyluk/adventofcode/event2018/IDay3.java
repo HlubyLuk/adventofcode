@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2018;
 

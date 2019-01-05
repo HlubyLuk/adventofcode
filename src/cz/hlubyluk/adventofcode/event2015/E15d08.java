@@ -21,7 +21,7 @@ public class E15D08 implements IE15D08 {
     private final int line, part1;
     private final int part2;
 
-    public Line(String line) {
+    public Line(final String line) {
       this.line = line.length();
       this.part1 = Line.PART1.matcher(line).replaceAll("R").replaceAll("\"", "").length();
       this.part2 = line.replaceAll("^\"|\"$|\\\\|\\\"", "\\\\\"").length() + 2;
@@ -41,9 +41,9 @@ public class E15D08 implements IE15D08 {
     }
 
     public List<Line> parseInput() {
-      List<Line> lines = new ArrayList<>();
+      final List<Line> lines = new ArrayList<>();
 
-      Scanner sc = new Scanner(IE15D08.INPUT);
+      final Scanner sc = new Scanner(IE15D08.INPUT);
       while (sc.hasNextLine()) {
         lines.add(new Line(sc.nextLine()));
       }
@@ -52,6 +52,8 @@ public class E15D08 implements IE15D08 {
       return lines;
     }
   }
+
+  private static final Parser PARSER = new Parser();
 
   /*
    * (non-Javadoc)
@@ -70,8 +72,10 @@ public class E15D08 implements IE15D08 {
    */
   @Override
   public String solveFirst() {
-    return String.valueOf(new Parser().parseInput().stream().map(mapper -> mapper.diff1()).reduce(Integer::sum)
+    return this.result(1350, E15D08.PARSER.parseInput().stream().map(mapper -> mapper.diff1()).reduce(Integer::sum)
         .orElseGet(() -> IDay.NOT_IMPLEMENT));
+//    return String.valueOf(new Parser().parseInput().stream().map(mapper -> mapper.diff1()).reduce(Integer::sum)
+//        .orElseGet(() -> IDay.NOT_IMPLEMENT));
   }
 
   /*
@@ -81,7 +85,9 @@ public class E15D08 implements IE15D08 {
    */
   @Override
   public String solveSecond() {
-    return String.valueOf(new Parser().parseInput().stream().map(mapper -> mapper.diff2()).reduce(Integer::sum)
+    return this.result(2085, E15D08.PARSER.parseInput().stream().map(mapper -> mapper.diff2()).reduce(Integer::sum)
         .orElseGet(() -> IDay.NOT_IMPLEMENT));
+//    return String.valueOf(new Parser().parseInput().stream().map(mapper -> mapper.diff2()).reduce(Integer::sum)
+//        .orElseGet(() -> IDay.NOT_IMPLEMENT));
   }
 }

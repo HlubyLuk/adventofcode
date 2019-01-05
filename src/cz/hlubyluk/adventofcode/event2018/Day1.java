@@ -22,7 +22,7 @@ public final class Day1 implements IDay1 {
   public String solveFirst() {
     int tmp = 0;
 
-    for (String item : IDay1.INPUT.split("\n")) {
+    for (final String item : IDay1.INPUT.split("\n")) {
       tmp += Integer.valueOf(item);
     }
 
@@ -32,19 +32,19 @@ public final class Day1 implements IDay1 {
   @Override
   public String solveSecond() {
     int tmp = 0;
-    Set<Integer> cache = new HashSet<>();
+    final Set<Integer> cache = new HashSet<>();
 
-    String[] split = IDay1.INPUT.split("\n");
-    List<Integer> freqs = Arrays.asList(split).stream().map(x -> Integer.valueOf(x)).collect(Collectors.toList());
+    final String[] split = IDay1.INPUT.split("\n");
+    final List<Integer> freqs = Arrays.asList(split).stream().map(x -> Integer.valueOf(x)).collect(Collectors.toList());
 
-    for (Integer item : freqs) {
+    for (final Integer item : freqs) {
       tmp += item;
       cache.add(tmp);
     }
 
-    int size = freqs.size();
+    final int size = freqs.size();
     for (int i = 0;; i += 1) {
-      int get = Integer.valueOf(freqs.get(i % size));
+      final int get = Integer.valueOf(freqs.get(i % size));
       tmp += get;
 
       if (cache.contains(tmp)) {

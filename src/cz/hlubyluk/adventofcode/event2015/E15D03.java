@@ -47,7 +47,7 @@ public class E15D03 implements IE15D03 {
       houses.put(point, houses.getOrDefault(point, 0) + 1);
     }
 
-    return String.valueOf(houses.size());
+    return this.result(2592, houses.size()); // String.valueOf(houses.size());
   }
 
   @Override
@@ -101,6 +101,6 @@ public class E15D03 implements IE15D03 {
       houses.put(pointRobot, houses.getOrDefault(pointRobot, 0) + 1);
     }
 
-    return String.valueOf(houses.size());
+    return this.result(2360, houses.size()); // String.valueOf(houses.size());
   }
 }

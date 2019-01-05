@@ -16,57 +16,6 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D11;
  */
 public class E15D11 implements IE15D11 {
 
-  private static class Password {
-    private static final Pattern RESTRICTION = Utils.restriction("i|o|l");
-    private final String password;
-
-    public Password(String password) {
-      this.password = password;
-    }
-
-    public boolean isCorrect() {
-      return this.restriction() && this.doubleCharacter() && this.straight();
-    }
-
-    private boolean restriction() {
-      return Password.RESTRICTION.matcher(this.password).find();
-    }
-
-    private boolean doubleCharacter() {
-      return Utils.DOUBLE_CHARACTER_WITHOUT_OVERLAP.matcher(this.password).find();
-    }
-
-    private boolean straight() {
-      char[] arr = this.password.toCharArray();
-      for (int i = 2; i < arr.length; i += 1) {
-        int a = arr[i - 2];
-        int b = arr[i - 1];
-        int c = arr[i];
-
-        if (a + 1 == b && b + 1 == c) {
-          return true;
-        }
-      }
-
-      return false;
-    }
-
-    @Override
-    public String toString() {
-      return "Password [password=" + password + "]";
-    }
-  }
-
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 11";
-  }
-
   private static class Generator {
     public Generator() {
     }
@@ -98,6 +47,59 @@ public class E15D11 implements IE15D11 {
     }
   }
 
+  private static class Password {
+    private static final Pattern RESTRICTION = Utils.restriction("i|o|l");
+    private final String password;
+
+    public Password(String password) {
+      this.password = password;
+    }
+
+    private boolean doubleCharacter() {
+      return Utils.DOUBLE_CHARACTER_WITHOUT_OVERLAP.matcher(this.password).find();
+    }
+
+    public boolean isCorrect() {
+      return this.restriction() && this.doubleCharacter() && this.straight();
+    }
+
+    private boolean restriction() {
+      return Password.RESTRICTION.matcher(this.password).find();
+    }
+
+    private boolean straight() {
+      char[] arr = this.password.toCharArray();
+      for (int i = 2; i < arr.length; i += 1) {
+        int a = arr[i - 2];
+        int b = arr[i - 1];
+        int c = arr[i];
+
+        if (a + 1 == b && b + 1 == c) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    @Override
+    public String toString() {
+      return "Password [password=" + password + "]";
+    }
+  }
+
+  private static final Generator GENERATOR = new Generator();
+
+  /*
+   * (non-Javadoc)
+   *
+   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+   */
+  @Override
+  public String getTag() {
+    return "2015 day 11";
+  }
+
   /*
    * (non-Javadoc)
    *
@@ -107,16 +109,17 @@ public class E15D11 implements IE15D11 {
   public String solveFirst() {
     String next = IE15D11.INPUT;
 
-    Generator generator = new Generator();
+//    Generator generator = new Generator();
     do {
-      next = generator.next(next);
+      next = E15D11.GENERATOR.next(next);
     } while (!new Password(next).isCorrect());
 
-    if (!"hepxxyzz".equals(next)) {
-      throw new RuntimeException("Wrong!!!");
-    }
+//    if (!"hepxxyzz".equals(next)) {
+//      throw new RuntimeException("Wrong!!!");
+//    }
 
-    return next;
+//    return next;
+    return this.result("hepxxyzz", next);
   }
 
   /*
@@ -128,15 +131,16 @@ public class E15D11 implements IE15D11 {
   public String solveSecond() {
     String next = this.solveFirst();
 
-    Generator generator = new Generator();
+//    Generator generator = new Generator();
     do {
-      next = generator.next(next);
+      next = E15D11.GENERATOR.next(next);
     } while (!new Password(next).isCorrect());
 
-    if (!"heqaabcc".equals(next)) {
-      throw new RuntimeException("Wrong!!!");
-    }
+//    if (!"heqaabcc".equals(next)) {
+//      throw new RuntimeException("Wrong!!!");
+//    }
 
-    return next;
+//    return next;
+    return this.result("heqaabcc", next);
   }
 }

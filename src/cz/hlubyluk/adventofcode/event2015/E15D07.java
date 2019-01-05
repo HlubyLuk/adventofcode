@@ -212,6 +212,8 @@ public class E15D07 implements IE15D07 {
     }
   }
 
+  private static final Mapper MAPPER = new Mapper();
+
   /*
    * (non-Javadoc)
    *
@@ -229,7 +231,7 @@ public class E15D07 implements IE15D07 {
    */
   @Override
   public String solveFirst() {
-    return String.valueOf(new Mapper().mapMap().get("a"));
+    return this.result(956, E15D07.MAPPER.mapMap().get("a")); // String.valueOf(new Mapper().mapMap().get("a"));
   }
 
   /*
@@ -239,11 +241,9 @@ public class E15D07 implements IE15D07 {
    */
   @Override
   public String solveSecond() {
-    Mapper mapper = new Mapper();
-
     HashMap<String, Integer> map = new HashMap<>();
-    map.put("b", mapper.mapMap().get("a"));
+    map.put("b", E15D07.MAPPER.mapMap().get("a"));
 
-    return String.valueOf(mapper.mapMap(map).get("a"));
+    return this.result(40149, E15D07.MAPPER.mapMap(map).get("a")); // String.valueOf(mapper.mapMap(map).get("a"));
   }
 }

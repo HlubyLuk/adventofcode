@@ -37,6 +37,8 @@ public class E15D10 implements IE15D10 {
     }
   }
 
+  private static final Solver SOLVER = new Solver();
+
   /*
    * (non-Javadoc)
    *
@@ -54,14 +56,15 @@ public class E15D10 implements IE15D10 {
    */
   @Override
   public String solveFirst() {
-    Solver solver = new Solver();
+//    Solver solver = new Solver();
 
     String las = IE15D10.INPUT;
     for (int i = 0; i < 40; i += 1) {
-      las = solver.lookandsay(las);
+      las = E15D10.SOLVER.lookandsay(las);
     }
 
-    return String.valueOf(las.length());
+//    return String.valueOf(las.length());
+    return this.result(492982, las.length());
   }
 
   /*
@@ -71,13 +74,14 @@ public class E15D10 implements IE15D10 {
    */
   @Override
   public String solveSecond() {
-    Solver solver = new Solver();
+//    Solver solver = new Solver();
 
     String las = IE15D10.INPUT;
     for (int i = 0; i < 50; i += 1) {
-      las = solver.lookandsay(las);
+      las = E15D10.SOLVER.lookandsay(las);
     }
 
-    return String.valueOf(las.length());
+//    return String.valueOf(las.length());
+    return this.result(6989950, las.length());
   }
 }

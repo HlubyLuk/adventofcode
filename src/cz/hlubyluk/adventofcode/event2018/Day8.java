@@ -20,14 +20,14 @@ public class Day8 implements IDay8 {
       int sum = 0;
 
       if (!this.childers.isEmpty()) {
-        int size = this.childers.size();
-        for (int metadata : this.metadatas) {
+        final int size = this.childers.size();
+        for (final int metadata : this.metadatas) {
           if (0 < metadata && metadata <= size) {
             sum += this.childers.get(metadata - 1).dataValue();
           }
         }
       } else {
-        for (int metadata : this.metadatas) {
+        for (final int metadata : this.metadatas) {
           sum += metadata;
         }
       }
@@ -38,11 +38,11 @@ public class Day8 implements IDay8 {
     public int metadataSum() {
       int sum = 0;
 
-      for (Integer metadata : this.metadatas) {
+      for (final Integer metadata : this.metadatas) {
         sum += metadata;
       }
 
-      for (Node node : this.childers) {
+      for (final Node node : this.childers) {
         sum += node.metadataSum();
       }
 
@@ -51,7 +51,7 @@ public class Day8 implements IDay8 {
 
     @Override
     public String toString() {
-      return "Node [childers=" + childers + ", metadatas=" + metadatas + "]";
+      return "Node [childers=" + this.childers + ", metadatas=" + this.metadatas + "]";
     }
   }
 
@@ -60,11 +60,11 @@ public class Day8 implements IDay8 {
     return "2018 Day 8";
   }
 
-  private Node parse(Iterator<Integer> it) {
-    int data = it.next();
-    int metadata = it.next();
+  private Node parse(final Iterator<Integer> it) {
+    final int data = it.next();
+    final int metadata = it.next();
 
-    Node node = new Node();
+    final Node node = new Node();
 
     for (int i = 0; i < data; i += 1) {
       node.childers.add(this.parse(it));
@@ -79,7 +79,7 @@ public class Day8 implements IDay8 {
 
   @Override
   public String solveFirst() {
-    List<Integer> map = Arrays.asList(IDay8.INPUT.split(" ")).stream().map(Integer::valueOf)
+    final List<Integer> map = Arrays.asList(IDay8.INPUT.split(" ")).stream().map(Integer::valueOf)
         .collect(Collectors.toList());
 
     return String.valueOf(this.parse(map.iterator()).metadataSum());
@@ -87,7 +87,7 @@ public class Day8 implements IDay8 {
 
   @Override
   public String solveSecond() {
-    List<Integer> map = Arrays.asList(IDay8.INPUT.split(" ")).stream().map(Integer::valueOf)
+    final List<Integer> map = Arrays.asList(IDay8.INPUT.split(" ")).stream().map(Integer::valueOf)
         .collect(Collectors.toList());
 
     return String.valueOf(this.parse(map.iterator()).dataValue());

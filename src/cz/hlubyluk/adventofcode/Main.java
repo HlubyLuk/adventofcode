@@ -5,7 +5,20 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode.event2015.*;
+import cz.hlubyluk.adventofcode.event2015.E15D01;
+import cz.hlubyluk.adventofcode.event2015.E15D02;
+import cz.hlubyluk.adventofcode.event2015.E15D03;
+import cz.hlubyluk.adventofcode.event2015.E15D04;
+import cz.hlubyluk.adventofcode.event2015.E15D05;
+import cz.hlubyluk.adventofcode.event2015.E15D06;
+import cz.hlubyluk.adventofcode.event2015.E15D07;
+import cz.hlubyluk.adventofcode.event2015.E15D08;
+import cz.hlubyluk.adventofcode.event2015.E15D09;
+import cz.hlubyluk.adventofcode.event2015.E15D10;
+import cz.hlubyluk.adventofcode.event2015.E15D11;
+import cz.hlubyluk.adventofcode.event2015.E15D12;
+import cz.hlubyluk.adventofcode.event2015.E15D13;
+import cz.hlubyluk.adventofcode.event2015.E15D14;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -28,8 +41,8 @@ public final class Main {
    *
    * @param args
    */
-  public static void main(String[] args) {
-    List<IDay> days = new ArrayList<>();
+  public static void main(final String[] args) {
+    final List<IDay> days = new ArrayList<>();
     days.add(new E15D01());
     days.add(new E15D02());
     days.add(new E15D03());
@@ -46,16 +59,16 @@ public final class Main {
     days.add(new E15D14());
 
     Instant tmp = null;
-    Instant start = Instant.now();
+    final Instant start = Instant.now();
 
-    for (IDay day : days) {
+    for (final IDay day : days) {
       tmp = Instant.now();
-      String firstResult = day.solveFirst();
-      Duration firstBetween = Duration.between(tmp, Instant.now());
+      final String firstResult = day.solveFirst();
+      final Duration firstBetween = Duration.between(tmp, Instant.now());
 
       tmp = Instant.now();
-      String secondResult = day.solveSecond();
-      Duration secondBetween = Duration.between(tmp, Instant.now());
+      final String secondResult = day.solveSecond();
+      final Duration secondBetween = Duration.between(tmp, Instant.now());
 
       System.out.printf("%s%n\tpart 1 result %26s, duration %7d%n\tpart 2 result %26s, duration %7d%n", day.getTag(),
           firstResult, firstBetween.toMillis(), secondResult, secondBetween.toMillis());

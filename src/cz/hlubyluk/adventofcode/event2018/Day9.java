@@ -11,7 +11,7 @@ public class Day9 implements IDay9 {
   private static class Game {
     private final int players, mirable;
 
-    public Game(int players, int mirable) {
+    public Game(final int players, final int mirable) {
       super();
       this.players = players;
       this.mirable = mirable;
@@ -19,12 +19,12 @@ public class Day9 implements IDay9 {
 
     @Override
     public String toString() {
-      return "Game [player=" + players + ", score=" + mirable + "]";
+      return "Game [player=" + this.players + ", score=" + this.mirable + "]";
     }
   }
 
   public static class Solver {
-    private static void rotate(Deque<Integer> deque, int count) {
+    private static void rotate(final Deque<Integer> deque, final int count) {
       for (int i = 0; i < Math.abs(count); i += 1) {
         if (0 < count) {
           deque.addLast(deque.removeFirst());
@@ -36,14 +36,14 @@ public class Day9 implements IDay9 {
 
     private final int players;
 
-    public Solver(int players) {
+    public Solver(final int players) {
       super();
       this.players = players;
     }
 
-    public long play(int mirables) {
-      Map<Integer, Long> sc = new HashMap<>();
-      Deque<Integer> deque = new LinkedBlockingDeque<Integer>();
+    public long play(final int mirables) {
+      final Map<Integer, Long> sc = new HashMap<>();
+      final Deque<Integer> deque = new LinkedBlockingDeque<Integer>();
       deque.add(0);
 
       for (int i = 1; i <= mirables; i += 1) {
@@ -52,9 +52,9 @@ public class Day9 implements IDay9 {
           deque.add(i);
         } else {
           Solver.rotate(deque, 6);
-          Integer removed = deque.removeFirst();
+          final Integer removed = deque.removeFirst();
 
-          int key = i % this.players;
+          final int key = i % this.players;
 
           sc.put(key, sc.getOrDefault(key, 0L) + i + removed);
         }
@@ -72,7 +72,7 @@ public class Day9 implements IDay9 {
   private Game parse() {
     int players = 0, points = 0, c = 0;
 
-    Scanner scanner = new Scanner(IDay9.INPUT);
+    final Scanner scanner = new Scanner(IDay9.INPUT);
     while (scanner.hasNext()) {
       if (scanner.hasNextInt()) {
         switch (c % 2) {
@@ -97,13 +97,13 @@ public class Day9 implements IDay9 {
 
   @Override
   public String solveFirst() {
-    Game game = this.parse();
+    final Game game = this.parse();
     return String.valueOf(new Solver(game.players).play(game.mirable));
   }
 
   @Override
   public String solveSecond() {
-    Game game = this.parse();
+    final Game game = this.parse();
     return String.valueOf(new Solver(game.players).play(game.mirable * 100));
   }
 }

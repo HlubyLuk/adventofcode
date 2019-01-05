@@ -10,9 +10,9 @@ public class Day16 implements IDay16 {
   private static class Instruction {
     private final int[] instruction = new int[4];
 
-    public Instruction(String input) {
+    public Instruction(final String input) {
       int shift = 0;
-      Scanner sc = new Scanner(input);
+      final Scanner sc = new Scanner(input);
 
       while (sc.hasNext()) {
         if (sc.hasNextInt()) {
@@ -28,7 +28,7 @@ public class Day16 implements IDay16 {
 
     @Override
     public String toString() {
-      return "Instruction [instruction=" + Arrays.toString(instruction) + "]";
+      return "Instruction [instruction=" + Arrays.toString(this.instruction) + "]";
     }
   }
 
@@ -37,7 +37,7 @@ public class Day16 implements IDay16 {
     private final int[] b;
     private final int[] i;
 
-    public Mapper(Register b, Instruction i, Register a) {
+    public Mapper(final Register b, final Instruction i, final Register a) {
       this.b = b.register;
       this.a = a.register;
       this.i = i.instruction;
@@ -68,27 +68,27 @@ public class Day16 implements IDay16 {
     }
 
     public int eqir() {
-      return ((this.a[this.i[3]] == 1 && (this.i[1] == this.b[this.i[2]])) || this.a[this.i[3]] == 0) ? 1 : 0;
+      return this.a[this.i[3]] == 1 && this.i[1] == this.b[this.i[2]] || this.a[this.i[3]] == 0 ? 1 : 0;
     }
 
     public int eqri() {
-      return ((this.a[this.i[3]] == 1 && (this.b[this.i[1]] == this.i[2])) || this.a[this.i[3]] == 0) ? 1 : 0;
+      return this.a[this.i[3]] == 1 && this.b[this.i[1]] == this.i[2] || this.a[this.i[3]] == 0 ? 1 : 0;
     }
 
     public int eqrr() {
-      return ((this.a[this.i[3]] == 1 && (this.b[this.i[1]] == this.b[this.i[2]])) || this.a[this.i[3]] == 0) ? 1 : 0;
+      return this.a[this.i[3]] == 1 && this.b[this.i[1]] == this.b[this.i[2]] || this.a[this.i[3]] == 0 ? 1 : 0;
     }
 
     public int gtir() {
-      return ((this.a[this.i[3]] == 1 && (this.i[1] > this.b[this.i[2]])) || this.a[this.i[3]] == 0) ? 1 : 0;
+      return this.a[this.i[3]] == 1 && this.i[1] > this.b[this.i[2]] || this.a[this.i[3]] == 0 ? 1 : 0;
     }
 
     public int gtri() {
-      return ((this.a[this.i[3]] == 1 && (this.b[this.i[1]] > this.i[2])) || this.a[this.i[3]] == 0) ? 1 : 0;
+      return this.a[this.i[3]] == 1 && this.b[this.i[1]] > this.i[2] || this.a[this.i[3]] == 0 ? 1 : 0;
     }
 
     public int gtrr() {
-      return ((this.a[this.i[3]] == 1 && (this.b[this.i[1]] > this.b[this.i[2]])) || this.a[this.i[3]] == 0) ? 1 : 0;
+      return this.a[this.i[3]] == 1 && this.b[this.i[1]] > this.b[this.i[2]] || this.a[this.i[3]] == 0 ? 1 : 0;
     }
 
     public int muli() {
@@ -114,22 +114,23 @@ public class Day16 implements IDay16 {
 
     @Override
     public String toString() {
-      return "Mapper [b=" + Arrays.toString(b) + ", i=" + Arrays.toString(i) + ", a=" + Arrays.toString(a) + "]";
+      return "Mapper [b=" + Arrays.toString(this.b) + ", i=" + Arrays.toString(this.i) + ", a="
+          + Arrays.toString(this.a) + "]";
     }
   }
 
   private static class Parser {
     public final List<Mapper> mappers = new ArrayList<>();
 
-    public Parser(String input) {
-      Scanner sc = new Scanner(input);
+    public Parser(final String input) {
+      final Scanner sc = new Scanner(input);
 
       while (sc.hasNext()) {
-        String b = sc.nextLine();
-        String i = sc.nextLine();
-        String a = sc.nextLine();
+        final String b = sc.nextLine();
+        final String i = sc.nextLine();
+        final String a = sc.nextLine();
 
-        Mapper mapper = new Mapper(new Register(b), new Instruction(i), new Register(a));
+        final Mapper mapper = new Mapper(new Register(b), new Instruction(i), new Register(a));
 
         if (sc.hasNextLine()) {
           sc.nextLine();
@@ -144,7 +145,7 @@ public class Day16 implements IDay16 {
     public int threeOrMore() {
       int counter = 0;
 
-      for (Mapper mapper : mappers) {
+      for (final Mapper mapper : this.mappers) {
         if (mapper.solve() >= 3) {
           counter += 1;
         }
@@ -157,13 +158,13 @@ public class Day16 implements IDay16 {
   public static class Register {
     private final int[] register = new int[4];
 
-    public Register(String input) {
+    public Register(final String input) {
       int shift = 0;
-      Scanner sc = new Scanner(input.replaceAll("[a-zA-Z\\[\\],:]", ""));
+      final Scanner sc = new Scanner(input.replaceAll("[a-zA-Z\\[\\],:]", ""));
 
       while (sc.hasNext()) {
         if (sc.hasNextInt()) {
-          int value = sc.nextInt();
+          final int value = sc.nextInt();
           this.register[shift] = value;
           shift += 1;
         } else {
@@ -176,7 +177,7 @@ public class Day16 implements IDay16 {
 
     @Override
     public String toString() {
-      return "Register [register=" + Arrays.toString(register) + "]";
+      return "Register [register=" + Arrays.toString(this.register) + "]";
     }
   }
 

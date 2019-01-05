@@ -4,7 +4,7 @@ import cz.hlubyluk.adventofcode.IDay;
 
 /**
  * https://adventofcode.com/2015/day/7
- * 
+ *
  * @author HlubyLuk
  */
 public interface IE15D07 extends IDay {

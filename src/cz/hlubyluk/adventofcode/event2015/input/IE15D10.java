@@ -8,6 +8,6 @@ import cz.hlubyluk.adventofcode.IDay;
  * @author HlubyLuk
  */
 public interface IE15D10 extends IDay {
-  String INPUT_TEST = "1";
   String INPUT = "1321131112";
+  String INPUT_TEST = "1";
 }

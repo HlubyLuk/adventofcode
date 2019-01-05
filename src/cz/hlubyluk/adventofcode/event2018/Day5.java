@@ -14,8 +14,8 @@ public class Day5 implements IDay5 {
     return "2018 Day 5";
   }
 
-  private StringBuilder shared(String input) {
-    StringBuilder builder = new StringBuilder(input);
+  private StringBuilder shared(final String input) {
+    final StringBuilder builder = new StringBuilder(input);
 
     boolean run = true;
     int j = 0;
@@ -24,8 +24,8 @@ public class Day5 implements IDay5 {
       run = false;
 
       for (int i = j < 0 ? 0 : j; i < builder.length() - 1;) {
-        char current = builder.charAt(i);
-        char next = builder.charAt(i + 1);
+        final char current = builder.charAt(i);
+        final char next = builder.charAt(i + 1);
 
         if (current + IDay.ALPHABET_LENGHT == next || current - IDay.ALPHABET_LENGHT == next) {
           builder.delete(i, i + 2);
@@ -64,7 +64,8 @@ public class Day5 implements IDay5 {
     String ret = null;
 
     for (char a = 'A'; a <= 'Z'; a += 1) {
-      StringBuilder tmp = this.shared(IDay5.INPUT.replaceAll(String.format("[%c%c]", a, a + IDay.ALPHABET_LENGHT), ""));
+      final StringBuilder tmp = this
+          .shared(IDay5.INPUT.replaceAll(String.format("[%c%c]", a, a + IDay.ALPHABET_LENGHT), ""));
 
       if (ret == null || ret.length() > tmp.length()) {
         ret = tmp.toString();

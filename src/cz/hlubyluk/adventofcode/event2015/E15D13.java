@@ -24,156 +24,6 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D13;
  * @author HlubyLuk
  */
 public class E15D13 implements IE15D13 {
-  private static class Relation {
-    private final Name a, b;
-    private final int unit;
-
-    public Relation(Name a, Name b, int unit) {
-      this.a = a;
-      this.b = b;
-      this.unit = unit;
-    }
-
-    @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((a == null) ? 0 : a.hashCode());
-      result = prime * result + ((b == null) ? 0 : b.hashCode());
-      result = prime * result + unit;
-      return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj) {
-        return true;
-      }
-      if (obj == null) {
-        return false;
-      }
-      if (!(obj instanceof Relation)) {
-        return false;
-      }
-      Relation other = (Relation) obj;
-      if (a == null) {
-        if (other.a != null) {
-          return false;
-        }
-      } else if (!a.equals(other.a)) {
-        return false;
-      }
-      if (b == null) {
-        if (other.b != null) {
-          return false;
-        }
-      } else if (!b.equals(other.b)) {
-        return false;
-      }
-      if (unit != other.unit) {
-        return false;
-      }
-      return true;
-    }
-
-    @Override
-    public String toString() {
-      return "Relation [a=" + a + ", b=" + b + ", unit=" + unit + "]";
-    }
-  }
-
-  private static class Name implements Comparable<Name> {
-    private final String name;
-
-    public Name(String name) {
-      this.name = name;
-    }
-
-    @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((name == null) ? 0 : name.hashCode());
-      return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj) {
-        return true;
-      }
-      if (obj == null) {
-        return false;
-      }
-      if (!(obj instanceof Name)) {
-        return false;
-      }
-      Name other = (Name) obj;
-      if (name == null) {
-        if (other.name != null) {
-          return false;
-        }
-      } else if (!name.equals(other.name)) {
-        return false;
-      }
-      return true;
-    }
-
-    @Override
-    public String toString() {
-      return this.name;
-    }
-
-    @Override
-    public int compareTo(Name o) {
-      return this.name.compareTo(o.name);
-    }
-  }
-
-  private static class Parser {
-    private static final String GAIN = "gain", LOSE = "lose";
-    private static final Pattern LINE = Pattern
-        .compile("^(.*) would (.*) (.*) happiness units by sitting next to (.*).$");
-    private final Set<Name> names = new HashSet<>();
-    private final Set<Relation> relations = new HashSet<>();
-
-    public Parser() {
-    }
-
-    public void parse() {
-      Scanner sc = new Scanner(IE15D13.INPUT);
-      while (sc.hasNext()) {
-        String line = sc.nextLine();
-
-        Matcher matcher = Parser.LINE.matcher(line);
-        if (matcher.find()) {
-          Name nameA = new Name(matcher.group(1));
-
-          this.names.add(nameA);
-
-          Name nameB = new Name(matcher.group(4));
-
-          boolean gain = Parser.GAIN.equals(matcher.group(2));
-          boolean lose = Parser.LOSE.equals(matcher.group(2));
-          String sign = gain ? "+" : lose ? "-" : "?";
-
-          int unit = Integer.valueOf(String.format("%s%s", sign, matcher.group(3)));
-
-          this.relations.add(new Relation(nameA, nameB, unit));
-        }
-      }
-      sc.close();
-    }
-
-    public List<Name> getNames() {
-      return new ArrayList<>(this.names);
-    }
-
-    public Set<Relation> getRelations() {
-      return relations;
-    }
-  }
-
   private static class Mapper {
     private static final Parser PARSER = new Parser();
     static {
@@ -218,8 +68,8 @@ public class E15D13 implements IE15D13 {
   }
 
   private static class Max implements Utils.Generator.Permutation<Name> {
-    private int max = IDay.NOT_IMPLEMENT;
     private final Map<Same<Name>, Integer> cache;
+    private int max = IDay.NOT_IMPLEMENT;
 
     public Max(Map<Same<Name>, Integer> cache) {
       this.cache = cache;
@@ -253,6 +103,158 @@ public class E15D13 implements IE15D13 {
     }
   }
 
+  private static class Name implements Comparable<Name> {
+    private final String name;
+
+    public Name(String name) {
+      this.name = name;
+    }
+
+    @Override
+    public int compareTo(Name o) {
+      return this.name.compareTo(o.name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj) {
+        return true;
+      }
+      if (obj == null) {
+        return false;
+      }
+      if (!(obj instanceof Name)) {
+        return false;
+      }
+      Name other = (Name) obj;
+      if (name == null) {
+        if (other.name != null) {
+          return false;
+        }
+      } else if (!name.equals(other.name)) {
+        return false;
+      }
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((name == null) ? 0 : name.hashCode());
+      return result;
+    }
+
+    @Override
+    public String toString() {
+      return this.name;
+    }
+  }
+
+  private static class Parser {
+    private static final String GAIN = "gain", LOSE = "lose";
+    private static final Pattern LINE = Pattern
+        .compile("^(.*) would (.*) (.*) happiness units by sitting next to (.*).$");
+    private final Set<Name> names = new HashSet<>();
+    private final Set<Relation> relations = new HashSet<>();
+
+    public Parser() {
+    }
+
+    public List<Name> getNames() {
+      return new ArrayList<>(this.names);
+    }
+
+    public Set<Relation> getRelations() {
+      return relations;
+    }
+
+    public void parse() {
+      Scanner sc = new Scanner(IE15D13.INPUT);
+      while (sc.hasNext()) {
+        String line = sc.nextLine();
+
+        Matcher matcher = Parser.LINE.matcher(line);
+        if (matcher.find()) {
+          Name nameA = new Name(matcher.group(1));
+
+          this.names.add(nameA);
+
+          Name nameB = new Name(matcher.group(4));
+
+          boolean gain = Parser.GAIN.equals(matcher.group(2));
+          boolean lose = Parser.LOSE.equals(matcher.group(2));
+          String sign = gain ? "+" : lose ? "-" : "?";
+
+          int unit = Integer.valueOf(String.format("%s%s", sign, matcher.group(3)));
+
+          this.relations.add(new Relation(nameA, nameB, unit));
+        }
+      }
+      sc.close();
+    }
+  }
+
+  private static class Relation {
+    private final Name a, b;
+    private final int unit;
+
+    public Relation(Name a, Name b, int unit) {
+      this.a = a;
+      this.b = b;
+      this.unit = unit;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj) {
+        return true;
+      }
+      if (obj == null) {
+        return false;
+      }
+      if (!(obj instanceof Relation)) {
+        return false;
+      }
+      Relation other = (Relation) obj;
+      if (a == null) {
+        if (other.a != null) {
+          return false;
+        }
+      } else if (!a.equals(other.a)) {
+        return false;
+      }
+      if (b == null) {
+        if (other.b != null) {
+          return false;
+        }
+      } else if (!b.equals(other.b)) {
+        return false;
+      }
+      if (unit != other.unit) {
+        return false;
+      }
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((a == null) ? 0 : a.hashCode());
+      result = prime * result + ((b == null) ? 0 : b.hashCode());
+      result = prime * result + unit;
+      return result;
+    }
+
+    @Override
+    public String toString() {
+      return "Relation [a=" + a + ", b=" + b + ", unit=" + unit + "]";
+    }
+  }
+
+  private static final Mapper MAPPER = new Mapper();
+
   /*
    * (non-Javadoc)
    * 
@@ -270,13 +272,14 @@ public class E15D13 implements IE15D13 {
    */
   @Override
   public String solveFirst() {
-    int result = new Mapper().map1();
-
-    if (result != 709) {
-      throw new RuntimeException("Wrong!!!");
-    }
-
-    return String.valueOf(result);
+//    int result = new Mapper().map1();
+//
+//    if (result != 709) {
+//      throw new RuntimeException("Wrong!!!");
+//    }
+//
+//    return String.valueOf(result);
+    return this.result(709, E15D13.MAPPER.map1());
   }
 
   /*
@@ -286,12 +289,13 @@ public class E15D13 implements IE15D13 {
    */
   @Override
   public String solveSecond() {
-    int result = new Mapper().map2();
-
-    if (result != 668) {
-      throw new RuntimeException("Wrong!!!");
-    }
-
-    return String.valueOf(result);
+//    int result = new Mapper().map2();
+//
+//    if (result != 668) {
+//      throw new RuntimeException("Wrong!!!");
+//    }
+//
+//    return String.valueOf(result);
+    return this.result(668, E15D13.MAPPER.map2());
   }
 }

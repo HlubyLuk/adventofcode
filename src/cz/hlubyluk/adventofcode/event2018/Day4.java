@@ -18,7 +18,7 @@ public class Day4 implements IDay4 {
   private static class Guard extends Record {
     private final int id;
 
-    private Guard(String input, int id) {
+    private Guard(final String input, final int id) {
       super(input);
 
       this.id = id;
@@ -26,7 +26,7 @@ public class Day4 implements IDay4 {
 
     @Override
     public int getType() {
-      return id;
+      return this.id;
     }
   }
 
@@ -45,12 +45,12 @@ public class Day4 implements IDay4 {
   private static abstract class Record implements Rec<Record> {
     private final LocalDateTime time;
 
-    private Record(String input) {
+    private Record(final String input) {
       this.time = LocalDateTime.parse(input, Day4.FORMATTER);
     }
 
     @Override
-    public int compareTo(Record o) {
+    public int compareTo(final Record o) {
       return this.time.compareTo(o.time);
     }
 
@@ -61,11 +61,11 @@ public class Day4 implements IDay4 {
   }
 
   private static class RecordFactory {
-    private static Record create(String input) {
+    private static Record create(final String input) {
       Record tmp = null;
 
-      String[] split = input.split(" ", 3);
-      String time = String.format("%s %s", split[0], split[1]);
+      final String[] split = input.split(" ", 3);
+      final String time = String.format("%s %s", split[0], split[1]);
 
       if (split[2].startsWith("Guard")) {
         tmp = new Guard(time, Integer.valueOf(split[2].split(" ")[1].replaceAll("#", "")));
@@ -85,7 +85,7 @@ public class Day4 implements IDay4 {
   }
 
   private static class Sleep extends Record {
-    private Sleep(String input) {
+    private Sleep(final String input) {
       super(input);
     }
 
@@ -96,7 +96,7 @@ public class Day4 implements IDay4 {
   }
 
   private static class Wake extends Record {
-    private Wake(String input) {
+    private Wake(final String input) {
       super(input);
     }
 
@@ -117,21 +117,21 @@ public class Day4 implements IDay4 {
   }
 
   private Map<Integer, int[]> shared() {
-    Set<Record> records = new TreeSet<>();
+    final Set<Record> records = new TreeSet<>();
 
-    for (String line : IDay4.INPUT.split("\n")) {
+    for (final String line : IDay4.INPUT.split("\n")) {
       records.add(RecordFactory.create(line));
     }
 
 //    records.stream().forEach(x -> System.out.println(x.getText()));
 
     int[] row = null;
-    Map<Integer, int[]> guards = new HashMap<>();
+    final Map<Integer, int[]> guards = new HashMap<>();
     Record s = null, w = null;
 
-    for (Record record : records) {
+    for (final Record record : records) {
       if (record.getType() != IType.SLEEP && record.getType() != IType.WAKE) {
-        Guard guard = (Guard) record;
+        final Guard guard = (Guard) record;
 
         if (guards.containsKey(guard.id)) {
           row = guards.get(guard.id);
@@ -167,14 +167,14 @@ public class Day4 implements IDay4 {
   public String solveFirst() {
     int id = -1, index = -1, max = -1;
 
-    for (Map.Entry<Integer, int[]> entry : this.shared().entrySet()) {
-      int key = entry.getKey();
-      int[] value = entry.getValue();
+    for (final Map.Entry<Integer, int[]> entry : this.shared().entrySet()) {
+      final int key = entry.getKey();
+      final int[] value = entry.getValue();
 
       int count = 0;
 
-      for (int j = 0; j < value.length; j += 1) {
-        count += value[j];
+      for (final int element : value) {
+        count += element;
       }
 
       if (max < count) {
@@ -205,8 +205,8 @@ public class Day4 implements IDay4 {
   public String solveSecond() {
     int id = -1, index = -1, value = -1;
 
-    for (Map.Entry<Integer, int[]> entry : this.shared().entrySet()) {
-      int[] tmp = entry.getValue();
+    for (final Map.Entry<Integer, int[]> entry : this.shared().entrySet()) {
+      final int[] tmp = entry.getValue();
 
       for (int j = 0; j < tmp.length; j += 1) {
         if (value < tmp[j]) {

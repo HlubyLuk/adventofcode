@@ -19,106 +19,6 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D14;
  * @author HlubyLuk
  */
 public class E15D14 implements IE15D14 {
-  private static final Mapper MAPPER = new Mapper();
-
-  private static class Reindeer {
-    private final String name;
-    private final int speed, time, rest;
-
-    public Reindeer(String name, int speed, int time, int rest) {
-      this.name = name;
-      this.speed = speed;
-      this.time = time;
-      this.rest = rest;
-    }
-
-    public int computeDistance(int time) {
-      int count = time / (this.time + this.rest);
-      int rest = time % (this.time + this.rest);
-
-      return count * this.speed * this.time + this.speed * Math.min(this.time, rest);
-    }
-
-    @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((name == null) ? 0 : name.hashCode());
-      result = prime * result + rest;
-      result = prime * result + speed;
-      result = prime * result + time;
-      return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj) {
-        return true;
-      }
-      if (obj == null) {
-        return false;
-      }
-      if (!(obj instanceof Reindeer)) {
-        return false;
-      }
-      Reindeer other = (Reindeer) obj;
-      if (name == null) {
-        if (other.name != null) {
-          return false;
-        }
-      } else if (!name.equals(other.name)) {
-        return false;
-      }
-      if (rest != other.rest) {
-        return false;
-      }
-      if (speed != other.speed) {
-        return false;
-      }
-      if (time != other.time) {
-        return false;
-      }
-      return true;
-    }
-
-    @Override
-    public String toString() {
-      return "Reindeer [name=" + name + ", speed=" + speed + ", time=" + time + ", rest=" + rest + "]";
-    }
-  }
-
-  private static class Parser {
-    private static final Pattern PATTERN = Pattern
-        .compile("^(.*) can fly (.*) km/s for (.*) seconds, but then must rest for (.*) seconds.$");
-    private final Set<Reindeer> reindeers = new HashSet<>();
-
-    public Parser() {
-    }
-
-    public void parse() {
-      Scanner sc = new Scanner(IE15D14.INPUT);
-      while (sc.hasNext()) {
-        String line = sc.nextLine();
-        Matcher m = Parser.PATTERN.matcher(line);
-
-        if (m.find()) {
-          String name = m.group(1);
-          Integer speed = Integer.valueOf(m.group(2));
-          Integer time = Integer.valueOf(m.group(3));
-          Integer rest = Integer.valueOf(m.group(4));
-
-          Reindeer reindeer = new Reindeer(name, speed, time, rest);
-          this.reindeers.add(reindeer);
-        }
-      }
-      sc.close();
-    }
-
-    public Set<Reindeer> getReindeers() {
-      return this.reindeers;
-    }
-  }
-
   private static class Mapper {
     private static final Parser PARSER = new Parser();
     static {
@@ -162,6 +62,106 @@ public class E15D14 implements IE15D14 {
           .reduce((a, b) -> a.getValue() < b.getValue() ? b : a).orElseGet(() -> null).getValue();
     }
   }
+
+  private static class Parser {
+    private static final Pattern PATTERN = Pattern
+        .compile("^(.*) can fly (.*) km/s for (.*) seconds, but then must rest for (.*) seconds.$");
+    private final Set<Reindeer> reindeers = new HashSet<>();
+
+    public Parser() {
+    }
+
+    public Set<Reindeer> getReindeers() {
+      return this.reindeers;
+    }
+
+    public void parse() {
+      Scanner sc = new Scanner(IE15D14.INPUT);
+      while (sc.hasNext()) {
+        String line = sc.nextLine();
+        Matcher m = Parser.PATTERN.matcher(line);
+
+        if (m.find()) {
+          String name = m.group(1);
+          Integer speed = Integer.valueOf(m.group(2));
+          Integer time = Integer.valueOf(m.group(3));
+          Integer rest = Integer.valueOf(m.group(4));
+
+          Reindeer reindeer = new Reindeer(name, speed, time, rest);
+          this.reindeers.add(reindeer);
+        }
+      }
+      sc.close();
+    }
+  }
+
+  private static class Reindeer {
+    private final String name;
+    private final int speed, time, rest;
+
+    public Reindeer(String name, int speed, int time, int rest) {
+      this.name = name;
+      this.speed = speed;
+      this.time = time;
+      this.rest = rest;
+    }
+
+    public int computeDistance(int time) {
+      int count = time / (this.time + this.rest);
+      int rest = time % (this.time + this.rest);
+
+      return count * this.speed * this.time + this.speed * Math.min(this.time, rest);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj) {
+        return true;
+      }
+      if (obj == null) {
+        return false;
+      }
+      if (!(obj instanceof Reindeer)) {
+        return false;
+      }
+      Reindeer other = (Reindeer) obj;
+      if (name == null) {
+        if (other.name != null) {
+          return false;
+        }
+      } else if (!name.equals(other.name)) {
+        return false;
+      }
+      if (rest != other.rest) {
+        return false;
+      }
+      if (speed != other.speed) {
+        return false;
+      }
+      if (time != other.time) {
+        return false;
+      }
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((name == null) ? 0 : name.hashCode());
+      result = prime * result + rest;
+      result = prime * result + speed;
+      result = prime * result + time;
+      return result;
+    }
+
+    @Override
+    public String toString() {
+      return "Reindeer [name=" + name + ", speed=" + speed + ", time=" + time + ", rest=" + rest + "]";
+    }
+  }
+
+  private static final Mapper MAPPER = new Mapper();
 
   /*
    * (non-Javadoc)

@@ -29,20 +29,21 @@ public final class Day2 implements IDay2 {
   @Override
   public String solveFirst() {
     int a = 0, b = 0;
-    List<String> tokens = Arrays.asList(IDay2.INPUT.split("\n"));
+    final List<String> tokens = Arrays.asList(IDay2.INPUT.split("\n"));
 
-    for (String token : tokens) {
-      Map<Character, Integer> cache = new HashMap<>();
+    for (final String token : tokens) {
+      final Map<Character, Integer> cache = new HashMap<>();
 
-      StringCharacterIterator it = new StringCharacterIterator(token);
+      final StringCharacterIterator it = new StringCharacterIterator(token);
       for (Character c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
-        int get = cache.getOrDefault(c, 0);
+        final int get = cache.getOrDefault(c, 0);
         cache.put(c, get + 1);
       }
 
-      boolean addA = false, addB = false;
+      boolean addA = false;
+      final boolean addB = false;
 
-      for (Entry<Character, Integer> item : cache.entrySet()) {
+      for (final Entry<Character, Integer> item : cache.entrySet()) {
         if (item.getValue() == 2 && !addA) {
           addA = true;
           a += 1;
@@ -67,21 +68,21 @@ public final class Day2 implements IDay2 {
     String a = null;
     int position = Integer.MIN_VALUE;
 
-    List<String> tokens = Arrays.asList(IDay2.INPUT.split("\n"));
+    final List<String> tokens = Arrays.asList(IDay2.INPUT.split("\n"));
 
-    int size = tokens.size();
+    final int size = tokens.size();
     for (int k = 0; k < size; k += 1) {
-      String token = tokens.get(k);
+      final String token = tokens.get(k);
 
       for (int j = k + 1; j < size; j += 1) {
-        String item = tokens.get(j);
+        final String item = tokens.get(j);
 
         if (token.length() == item.length()) {
-          List<Integer> cache = new ArrayList<>();
+          final List<Integer> cache = new ArrayList<>();
 
           for (int i = 0; i < token.length(); i += 1) {
-            char charA = token.charAt(i);
-            char charB = item.charAt(i);
+            final char charA = token.charAt(i);
+            final char charB = item.charAt(i);
 
             if (charA != charB) {
               cache.add(i);

@@ -54,11 +54,11 @@ public class E15D12 implements IE15D12 {
     }
     sc.close();
 
-    if (count != 156366) {
-      throw new RuntimeException("Wrong!!!");
-    }
+//    if (count != 156366) {
+//      throw new RuntimeException("Wrong!!!");
+//    }
 
-    return String.valueOf(count);
+    return this.result(156366, count); // String.valueOf(count);
   }
 
   /*

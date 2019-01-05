@@ -15,22 +15,22 @@ import java.util.stream.Collectors;
 public class Day6 implements IDay6 {
 
   private static class Matrix {
-    private int[][] matrix;
+    private final int[][] matrix;
 
-    public Matrix(int x, int y) {
+    public Matrix(final int x, final int y) {
       this.matrix = new int[y][x];
     }
 
-    public void setPoint(Point point) {
+    public void setPoint(final Point point) {
       this.matrix[point.y][point.x] = point.what;
     }
 
     @Override
     public String toString() {
-      StringBuilder builder = new StringBuilder("Matrix [\n");
+      final StringBuilder builder = new StringBuilder("Matrix [\n");
 
-      for (int[] row : this.matrix) {
-        for (int cell : row) {
+      for (final int[] row : this.matrix) {
+        for (final int cell : row) {
           builder.append(cell);
         }
         builder.append('\n');
@@ -45,13 +45,13 @@ public class Day6 implements IDay6 {
     private int what = -1;
     private final int x, y;
 
-    public Point(int x, int y) {
+    public Point(final int x, final int y) {
       super();
       this.x = x;
       this.y = y;
     }
 
-    public Point(int x, int y, int what) {
+    public Point(final int x, final int y, final int what) {
       super();
       this.x = x;
       this.y = y;
@@ -59,18 +59,23 @@ public class Day6 implements IDay6 {
     }
 
     @Override
-    public boolean equals(Object obj) {
-      if (this == obj)
+    public boolean equals(final Object obj) {
+      if (this == obj) {
         return true;
-      if (obj == null)
+      }
+      if (obj == null) {
         return false;
-      if (getClass() != obj.getClass())
+      }
+      if (this.getClass() != obj.getClass()) {
         return false;
-      Point other = (Point) obj;
-      if (x != other.x)
+      }
+      final Point other = (Point) obj;
+      if (this.x != other.x) {
         return false;
-      if (y != other.y)
+      }
+      if (this.y != other.y) {
         return false;
+      }
       return true;
     }
 
@@ -78,22 +83,22 @@ public class Day6 implements IDay6 {
     public int hashCode() {
       final int prime = 31;
       int result = 1;
-      result = prime * result + x;
-      result = prime * result + y;
+      result = prime * result + this.x;
+      result = prime * result + this.y;
       return result;
     }
 
-    public int manhattanDisntance(Point o) {
+    public int manhattanDisntance(final Point o) {
       return Math.abs(o.x - this.x) + Math.abs(o.y - this.y);
     }
 
-    public void setWhat(int what) {
+    public void setWhat(final int what) {
       this.what = what;
     }
 
     @Override
     public String toString() {
-      return "Point [what=" + what + "]";
+      return "Point [what=" + this.what + "]";
     }
   }
 
@@ -109,14 +114,14 @@ public class Day6 implements IDay6 {
    */
   @Override
   public String solveFirst() {
-    String[] rows = IDay6.INPUT.split("\n");
+    final String[] rows = IDay6.INPUT.split("\n");
     int maxX = 0, maxY = 0;
 
-    Set<Point> interferences = new HashSet<>(rows.length);
+    final Set<Point> interferences = new HashSet<>(rows.length);
     for (int i = 0; i < rows.length; i += 1) {
-      String[] split = rows[i].split(", ");
+      final String[] split = rows[i].split(", ");
 
-      Point point = new Point(Integer.valueOf(split[0]), Integer.valueOf(split[1]), i);
+      final Point point = new Point(Integer.valueOf(split[0]), Integer.valueOf(split[1]), i);
       interferences.add(point);
 
       if (maxX < point.x) {
@@ -128,22 +133,22 @@ public class Day6 implements IDay6 {
       }
     }
 
-    Set<Point> points = new LinkedHashSet<>();
+    final Set<Point> points = new LinkedHashSet<>();
     for (int y = 0; y < maxY; y += 1) {
       for (int x = 0; x < maxX; x += 1) {
         points.add(new Point(x, y));
       }
     }
 
-    Matrix matrix = new Matrix(maxX, maxY);
-    for (Point point : points) {
+    final Matrix matrix = new Matrix(maxX, maxY);
+    for (final Point point : points) {
       int min = Integer.MAX_VALUE;
 
-      for (Point interference : interferences) {
+      for (final Point interference : interferences) {
         if (point.equals(interference)) {
           point.setWhat(interference.what);
         } else {
-          int distance = point.manhattanDisntance(interference);
+          final int distance = point.manhattanDisntance(interference);
 
           if (distance == min) {
             point.setWhat(-1);
@@ -158,15 +163,15 @@ public class Day6 implements IDay6 {
       matrix.setPoint(point);
     }
 
-    Set<Integer> edge = new HashSet<>();
-    for (Point point : points) {
+    final Set<Integer> edge = new HashSet<>();
+    for (final Point point : points) {
       if (point.y == 0 || point.y == maxY - 1 || point.x == 0 || point.x == maxX - 1) {
         edge.add(point.what);
       }
     }
 
-    Map<Integer, Integer> counter = new HashMap<>();
-    for (Point point : points) {
+    final Map<Integer, Integer> counter = new HashMap<>();
+    for (final Point point : points) {
       if (!edge.contains(point.what)) {
         counter.put(point.what, counter.getOrDefault(point.what, 1) + 1);
       }
@@ -183,14 +188,14 @@ public class Day6 implements IDay6 {
    */
   @Override
   public String solveSecond() {
-    String[] rows = IDay6.INPUT.split("\n");
+    final String[] rows = IDay6.INPUT.split("\n");
     int maxX = 0, maxY = 0;
 
-    Set<Point> interferences = new HashSet<>(rows.length);
+    final Set<Point> interferences = new HashSet<>(rows.length);
     for (int i = 0; i < rows.length; i += 1) {
-      String[] split = rows[i].split(", ");
+      final String[] split = rows[i].split(", ");
 
-      Point point = new Point(Integer.valueOf(split[0]), Integer.valueOf(split[1]), i);
+      final Point point = new Point(Integer.valueOf(split[0]), Integer.valueOf(split[1]), i);
       interferences.add(point);
 
       if (maxX < point.x) {
@@ -206,9 +211,9 @@ public class Day6 implements IDay6 {
     for (int y = 0; y < maxY; y += 1) {
       for (int x = 0; x < maxX; x += 1) {
         int distance = 0;
-        Point point = new Point(x, y);
+        final Point point = new Point(x, y);
 
-        for (Point interfence : interferences) {
+        for (final Point interfence : interferences) {
           distance += point.manhattanDisntance(interfence);
         }
 
