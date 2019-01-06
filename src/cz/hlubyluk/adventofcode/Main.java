@@ -5,22 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode.event2015.E15D01;
-import cz.hlubyluk.adventofcode.event2015.E15D02;
-import cz.hlubyluk.adventofcode.event2015.E15D03;
-import cz.hlubyluk.adventofcode.event2015.E15D04;
-import cz.hlubyluk.adventofcode.event2015.E15D05;
-import cz.hlubyluk.adventofcode.event2015.E15D06;
-import cz.hlubyluk.adventofcode.event2015.E15D07;
-import cz.hlubyluk.adventofcode.event2015.E15D08;
-import cz.hlubyluk.adventofcode.event2015.E15D09;
-import cz.hlubyluk.adventofcode.event2015.E15D10;
-import cz.hlubyluk.adventofcode.event2015.E15D11;
-import cz.hlubyluk.adventofcode.event2015.E15D12;
-import cz.hlubyluk.adventofcode.event2015.E15D13;
-import cz.hlubyluk.adventofcode.event2015.E15D14;
-import cz.hlubyluk.adventofcode.event2015.E15D15;
-import cz.hlubyluk.adventofcode.event2015.E15D16;
+import cz.hlubyluk.adventofcode.event2015.E15D17;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -45,22 +30,23 @@ public final class Main {
    */
   public static void main(final String[] args) {
     final List<IDay> days = new ArrayList<>();
-    days.add(new E15D01());
-    days.add(new E15D02());
-    days.add(new E15D03());
-    days.add(new E15D04());
-    days.add(new E15D05());
-    days.add(new E15D06());
-    days.add(new E15D07());
-    days.add(new E15D08());
-    days.add(new E15D09());
-    days.add(new E15D10());
-    days.add(new E15D11());
-    days.add(new E15D12());
-    days.add(new E15D13());
-    days.add(new E15D14());
-    days.add(new E15D15());
-    days.add(new E15D16());
+//    days.add(new E15D01());
+//    days.add(new E15D02());
+//    days.add(new E15D03());
+//    days.add(new E15D04());
+//    days.add(new E15D05());
+//    days.add(new E15D06());
+//    days.add(new E15D07());
+//    days.add(new E15D08());
+//    days.add(new E15D09());
+//    days.add(new E15D10());
+//    days.add(new E15D11());
+//    days.add(new E15D12());
+//    days.add(new E15D13());
+//    days.add(new E15D14());
+//    days.add(new E15D15());
+//    days.add(new E15D16());
+    days.add(new E15D17());
 
     Instant tmp = null;
     final Instant start = Instant.now();
