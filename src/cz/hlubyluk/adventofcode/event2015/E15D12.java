@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2015;
 
@@ -11,7 +11,7 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D12;
 
 /**
  * https://adventofcode.com/2015/day/12
- * 
+ *
  * @author HlubyLuk
  */
 public class E15D12 implements IE15D12 {
@@ -33,10 +33,10 @@ public class E15D12 implements IE15D12 {
    */
   @Override
   public String solveFirst() {
-    StringBuilder builder = new StringBuilder();
+    final StringBuilder builder = new StringBuilder();
 
     boolean space = false;
-    StringCharacterIterator it = new StringCharacterIterator(IE15D12.INPUT);
+    final StringCharacterIterator it = new StringCharacterIterator(IE15D12.INPUT);
     for (char c = it.current(); c != CharacterIterator.DONE; c = it.next()) {
       if (Character.isDigit(c) || c == '-') {
         space = true;
@@ -48,7 +48,7 @@ public class E15D12 implements IE15D12 {
     }
 
     int count = 0;
-    Scanner sc = new Scanner(builder.toString());
+    final Scanner sc = new Scanner(builder.toString());
     while (sc.hasNext()) {
       count += sc.nextInt();
     }

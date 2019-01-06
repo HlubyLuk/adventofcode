@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2015;
 
@@ -17,13 +17,13 @@ public class E15D10 implements IE15D10 {
     }
 
     public String lookandsay(String number) {
-      StringBuilder result = new StringBuilder();
+      final StringBuilder result = new StringBuilder();
 
       char repeat = number.charAt(0);
       number = number.substring(1) + " "; // Space terminated.
       int times = 1;
 
-      for (char actual : number.toCharArray()) {
+      for (final char actual : number.toCharArray()) {
         if (actual != repeat) {
           result.append(times).append(repeat);
           times = 1;

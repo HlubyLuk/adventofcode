@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2015;
 
@@ -31,10 +31,10 @@ public class E15D13 implements IE15D13 {
     }
 
     public Map<Same<Name>, Integer> cache() {
-      Map<Same<Name>, Integer> cache = new HashMap<>();
+      final Map<Same<Name>, Integer> cache = new HashMap<>();
 
-      Set<Relation> relations = Mapper.PARSER.getRelations();
-      for (Relation rel : relations) {
+      final Set<Relation> relations = Mapper.PARSER.getRelations();
+      for (final Relation rel : relations) {
         cache.put(new Same<E15D13.Name>(rel.a, rel.b), rel.unit);
       }
 
@@ -42,16 +42,16 @@ public class E15D13 implements IE15D13 {
     }
 
     public int map1() {
-      Map<Same<Name>, Integer> cache = this.cache();
+      final Map<Same<Name>, Integer> cache = this.cache();
       return this.solveMax(cache, Mapper.PARSER.getNames());
     }
 
     public int map2() {
-      Map<Same<Name>, Integer> cache = this.cache();
-      List<Name> names = Mapper.PARSER.getNames();
+      final Map<Same<Name>, Integer> cache = this.cache();
+      final List<Name> names = Mapper.PARSER.getNames();
 
-      Name me = new Name("me");
-      for (Name name : names) {
+      final Name me = new Name("me");
+      for (final Name name : names) {
         cache.put(new Same<E15D13.Name>(me, name), 0);
         cache.put(new Same<E15D13.Name>(name, me), 0);
       }
@@ -60,8 +60,8 @@ public class E15D13 implements IE15D13 {
       return this.solveMax(cache, names);
     }
 
-    private int solveMax(Map<Same<Name>, Integer> cache, List<Name> names) {
-      Max l = new Max(cache);
+    private int solveMax(final Map<Same<Name>, Integer> cache, final List<Name> names) {
+      final Max l = new Max(cache);
       Utils.Generator.heapPermutation(names, l);
       return l.getMax();
     }
@@ -71,26 +71,26 @@ public class E15D13 implements IE15D13 {
     private final Map<Same<Name>, Integer> cache;
     private int max = IDay.NOT_IMPLEMENT;
 
-    public Max(Map<Same<Name>, Integer> cache) {
+    public Max(final Map<Same<Name>, Integer> cache) {
       this.cache = cache;
     }
 
     @Override
-    public void compute(List<Name> list) {
+    public void compute(final List<Name> list) {
       int units = 0;
-      int size = list.size();
+      final int size = list.size();
       for (int i = 1; i <= size; i += 1) {
-        int indexA = (i - 1) % size;
-        int indexB = i % size;
+        final int indexA = (i - 1) % size;
+        final int indexB = i % size;
 
-        Name a = list.get(indexA);
-        Name b = list.get(indexB);
+        final Name a = list.get(indexA);
+        final Name b = list.get(indexB);
 
-        Same<Name> one = new Same<>(b, a);
-        Same<Name> two = new Same<>(a, b);
+        final Same<Name> one = new Same<>(b, a);
+        final Same<Name> two = new Same<>(a, b);
 
-        int getOne = this.cache.get(one);
-        int getTwo = this.cache.get(two);
+        final int getOne = this.cache.get(one);
+        final int getTwo = this.cache.get(two);
 
         units += getOne + getTwo;
       }
@@ -99,24 +99,24 @@ public class E15D13 implements IE15D13 {
     }
 
     public int getMax() {
-      return max;
+      return this.max;
     }
   }
 
   private static class Name implements Comparable<Name> {
     private final String name;
 
-    public Name(String name) {
+    public Name(final String name) {
       this.name = name;
     }
 
     @Override
-    public int compareTo(Name o) {
+    public int compareTo(final Name o) {
       return this.name.compareTo(o.name);
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
       if (this == obj) {
         return true;
       }
@@ -126,12 +126,12 @@ public class E15D13 implements IE15D13 {
       if (!(obj instanceof Name)) {
         return false;
       }
-      Name other = (Name) obj;
-      if (name == null) {
+      final Name other = (Name) obj;
+      if (this.name == null) {
         if (other.name != null) {
           return false;
         }
-      } else if (!name.equals(other.name)) {
+      } else if (!this.name.equals(other.name)) {
         return false;
       }
       return true;
@@ -141,7 +141,7 @@ public class E15D13 implements IE15D13 {
     public int hashCode() {
       final int prime = 31;
       int result = 1;
-      result = prime * result + ((name == null) ? 0 : name.hashCode());
+      result = prime * result + (this.name == null ? 0 : this.name.hashCode());
       return result;
     }
 
@@ -166,27 +166,27 @@ public class E15D13 implements IE15D13 {
     }
 
     public Set<Relation> getRelations() {
-      return relations;
+      return this.relations;
     }
 
     public void parse() {
-      Scanner sc = new Scanner(IE15D13.INPUT);
+      final Scanner sc = new Scanner(IE15D13.INPUT);
       while (sc.hasNext()) {
-        String line = sc.nextLine();
+        final String line = sc.nextLine();
 
-        Matcher matcher = Parser.LINE.matcher(line);
+        final Matcher matcher = Parser.LINE.matcher(line);
         if (matcher.find()) {
-          Name nameA = new Name(matcher.group(1));
+          final Name nameA = new Name(matcher.group(1));
 
           this.names.add(nameA);
 
-          Name nameB = new Name(matcher.group(4));
+          final Name nameB = new Name(matcher.group(4));
 
-          boolean gain = Parser.GAIN.equals(matcher.group(2));
-          boolean lose = Parser.LOSE.equals(matcher.group(2));
-          String sign = gain ? "+" : lose ? "-" : "?";
+          final boolean gain = Parser.GAIN.equals(matcher.group(2));
+          final boolean lose = Parser.LOSE.equals(matcher.group(2));
+          final String sign = gain ? "+" : lose ? "-" : "?";
 
-          int unit = Integer.valueOf(String.format("%s%s", sign, matcher.group(3)));
+          final int unit = Integer.valueOf(String.format("%s%s", sign, matcher.group(3)));
 
           this.relations.add(new Relation(nameA, nameB, unit));
         }
@@ -199,14 +199,14 @@ public class E15D13 implements IE15D13 {
     private final Name a, b;
     private final int unit;
 
-    public Relation(Name a, Name b, int unit) {
+    public Relation(final Name a, final Name b, final int unit) {
       this.a = a;
       this.b = b;
       this.unit = unit;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
       if (this == obj) {
         return true;
       }
@@ -216,22 +216,22 @@ public class E15D13 implements IE15D13 {
       if (!(obj instanceof Relation)) {
         return false;
       }
-      Relation other = (Relation) obj;
-      if (a == null) {
+      final Relation other = (Relation) obj;
+      if (this.a == null) {
         if (other.a != null) {
           return false;
         }
-      } else if (!a.equals(other.a)) {
+      } else if (!this.a.equals(other.a)) {
         return false;
       }
-      if (b == null) {
+      if (this.b == null) {
         if (other.b != null) {
           return false;
         }
-      } else if (!b.equals(other.b)) {
+      } else if (!this.b.equals(other.b)) {
         return false;
       }
-      if (unit != other.unit) {
+      if (this.unit != other.unit) {
         return false;
       }
       return true;
@@ -241,15 +241,15 @@ public class E15D13 implements IE15D13 {
     public int hashCode() {
       final int prime = 31;
       int result = 1;
-      result = prime * result + ((a == null) ? 0 : a.hashCode());
-      result = prime * result + ((b == null) ? 0 : b.hashCode());
-      result = prime * result + unit;
+      result = prime * result + (this.a == null ? 0 : this.a.hashCode());
+      result = prime * result + (this.b == null ? 0 : this.b.hashCode());
+      result = prime * result + this.unit;
       return result;
     }
 
     @Override
     public String toString() {
-      return "Relation [a=" + a + ", b=" + b + ", unit=" + unit + "]";
+      return "Relation [a=" + this.a + ", b=" + this.b + ", unit=" + this.unit + "]";
     }
   }
 
@@ -257,7 +257,7 @@ public class E15D13 implements IE15D13 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#getTag()
    */
   @Override
@@ -267,7 +267,7 @@ public class E15D13 implements IE15D13 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveFirst()
    */
   @Override
@@ -284,7 +284,7 @@ public class E15D13 implements IE15D13 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveSecond()
    */
   @Override

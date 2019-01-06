@@ -19,8 +19,8 @@ public class E15D06 implements IE15D06 {
     private int cmd;
     private Point from, to;
 
-    public Instruction(String line) {
-      Scanner sc = new Scanner(line);
+    public Instruction(final String line) {
+      final Scanner sc = new Scanner(line);
       while (sc.hasNext()) {
         if (Instruction.TOGGLE.equals(sc.next())) {
           this.cmd = 1;
@@ -32,12 +32,12 @@ public class E15D06 implements IE15D06 {
           }
         }
 
-        String[] from = sc.next().split(",");
+        final String[] from = sc.next().split(",");
         this.from = new Point(Integer.valueOf(from[0]), Integer.valueOf(from[1]));
 
         sc.next();
 
-        String[] to = sc.next().split(",");
+        final String[] to = sc.next().split(",");
         this.to = new Point(Integer.valueOf(to[0]), Integer.valueOf(to[1]));
       }
       sc.close();
@@ -45,7 +45,7 @@ public class E15D06 implements IE15D06 {
 
     @Override
     public String toString() {
-      return "Instruction [cmd=" + cmd + ", from=" + from + ", to=" + to + "]";
+      return "Instruction [cmd=" + this.cmd + ", from=" + this.from + ", to=" + this.to + "]";
     }
   }
 
@@ -56,8 +56,8 @@ public class E15D06 implements IE15D06 {
     }
 
     public String solvePartFirst() {
-      boolean[][] grid = new boolean[1000][1000];
-      for (Instruction instruction : Mapper.PARSER.parserInput()) {
+      final boolean[][] grid = new boolean[1000][1000];
+      for (final Instruction instruction : Mapper.PARSER.parserInput()) {
         for (int y = instruction.from.y; y <= instruction.to.y; y += 1) {
           for (int x = instruction.from.x; x <= instruction.to.x; x += 1) {
             switch (instruction.cmd) {
@@ -78,8 +78,8 @@ public class E15D06 implements IE15D06 {
       }
 
       int count = 0;
-      for (boolean[] row : grid) {
-        for (boolean cell : row) {
+      for (final boolean[] row : grid) {
+        for (final boolean cell : row) {
           if (cell) {
             count += 1;
           }
@@ -90,8 +90,8 @@ public class E15D06 implements IE15D06 {
     }
 
     public String solvePartSecond() {
-      int[][] grid = new int[1000][1000];
-      for (Instruction instruction : Mapper.PARSER.parserInput()) {
+      final int[][] grid = new int[1000][1000];
+      for (final Instruction instruction : Mapper.PARSER.parserInput()) {
         for (int y = instruction.from.y; y <= instruction.to.y; y += 1) {
           for (int x = instruction.from.x; x <= instruction.to.x; x += 1) {
             switch (instruction.cmd) {
@@ -112,8 +112,8 @@ public class E15D06 implements IE15D06 {
       }
 
       int count = 0;
-      for (int[] row : grid) {
-        for (int cell : row) {
+      for (final int[] row : grid) {
+        for (final int cell : row) {
           count += cell;
         }
       }
@@ -127,9 +127,9 @@ public class E15D06 implements IE15D06 {
     }
 
     public List<Instruction> parserInput() {
-      List<Instruction> instructions = new ArrayList<>();
+      final List<Instruction> instructions = new ArrayList<>();
 
-      Scanner sc = new Scanner(IE15D06.INPUT);
+      final Scanner sc = new Scanner(IE15D06.INPUT);
       while (sc.hasNext()) {
         instructions.add(new Instruction(sc.nextLine()));
       }

@@ -20,12 +20,12 @@ public class E15D07 implements IE15D07 {
 
   private static class And extends Bitwise {
 
-    public And(String a, String b, String c) {
+    public And(final String a, final String b, final String c) {
       super(a, b, c);
     }
 
     @Override
-    public int cmd(int a, int b) {
+    public int cmd(final int a, final int b) {
       return a & b;
     }
 
@@ -38,7 +38,7 @@ public class E15D07 implements IE15D07 {
   private static abstract class Bitwise {
     public final String a, b, c;
 
-    public Bitwise(String a, String b, String c) {
+    public Bitwise(final String a, final String b, final String c) {
       this.a = a;
       this.b = b;
       this.c = c;
@@ -49,12 +49,12 @@ public class E15D07 implements IE15D07 {
 
   private static class LShift extends Bitwise {
 
-    public LShift(String a, String b, String c) {
+    public LShift(final String a, final String b, final String c) {
       super(a, b, c);
     }
 
     @Override
-    public int cmd(int a, int b) {
+    public int cmd(final int a, final int b) {
       return a << b;
     }
 
@@ -72,14 +72,14 @@ public class E15D07 implements IE15D07 {
       return this.mapMap(new TreeMap<>());
     }
 
-    public Map<String, Integer> mapMap(Map<String, Integer> values) {
-      Parser parser = new Parser();
-      List<Bitwise> items = parser.parseItems();
+    public Map<String, Integer> mapMap(final Map<String, Integer> values) {
+      final Parser parser = new Parser();
+      final List<Bitwise> items = parser.parseItems();
       while (!items.isEmpty()) {
-        Iterator<Bitwise> it = items.iterator();
+        final Iterator<Bitwise> it = items.iterator();
 
         while (it.hasNext()) {
-          Bitwise item = it.next();
+          final Bitwise item = it.next();
 
           if (values.containsKey(item.c) && Utils.isDigit(item.a) && item.b == null) {
             /* NOTE handle override items. */
@@ -109,12 +109,12 @@ public class E15D07 implements IE15D07 {
 
   private static class Not extends Bitwise {
 
-    public Not(String a, String c) {
+    public Not(final String a, final String c) {
       super(a, null, c);
     }
 
     @Override
-    public int cmd(int a, int b) {
+    public int cmd(final int a, final int b) {
       return IE15D07.MAX - a;
     }
 
@@ -126,12 +126,12 @@ public class E15D07 implements IE15D07 {
 
   private static class Or extends Bitwise {
 
-    public Or(String a, String b, String c) {
+    public Or(final String a, final String b, final String c) {
       super(a, b, c);
     }
 
     @Override
-    public int cmd(int a, int b) {
+    public int cmd(final int a, final int b) {
       return a | b;
     }
 
@@ -146,29 +146,29 @@ public class E15D07 implements IE15D07 {
     }
 
     private List<Bitwise> parseItems() {
-      List<Bitwise> bitwises = new ArrayList<>();
+      final List<Bitwise> bitwises = new ArrayList<>();
 
-      Scanner sc = new Scanner(IE15D07.INPUT);
+      final Scanner sc = new Scanner(IE15D07.INPUT);
       while (sc.hasNextLine()) {
-        String line = sc.nextLine();
+        final String line = sc.nextLine();
 
         if (line.contains("AND")) {
-          String[] s = line.split(" AND | -> ");
+          final String[] s = line.split(" AND | -> ");
           bitwises.add(new And(s[0], s[1], s[2]));
         } else if (line.contains("OR")) {
-          String[] s = line.split(" OR | -> ");
+          final String[] s = line.split(" OR | -> ");
           bitwises.add(new Or(s[0], s[1], s[2]));
         } else if (line.contains("RSHIFT")) {
-          String[] s = line.split(" RSHIFT | -> ");
+          final String[] s = line.split(" RSHIFT | -> ");
           bitwises.add(new RShift(s[0], s[1], s[2]));
         } else if (line.contains("LSHIFT")) {
-          String[] s = line.split(" LSHIFT | -> ");
+          final String[] s = line.split(" LSHIFT | -> ");
           bitwises.add(new LShift(s[0], s[1], s[2]));
         } else if (line.contains("NOT")) {
-          String[] s = line.split("NOT | -> ");
+          final String[] s = line.split("NOT | -> ");
           bitwises.add(new Not(s[1], s[2]));
         } else {
-          String[] s = line.split(" -> ");
+          final String[] s = line.split(" -> ");
           bitwises.add(new Wire(s[0], s[1]));
         }
       }
@@ -180,12 +180,12 @@ public class E15D07 implements IE15D07 {
 
   private static class RShift extends Bitwise {
 
-    public RShift(String a, String b, String c) {
+    public RShift(final String a, final String b, final String c) {
       super(a, b, c);
     }
 
     @Override
-    public int cmd(int a, int b) {
+    public int cmd(final int a, final int b) {
       return a >> b;
     }
 
@@ -197,12 +197,12 @@ public class E15D07 implements IE15D07 {
 
   private static class Wire extends Bitwise {
 
-    public Wire(String a, String c) {
+    public Wire(final String a, final String c) {
       super(a, null, c);
     }
 
     @Override
-    public int cmd(int a, int b) {
+    public int cmd(final int a, final int b) {
       return a;
     }
 
@@ -241,7 +241,7 @@ public class E15D07 implements IE15D07 {
    */
   @Override
   public String solveSecond() {
-    HashMap<String, Integer> map = new HashMap<>();
+    final HashMap<String, Integer> map = new HashMap<>();
     map.put("b", E15D07.MAPPER.mapMap().get("a"));
 
     return this.result(40149, E15D07.MAPPER.mapMap(map).get("a")); // String.valueOf(mapper.mapMap(map).get("a"));

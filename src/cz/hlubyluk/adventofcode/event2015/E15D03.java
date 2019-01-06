@@ -20,12 +20,12 @@ public class E15D03 implements IE15D03 {
 
   @Override
   public String solveFirst() {
-    Map<Utils.Point, Integer> houses = new HashMap<>();
+    final Map<Utils.Point, Integer> houses = new HashMap<>();
     houses.put(new Utils.Point(0, 0), 1);
 
     int x = 0, y = 0;
 
-    StringCharacterIterator it = new StringCharacterIterator(IE15D03.INPUT);
+    final StringCharacterIterator it = new StringCharacterIterator(IE15D03.INPUT);
     for (char c = it.first(); it.current() != CharacterIterator.DONE; c = it.next()) {
       switch (c) {
       case '^':
@@ -42,7 +42,7 @@ public class E15D03 implements IE15D03 {
         break;
       }
 
-      Utils.Point point = new Utils.Point(x, y);
+      final Utils.Point point = new Utils.Point(x, y);
 
       houses.put(point, houses.getOrDefault(point, 0) + 1);
     }
@@ -52,12 +52,12 @@ public class E15D03 implements IE15D03 {
 
   @Override
   public String solveSecond() {
-    Map<Utils.Point, Integer> houses = new HashMap<>();
+    final Map<Utils.Point, Integer> houses = new HashMap<>();
     houses.put(new Utils.Point(0, 0), 1);
 
     int xS = 0, yS = 0, xR = 0, yR = 0;
 
-    StringCharacterIterator it = new StringCharacterIterator(IE15D03.INPUT);
+    final StringCharacterIterator it = new StringCharacterIterator(IE15D03.INPUT);
     for (char santa = it.first(), robot = it.next(); it.current() != CharacterIterator.DONE; santa = it
         .next(), robot = it.next()) {
       switch (santa) {
@@ -77,7 +77,7 @@ public class E15D03 implements IE15D03 {
         xS -= 1;
         break;
       }
-      Utils.Point pointSanta = new Utils.Point(xS, yS);
+      final Utils.Point pointSanta = new Utils.Point(xS, yS);
       houses.put(pointSanta, houses.getOrDefault(pointSanta, 0) + 1);
 
       switch (robot) {
@@ -97,7 +97,7 @@ public class E15D03 implements IE15D03 {
         xR -= 1;
         break;
       }
-      Utils.Point pointRobot = new Utils.Point(xR, yR);
+      final Utils.Point pointRobot = new Utils.Point(xR, yR);
       houses.put(pointRobot, houses.getOrDefault(pointRobot, 0) + 1);
     }
 

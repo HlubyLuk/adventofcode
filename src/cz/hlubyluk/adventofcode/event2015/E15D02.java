@@ -14,8 +14,8 @@ public class E15D02 implements IE15D02 {
   private static class Box {
     private final int l, w, h;
 
-    private Box(String line) {
-      String[] split = line.split("x");
+    private Box(final String line) {
+      final String[] split = line.split("x");
 
       this.l = Integer.valueOf(split[0]);
       this.w = Integer.valueOf(split[1]);
@@ -35,12 +35,12 @@ public class E15D02 implements IE15D02 {
     }
 
     private int surface() {
-      return 2 * l * w + 2 * w * h + 2 * h * l;
+      return 2 * this.l * this.w + 2 * this.w * this.h + 2 * this.h * this.l;
     }
 
     @Override
     public String toString() {
-      return "Box [l=" + l + ", w=" + w + ", h=" + h + "]";
+      return "Box [l=" + this.l + ", w=" + this.w + ", h=" + this.h + "]";
     }
 
     public int totalPaper() {
@@ -57,9 +57,9 @@ public class E15D02 implements IE15D02 {
     }
 
     public List<Box> parseBoxes() {
-      List<Box> boxs = new ArrayList<>();
+      final List<Box> boxs = new ArrayList<>();
 
-      Scanner scanner = new Scanner(IE15D02.INPUT);
+      final Scanner scanner = new Scanner(IE15D02.INPUT);
       while (scanner.hasNext()) {
         boxs.add(new Box(scanner.nextLine()));
       }
@@ -73,7 +73,7 @@ public class E15D02 implements IE15D02 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#getTag()
    */
   @Override
@@ -83,7 +83,7 @@ public class E15D02 implements IE15D02 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveFirst()
    */
   @Override
@@ -94,7 +94,7 @@ public class E15D02 implements IE15D02 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveSecond()
    */
   @Override

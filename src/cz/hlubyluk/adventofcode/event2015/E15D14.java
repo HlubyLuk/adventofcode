@@ -28,8 +28,8 @@ public class E15D14 implements IE15D14 {
     public int part1() {
       int max = Integer.MIN_VALUE;
 
-      Set<Reindeer> reindeers = Mapper.PARSER.getReindeers();
-      for (Reindeer reindeer : reindeers) {
+      final Set<Reindeer> reindeers = Mapper.PARSER.getReindeers();
+      for (final Reindeer reindeer : reindeers) {
         max = Math.max(max, reindeer.computeDistance(IE15D14.SECONDS));
       }
 
@@ -37,22 +37,22 @@ public class E15D14 implements IE15D14 {
     }
 
     public int part2() {
-      Map<Reindeer, Integer> leaderBoard = new HashMap<>();
+      final Map<Reindeer, Integer> leaderBoard = new HashMap<>();
 
       for (int currentSecond = 1; currentSecond <= IE15D14.SECONDS; currentSecond += 1) {
-        TreeMap<Integer, List<Reindeer>> round = new TreeMap<>();
+        final TreeMap<Integer, List<Reindeer>> round = new TreeMap<>();
 
-        for (Reindeer reindeer : Mapper.PARSER.getReindeers()) {
-          int distance = reindeer.computeDistance(currentSecond);
+        for (final Reindeer reindeer : Mapper.PARSER.getReindeers()) {
+          final int distance = reindeer.computeDistance(currentSecond);
 
-          List<Reindeer> get = round.getOrDefault(distance, new ArrayList<>());
+          final List<Reindeer> get = round.getOrDefault(distance, new ArrayList<>());
           get.add(reindeer);
 
           round.put(distance, get);
         }
 
-        for (Reindeer reindeer : round.lastEntry().getValue()) {
-          int points = leaderBoard.getOrDefault(reindeer, 0) + 1;
+        for (final Reindeer reindeer : round.lastEntry().getValue()) {
+          final int points = leaderBoard.getOrDefault(reindeer, 0) + 1;
 
           leaderBoard.put(reindeer, points);
         }
@@ -76,18 +76,18 @@ public class E15D14 implements IE15D14 {
     }
 
     public void parse() {
-      Scanner sc = new Scanner(IE15D14.INPUT);
+      final Scanner sc = new Scanner(IE15D14.INPUT);
       while (sc.hasNext()) {
-        String line = sc.nextLine();
-        Matcher m = Parser.PATTERN.matcher(line);
+        final String line = sc.nextLine();
+        final Matcher m = Parser.PATTERN.matcher(line);
 
         if (m.find()) {
-          String name = m.group(1);
-          Integer speed = Integer.valueOf(m.group(2));
-          Integer time = Integer.valueOf(m.group(3));
-          Integer rest = Integer.valueOf(m.group(4));
+          final String name = m.group(1);
+          final Integer speed = Integer.valueOf(m.group(2));
+          final Integer time = Integer.valueOf(m.group(3));
+          final Integer rest = Integer.valueOf(m.group(4));
 
-          Reindeer reindeer = new Reindeer(name, speed, time, rest);
+          final Reindeer reindeer = new Reindeer(name, speed, time, rest);
           this.reindeers.add(reindeer);
         }
       }
@@ -99,22 +99,22 @@ public class E15D14 implements IE15D14 {
     private final String name;
     private final int speed, time, rest;
 
-    public Reindeer(String name, int speed, int time, int rest) {
+    public Reindeer(final String name, final int speed, final int time, final int rest) {
       this.name = name;
       this.speed = speed;
       this.time = time;
       this.rest = rest;
     }
 
-    public int computeDistance(int time) {
-      int count = time / (this.time + this.rest);
-      int rest = time % (this.time + this.rest);
+    public int computeDistance(final int time) {
+      final int count = time / (this.time + this.rest);
+      final int rest = time % (this.time + this.rest);
 
       return count * this.speed * this.time + this.speed * Math.min(this.time, rest);
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
       if (this == obj) {
         return true;
       }
@@ -124,21 +124,21 @@ public class E15D14 implements IE15D14 {
       if (!(obj instanceof Reindeer)) {
         return false;
       }
-      Reindeer other = (Reindeer) obj;
-      if (name == null) {
+      final Reindeer other = (Reindeer) obj;
+      if (this.name == null) {
         if (other.name != null) {
           return false;
         }
-      } else if (!name.equals(other.name)) {
+      } else if (!this.name.equals(other.name)) {
         return false;
       }
-      if (rest != other.rest) {
+      if (this.rest != other.rest) {
         return false;
       }
-      if (speed != other.speed) {
+      if (this.speed != other.speed) {
         return false;
       }
-      if (time != other.time) {
+      if (this.time != other.time) {
         return false;
       }
       return true;
@@ -148,16 +148,17 @@ public class E15D14 implements IE15D14 {
     public int hashCode() {
       final int prime = 31;
       int result = 1;
-      result = prime * result + ((name == null) ? 0 : name.hashCode());
-      result = prime * result + rest;
-      result = prime * result + speed;
-      result = prime * result + time;
+      result = prime * result + (this.name == null ? 0 : this.name.hashCode());
+      result = prime * result + this.rest;
+      result = prime * result + this.speed;
+      result = prime * result + this.time;
       return result;
     }
 
     @Override
     public String toString() {
-      return "Reindeer [name=" + name + ", speed=" + speed + ", time=" + time + ", rest=" + rest + "]";
+      return "Reindeer [name=" + this.name + ", speed=" + this.speed + ", time=" + this.time + ", rest=" + this.rest
+          + "]";
     }
   }
 

@@ -33,13 +33,13 @@ public class E15D05 implements IE15D05 {
   private static class NiceString {
     private final String line;
 
-    public NiceString(String line) {
+    public NiceString(final String line) {
       this.line = line;
     }
 
     @Override
     public String toString() {
-      return "NiceString [line=" + line + "]";
+      return "NiceString [line=" + this.line + "]";
     }
   }
 
@@ -48,9 +48,9 @@ public class E15D05 implements IE15D05 {
     }
 
     public List<NiceString> parseInput() {
-      List<NiceString> list = new ArrayList<>();
+      final List<NiceString> list = new ArrayList<>();
 
-      Scanner sc = new Scanner(IE15D05.INPUT);
+      final Scanner sc = new Scanner(IE15D05.INPUT);
       while (sc.hasNextLine()) {
         list.add(new NiceString(sc.nextLine()));
       }
@@ -85,7 +85,7 @@ public class E15D05 implements IE15D05 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveFirst()
    */
   @Override
@@ -95,7 +95,7 @@ public class E15D05 implements IE15D05 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveSecond()
    */
   @Override

@@ -17,7 +17,7 @@ public class E15D01 implements IE15D01 {
   public String solveFirst() {
     int floor = 0;
 
-    StringCharacterIterator it = new StringCharacterIterator(IE15D01.INPUT);
+    final StringCharacterIterator it = new StringCharacterIterator(IE15D01.INPUT);
     for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
       if (c == '(') {
         floor += 1;
@@ -33,7 +33,7 @@ public class E15D01 implements IE15D01 {
   public String solveSecond() {
     int floor = 0, result = IDay.NOT_IMPLEMENT;
 
-    StringCharacterIterator it = new StringCharacterIterator(IE15D01.INPUT);
+    final StringCharacterIterator it = new StringCharacterIterator(IE15D01.INPUT);
     for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
       if (c == '(') {
         floor += 1;

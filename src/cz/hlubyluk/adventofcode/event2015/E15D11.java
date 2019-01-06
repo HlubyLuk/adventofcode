@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2015;
 
@@ -20,12 +20,12 @@ public class E15D11 implements IE15D11 {
     public Generator() {
     }
 
-    public String next(String input) {
-      StringBuilder builder = new StringBuilder();
+    public String next(final String input) {
+      final StringBuilder builder = new StringBuilder();
 
       int shift = 1;
 
-      char[] arr = input.toCharArray();
+      final char[] arr = input.toCharArray();
       for (int i = arr.length - 1; i >= 0; i -= 1) {
         char append = (char) (arr[i] + shift);
 
@@ -51,7 +51,7 @@ public class E15D11 implements IE15D11 {
     private static final Pattern RESTRICTION = Utils.restriction("i|o|l");
     private final String password;
 
-    public Password(String password) {
+    public Password(final String password) {
       this.password = password;
     }
 
@@ -68,11 +68,11 @@ public class E15D11 implements IE15D11 {
     }
 
     private boolean straight() {
-      char[] arr = this.password.toCharArray();
+      final char[] arr = this.password.toCharArray();
       for (int i = 2; i < arr.length; i += 1) {
-        int a = arr[i - 2];
-        int b = arr[i - 1];
-        int c = arr[i];
+        final int a = arr[i - 2];
+        final int b = arr[i - 1];
+        final int c = arr[i];
 
         if (a + 1 == b && b + 1 == c) {
           return true;
@@ -84,7 +84,7 @@ public class E15D11 implements IE15D11 {
 
     @Override
     public String toString() {
-      return "Password [password=" + password + "]";
+      return "Password [password=" + this.password + "]";
     }
   }
 
