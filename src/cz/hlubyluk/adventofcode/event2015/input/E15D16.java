@@ -70,6 +70,36 @@ public class E15D16 implements IE15D16 {
     }
   }
 
+  private static class Analyze2 {
+    private final Fact children = (f, c) -> "children".equals(f) && c == 3 ? 1 : 0;
+    private final Fact cats = (f, c) -> "cats".equals(f) && c > 7 ? 1 : 0;
+    private final Fact samoyeds = (f, c) -> "samoyeds".equals(f) && c == 2 ? 1 : 0;
+    private final Fact pomeranians = (f, c) -> "pomeranians".equals(f) && c < 3 ? 1 : 0;
+    private final Fact akitas = (f, c) -> "akitas".equals(f) && c == 0 ? 1 : 0;
+    private final Fact vizslas = (f, c) -> "vizslas".equals(f) && c == 0 ? 1 : 0;
+    private final Fact goldfish = (f, c) -> "goldfish".equals(f) && c < 5 ? 1 : 0;
+    private final Fact trees = (f, c) -> "trees".equals(f) && c > 3 ? 1 : 0;
+    private final Fact cars = (f, c) -> "cars".equals(f) && c == 2 ? 1 : 0;
+    private final Fact perfumes = (f, c) -> "perfumes".equals(f) && c == 1 ? 1 : 0;
+
+    public interface Fact {
+      int check(String fact, int count);
+    }
+
+    public int analyze(Same<String> property) {
+      return this.children.check(property.a, Integer.valueOf(property.b))
+          + this.cats.check(property.a, Integer.valueOf(property.b))
+          + this.samoyeds.check(property.a, Integer.valueOf(property.b))
+          + this.pomeranians.check(property.a, Integer.valueOf(property.b))
+          + this.akitas.check(property.a, Integer.valueOf(property.b))
+          + this.vizslas.check(property.a, Integer.valueOf(property.b))
+          + this.goldfish.check(property.a, Integer.valueOf(property.b))
+          + this.trees.check(property.a, Integer.valueOf(property.b))
+          + this.cars.check(property.a, Integer.valueOf(property.b))
+          + this.perfumes.check(property.a, Integer.valueOf(property.b));
+    }
+  }
+
   private static class Analyze {
     private final List<Same<String>> values = new ArrayList<>();
 
@@ -136,6 +166,7 @@ public class E15D16 implements IE15D16 {
 
   private static class Solver {
     private static final Parser PARSER = new Parser();
+    private static final Analyze2 A = new Analyze2();
     static {
       Solver.PARSER.parse();
     }
@@ -144,15 +175,29 @@ public class E15D16 implements IE15D16 {
     }
 
     public int part1() {
-      Sue result = null;
-
       for (Sue sue : Solver.PARSER.aunts) {
         if (Solver.PARSER.analyze.values.containsAll(sue.properties)) {
-          result = sue;
+          return sue.number;
         }
       }
 
-      return result == null ? IDay.NOT_IMPLEMENT : result.number;
+      return IDay.NOT_IMPLEMENT;
+    }
+
+    public int part2() {
+      for (Sue sue : Solver.PARSER.aunts) {
+        int count = 0;
+
+        for (Same<String> property : sue.properties) {
+          count += Solver.A.analyze(property);
+        }
+
+        if (count == 3) {
+          return sue.number;
+        }
+      }
+
+      return IDay.NOT_IMPLEMENT;
     }
   }
 
@@ -185,8 +230,6 @@ public class E15D16 implements IE15D16 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.result(241, E15D16.SOLVER.part2());
   }
-
 }
