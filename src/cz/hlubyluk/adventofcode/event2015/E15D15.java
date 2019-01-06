@@ -19,11 +19,10 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D15;
  */
 public class E15D15 implements IE15D15 {
   private static class Ingredient {
-    private final String name;
     private final int capacity, durability, flavor, texture, calories;
 
-    public Ingredient(String name, int capacity, int durability, int flavor, int texture, int calories) {
-      this.name = name;
+    public Ingredient(final String name, final int capacity, final int durability, final int flavor, final int texture,
+        final int calories) {
       this.capacity = capacity;
       this.durability = durability;
       this.flavor = flavor;
@@ -32,19 +31,7 @@ public class E15D15 implements IE15D15 {
     }
 
     @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + calories;
-      result = prime * result + capacity;
-      result = prime * result + durability;
-      result = prime * result + flavor;
-      result = prime * result + texture;
-      return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
       if (this == obj) {
         return true;
       }
@@ -54,29 +41,41 @@ public class E15D15 implements IE15D15 {
       if (!(obj instanceof Ingredient)) {
         return false;
       }
-      Ingredient other = (Ingredient) obj;
-      if (calories != other.calories) {
+      final Ingredient other = (Ingredient) obj;
+      if (this.calories != other.calories) {
         return false;
       }
-      if (capacity != other.capacity) {
+      if (this.capacity != other.capacity) {
         return false;
       }
-      if (durability != other.durability) {
+      if (this.durability != other.durability) {
         return false;
       }
-      if (flavor != other.flavor) {
+      if (this.flavor != other.flavor) {
         return false;
       }
-      if (texture != other.texture) {
+      if (this.texture != other.texture) {
         return false;
       }
       return true;
     }
 
     @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + this.calories;
+      result = prime * result + this.capacity;
+      result = prime * result + this.durability;
+      result = prime * result + this.flavor;
+      result = prime * result + this.texture;
+      return result;
+    }
+
+    @Override
     public String toString() {
-      return "Ingredient [capacity=" + capacity + ", durability=" + durability + ", flavor=" + flavor + ", texture="
-          + texture + ", calories=" + calories + "]";
+      return "Ingredient [capacity=" + this.capacity + ", durability=" + this.durability + ", flavor=" + this.flavor
+          + ", texture=" + this.texture + ", calories=" + this.calories + "]";
     }
   }
 
@@ -89,22 +88,22 @@ public class E15D15 implements IE15D15 {
     }
 
     public List<Ingredient> getIngredients() {
-      return ingredients;
+      return this.ingredients;
     }
 
     public void parse() {
-      Scanner sc = new Scanner(IE15D15.INPUT);
+      final Scanner sc = new Scanner(IE15D15.INPUT);
       while (sc.hasNextLine()) {
-        String line = sc.nextLine();
-        Matcher matcher = Parser.PATTERN.matcher(line);
+        final String line = sc.nextLine();
+        final Matcher matcher = Parser.PATTERN.matcher(line);
 
         if (matcher.find()) {
-          String name = matcher.group(1);
-          int capacity = Integer.valueOf(matcher.group(2));
-          int durability = Integer.valueOf(matcher.group(3));
-          int flavor = Integer.valueOf(matcher.group(4));
-          int texture = Integer.valueOf(matcher.group(5));
-          int calories = Integer.valueOf(matcher.group(6));
+          final String name = matcher.group(1);
+          final int capacity = Integer.valueOf(matcher.group(2));
+          final int durability = Integer.valueOf(matcher.group(3));
+          final int flavor = Integer.valueOf(matcher.group(4));
+          final int texture = Integer.valueOf(matcher.group(5));
+          final int calories = Integer.valueOf(matcher.group(6));
 
           this.ingredients.add(new Ingredient(name, capacity, durability, flavor, texture, calories));
         }
@@ -114,38 +113,64 @@ public class E15D15 implements IE15D15 {
   }
 
   private static class Solver {
-    private static final int SPOONS = 100;
     private static final Parser PARSER = new Parser();
+    private static final int SPOONS = 100, CALORIES = 500;
     static {
       Solver.PARSER.parse();
     }
+    List<Ingredient> ingredients = Solver.PARSER.getIngredients();
 
     public Solver() {
     }
 
+    private long cookie(final int a, final int b, final int c, final int d) {
+      final Ingredient i0 = this.ingredients.get(0);
+      final Ingredient i1 = this.ingredients.get(1);
+      final Ingredient i2 = this.ingredients.get(2);
+      final Ingredient i3 = this.ingredients.get(3);
+
+      int capacity = 0, durability = 0, flavor = 0, texture = 0;
+
+      capacity = Math.max(i0.capacity * a + i1.capacity * b + i2.capacity * c + i3.capacity * d, 0);
+      durability = Math.max(i0.durability * a + i1.durability * b + i2.durability * c + i3.durability * d, 0);
+      flavor = Math.max(i0.flavor * a + i1.flavor * b + i2.flavor * c + i3.flavor * d, 0);
+      texture = Math.max(i0.texture * a + i1.texture * b + i2.texture * c + i3.texture * d, 0);
+
+      return capacity * durability * flavor * texture;
+    }
+
     public long part1() {
       long max = 0;
-      List<Ingredient> list = Solver.PARSER.getIngredients();
 
       for (int a = 0; a <= Solver.SPOONS; a += 1) {
-//        int b = Solver.SPOONS - a;
         for (int b = 0; b <= Solver.SPOONS - a; b += 1) {
           for (int c = 0; c <= Solver.SPOONS - a - b; c += 1) {
-            int d = Solver.SPOONS - a - b - c;
+            final int d = Solver.SPOONS - a - b - c;
 
-            int capacity = 0, durability = 0, flavor = 0, texture = 0;
+            max = Math.max(max, this.cookie(a, b, c, d));
+          }
+        }
+      }
 
-            Ingredient i0 = list.get(0);
-            Ingredient i1 = list.get(1);
-            Ingredient i2 = list.get(2);
-            Ingredient i3 = list.get(3);
+      return max;
+    }
 
-            capacity = Math.max(i0.capacity * a + i1.capacity * b + i2.capacity * c + i3.capacity * d, 0);
-            durability = Math.max(i0.durability * a + i1.durability * b + i2.durability * c + i3.durability * d, 0);
-            flavor = Math.max(i0.flavor * a + i1.flavor * b + i2.flavor * c + i3.flavor * d, 0);
-            texture = Math.max(i0.texture * a + i1.texture * b + i2.texture * c + i3.texture * d, 0);
+    public long part2() {
+      long max = 0;
 
-            max = Math.max(max, capacity * durability * flavor * texture);
+      for (int a = 0; a <= Solver.SPOONS; a += 1) {
+        for (int b = 0; b <= Solver.SPOONS - a; b += 1) {
+          for (int c = 0; c <= Solver.SPOONS - a - b; c += 1) {
+            final int d = Solver.SPOONS - a - b - c;
+
+            final Ingredient i0 = this.ingredients.get(0);
+            final Ingredient i1 = this.ingredients.get(1);
+            final Ingredient i2 = this.ingredients.get(2);
+            final Ingredient i3 = this.ingredients.get(3);
+
+            if (i0.calories * a + i1.calories * b + i2.calories * c + i3.calories * d == Solver.CALORIES) {
+              max = Math.max(max, this.cookie(a, b, c, d));
+            }
           }
         }
       }
@@ -183,8 +208,6 @@ public class E15D15 implements IE15D15 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.result(117936, E15D15.SOLVER.part2());
   }
-
 }
