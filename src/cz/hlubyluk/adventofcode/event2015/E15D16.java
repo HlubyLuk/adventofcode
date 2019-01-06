@@ -1,7 +1,7 @@
 /**
  *
  */
-package cz.hlubyluk.adventofcode.event2015.input;
+package cz.hlubyluk.adventofcode.event2015;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import cz.hlubyluk.adventofcode.IDay;
 import cz.hlubyluk.adventofcode.Utils.Same;
+import cz.hlubyluk.adventofcode.event2015.input.IE15D16;
 
 /**
  * https://adventofcode.com/2015/day/16

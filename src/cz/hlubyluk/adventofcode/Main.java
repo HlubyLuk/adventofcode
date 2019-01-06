@@ -20,7 +20,7 @@ import cz.hlubyluk.adventofcode.event2015.E15D12;
 import cz.hlubyluk.adventofcode.event2015.E15D13;
 import cz.hlubyluk.adventofcode.event2015.E15D14;
 import cz.hlubyluk.adventofcode.event2015.E15D15;
-import cz.hlubyluk.adventofcode.event2015.input.E15D16;
+import cz.hlubyluk.adventofcode.event2015.E15D16;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
