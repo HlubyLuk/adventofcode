@@ -6,10 +6,13 @@ package cz.hlubyluk.adventofcode.event2015.input;
 import cz.hlubyluk.adventofcode.IDay;
 
 /**
+ * https://adventofcode.com/2015/day/18
+ * 
  * @author HlubyLuk
  *
  */
 public interface IE15D18 extends IDay {
+  int SIZE_TEST = 6, SIZE = 100;
   String INPUT_TEST = ".#.#.#\n" + "...##.\n" + "#....#\n" + "..#...\n" + "#.#..#\n" + "####..";
   String INPUT = "###.##..##.#..#.##...#..#.####..#.##.##.##..###...#....#...###..#..###..###.#.#.#..#.##..#...##.#..#\n"
       + ".#...##.#####..##.......#..####.###.##.#..###.###.....#.#.####.##.###..##...###....#.##.....#.#.#.##\n"

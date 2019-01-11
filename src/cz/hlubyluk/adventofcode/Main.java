@@ -47,23 +47,23 @@ public final class Main {
    */
   public static void main(final String[] args) {
     final List<IDay> days = new ArrayList<>();
-    days.add(new E15D01());
-    days.add(new E15D02());
-    days.add(new E15D03());
-    days.add(new E15D04());
-    days.add(new E15D05());
-    days.add(new E15D06());
-    days.add(new E15D07());
-    days.add(new E15D08());
-    days.add(new E15D09());
-    days.add(new E15D10());
-    days.add(new E15D11());
-    days.add(new E15D12());
-    days.add(new E15D13());
-    days.add(new E15D14());
-    days.add(new E15D15());
-    days.add(new E15D16());
-    days.add(new E15D17());
+//    days.add(new E15D01());
+//    days.add(new E15D02());
+//    days.add(new E15D03());
+//    days.add(new E15D04());
+//    days.add(new E15D05());
+//    days.add(new E15D06());
+//    days.add(new E15D07());
+//    days.add(new E15D08());
+//    days.add(new E15D09());
+//    days.add(new E15D10());
+//    days.add(new E15D11());
+//    days.add(new E15D12());
+//    days.add(new E15D13());
+//    days.add(new E15D14());
+//    days.add(new E15D15());
+//    days.add(new E15D16());
+//    days.add(new E15D17());
     days.add(new E15D18());
 
     Instant tmp = null;
