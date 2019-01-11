@@ -160,7 +160,7 @@ public class E15D16 implements IE15D16 {
     }
 
     public void add(final String property, final String result) {
-      this.properties.add(new Same<String>(property, result));
+      this.properties.add(new Same<>(property, result));
     }
 
     @Override

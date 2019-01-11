@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2015;
 
@@ -9,13 +9,29 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D18;
 
 /**
  * https://adventofcode.com/2015/day/18
- * 
+ *
  * @author HlubyLuk
  *
  */
 public class E15D18 implements IE15D18 {
-  private static final Solver SOLVER = new Solver();
-  private static final int EDGE = IE15D18.SIZE + 2;
+  private static class Parser {
+    private static final char[][] MATRIX = new char[E15D18.EDGE][E15D18.EDGE];
+
+    private Parser() {
+    }
+
+    private void parse() {
+      final Scanner sc = new Scanner(IE15D18.INPUT);
+      for (int i = 1; sc.hasNextLine(); i += 1) {
+        int j = 1;
+
+        for (final char cell : sc.nextLine().toCharArray()) {
+          Parser.MATRIX[i][j++] = cell;
+        }
+      }
+      sc.close();
+    }
+  }
 
   private static class Solver {
     private static final Parser PARSER = new Parser();
@@ -26,40 +42,40 @@ public class E15D18 implements IE15D18 {
     private Solver() {
     }
 
-    private int part1(int steps) {
-      char[][] current = E15D18.Parser.MATRIX;
+    private int count(final char[][] current) {
+      int count = 0;
 
-      for (int s = 0; s < steps; s += 1) {
-        current = this.nextStep(current, new char[E15D18.EDGE][E15D18.EDGE]);
+      for (final char[] row : current) {
+        for (final char cell : row) {
+          if (cell == '#') {
+            count += 1;
+          }
+        }
       }
 
-      return this.count(current);
+      return count;
     }
 
-    private int part2(int steps) {
-      char[][] current = E15D18.Parser.MATRIX;
-      this.stuckOn(current);
+    private int neighbors(final char[][] current, final int y, final int x) {
+      int neighbors = 0;
 
-      for (int s = 0; s < steps; s += 1) {
-        current = this.nextStep(current, new char[E15D18.EDGE][E15D18.EDGE]);
-
-        this.stuckOn(current);
+      for (int a = -1; a < 2; a += 1) {
+        for (int b = -1; b < 2; b += 1) {
+          if (a == 0 && b == 0) {
+            continue;
+          } else if (current[y + a][x + b] == '#') {
+            neighbors += 1;
+          }
+        }
       }
 
-      return this.count(current);
+      return neighbors;
     }
 
-    private void stuckOn(char[][] current) {
-      current[1][1] = '#';
-      current[1][E15D18.EDGE - 2] = '#';
-      current[E15D18.EDGE - 2][1] = '#';
-      current[E15D18.EDGE - 2][E15D18.EDGE - 2] = '#';
-    }
-
-    private char[][] nextStep(char[][] current, char[][] next) {
+    private char[][] nextStep(char[][] current, final char[][] next) {
       for (int y = 1; y < E15D18.EDGE - 1; y += 1) {
         for (int x = 1; x < E15D18.EDGE - 1; x += 1) {
-          int neighbors = this.neighbors(current, y, x);
+          final int neighbors = this.neighbors(current, y, x);
 
           if (current[y][x] == '#') {
             if (neighbors == 2 || neighbors == 3) {
@@ -79,69 +95,44 @@ public class E15D18 implements IE15D18 {
       return current;
     }
 
-    private int neighbors(char[][] current, int y, int x) {
-      int neighbors = 0;
+    private int part1(final int steps) {
+      char[][] current = E15D18.Parser.MATRIX;
 
-      for (int a = -1; a < 2; a += 1) {
-        for (int b = -1; b < 2; b += 1) {
-          if (a == 0 && b == 0) {
-            continue;
-          } else if (current[y + a][x + b] == '#') {
-            neighbors += 1;
-          }
-        }
+      for (int s = 0; s < steps; s += 1) {
+        current = this.nextStep(current, new char[E15D18.EDGE][E15D18.EDGE]);
       }
 
-      return neighbors;
+      return this.count(current);
     }
 
-    private int count(char[][] current) {
-      int count = 0;
+    private int part2(final int steps) {
+      char[][] current = E15D18.Parser.MATRIX;
+      this.stuckOn(current);
 
-      for (char[] row : current) {
-        for (char cell : row) {
-          if (cell == '#') {
-            count += 1;
-          }
-        }
+      for (int s = 0; s < steps; s += 1) {
+        current = this.nextStep(current, new char[E15D18.EDGE][E15D18.EDGE]);
+
+        this.stuckOn(current);
       }
 
-      return count;
+      return this.count(current);
+    }
+
+    private void stuckOn(final char[][] current) {
+      current[1][1] = '#';
+      current[1][E15D18.EDGE - 2] = '#';
+      current[E15D18.EDGE - 2][1] = '#';
+      current[E15D18.EDGE - 2][E15D18.EDGE - 2] = '#';
     }
   }
 
-  private static class Parser {
-    private static final char[][] MATRIX = new char[E15D18.EDGE][E15D18.EDGE];
+  private static final int EDGE = IE15D18.SIZE + 2;
 
-    private Parser() {
-    }
-
-    private void parse() {
-      Scanner sc = new Scanner(IE15D18.INPUT);
-      for (int i = 1; sc.hasNextLine(); i += 1) {
-        int j = 1;
-
-        for (char cell : sc.nextLine().toCharArray()) {
-          Parser.MATRIX[i][j++] = cell;
-        }
-      }
-      sc.close();
-    }
-  }
-
-  private static void print(char[][] matrix) {
-    for (char[] row : matrix) {
-      for (char cell : row) {
-        System.out.printf("%c ", cell);
-      }
-
-      System.out.println();
-    }
-  }
+  private static final Solver SOLVER = new Solver();
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#getTag()
    */
   @Override
@@ -151,7 +142,7 @@ public class E15D18 implements IE15D18 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveFirst()
    */
   @Override
@@ -161,7 +152,7 @@ public class E15D18 implements IE15D18 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveSecond()
    */
   @Override

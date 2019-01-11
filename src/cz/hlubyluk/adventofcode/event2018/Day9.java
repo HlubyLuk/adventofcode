@@ -43,7 +43,7 @@ public class Day9 implements IDay9 {
 
     public long play(final int mirables) {
       final Map<Integer, Long> sc = new HashMap<>();
-      final Deque<Integer> deque = new LinkedBlockingDeque<Integer>();
+      final Deque<Integer> deque = new LinkedBlockingDeque<>();
       deque.add(0);
 
       for (int i = 1; i <= mirables; i += 1) {

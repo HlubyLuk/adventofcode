@@ -35,7 +35,7 @@ public class E15D13 implements IE15D13 {
 
       final Set<Relation> relations = Mapper.PARSER.getRelations();
       for (final Relation rel : relations) {
-        cache.put(new Same<E15D13.Name>(rel.a, rel.b), rel.unit);
+        cache.put(new Same<>(rel.a, rel.b), rel.unit);
       }
 
       return cache;
@@ -52,8 +52,8 @@ public class E15D13 implements IE15D13 {
 
       final Name me = new Name("me");
       for (final Name name : names) {
-        cache.put(new Same<E15D13.Name>(me, name), 0);
-        cache.put(new Same<E15D13.Name>(name, me), 0);
+        cache.put(new Same<>(me, name), 0);
+        cache.put(new Same<>(name, me), 0);
       }
       names.add(me);
 

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2015;
 
@@ -12,11 +12,24 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D17;
 
 /**
  * https://adventofcode.com/2015/day/17
- * 
+ *
  * @author HlubyLuk
  */
 public class E15D17 implements IE15D17 {
-  private static final Solver SOLVER = new Solver();
+  private static class Parser {
+    private final List<Integer> containers = new ArrayList<>();
+
+    private Parser() {
+    }
+
+    private void parse() {
+      final Scanner sc = new Scanner(IE15D17.INPUT);
+      while (sc.hasNext()) {
+        this.containers.add(sc.nextInt());
+      }
+      sc.close();
+    }
+  }
 
   private static class Solver {
     private static final Parser PARSER = new Parser();
@@ -30,12 +43,12 @@ public class E15D17 implements IE15D17 {
     private int part1() {
       Integer counter = 0;
 
-      int pow = (int) Math.pow(2, Solver.PARSER.containers.size());
+      final int pow = (int) Math.pow(2, Solver.PARSER.containers.size());
 
       for (int i = 1; i < pow; i += 1) {
         int count = 0;
 
-        String code = Integer.toBinaryString(pow | i);
+        final String code = Integer.toBinaryString(pow | i);
         for (int j = 1; j < code.length(); j += 1) {
           if (code.charAt(j) == '1') {
             count += Solver.PARSER.containers.get(j - 1);
@@ -51,14 +64,14 @@ public class E15D17 implements IE15D17 {
     }
 
     private int part2() {
-      TreeMap<Integer, Integer> cache = new TreeMap<>();
+      final TreeMap<Integer, Integer> cache = new TreeMap<>();
 
-      int pow = (int) Math.pow(2, Solver.PARSER.containers.size());
+      final int pow = (int) Math.pow(2, Solver.PARSER.containers.size());
 
       for (int i = 1; i < pow; i += 1) {
         int liters = 0, count = 0;
 
-        String code = Integer.toBinaryString(pow + i);
+        final String code = Integer.toBinaryString(pow + i);
         for (int j = 1; j < code.length(); j += 1) {
           if (code.charAt(j) == '1') {
             liters += Solver.PARSER.containers.get(j - 1);
@@ -75,24 +88,11 @@ public class E15D17 implements IE15D17 {
     }
   }
 
-  private static class Parser {
-    private final List<Integer> containers = new ArrayList<>();
-
-    private Parser() {
-    }
-
-    private void parse() {
-      Scanner sc = new Scanner(IE15D17.INPUT);
-      while (sc.hasNext()) {
-        this.containers.add(sc.nextInt());
-      }
-      sc.close();
-    }
-  }
+  private static final Solver SOLVER = new Solver();
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#getTag()
    */
   @Override
@@ -102,7 +102,7 @@ public class E15D17 implements IE15D17 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveFirst()
    */
   @Override
@@ -112,7 +112,7 @@ public class E15D17 implements IE15D17 {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see cz.hlubyluk.adventofcode.IDay#solveSecond()
    */
   @Override
