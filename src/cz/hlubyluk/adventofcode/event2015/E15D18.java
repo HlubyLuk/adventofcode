@@ -30,40 +30,74 @@ public class E15D18 implements IE15D18 {
       char[][] current = E15D18.Parser.MATRIX;
 
       for (int s = 0; s < steps; s += 1) {
-        char[][] next = new char[E15D18.EDGE][E15D18.EDGE];
+        current = this.nextStep(current, new char[E15D18.EDGE][E15D18.EDGE]);
+      }
 
-        for (int y = 1; y < E15D18.EDGE - 1; y += 1) {
-          for (int x = 1; x < E15D18.EDGE - 1; x += 1) {
-            int count = 0;
+      return this.count(current);
+    }
 
-            for (int a = -1; a < 2; a += 1) {
-              for (int b = -1; b < 2; b += 1) {
-                if (a == 0 && b == 0) {
-                  continue;
-                } else if (current[y + a][x + b] == '#') {
-                  count += 1;
-                }
-              }
-            }
+    private int part2(int steps) {
+      char[][] current = E15D18.Parser.MATRIX;
+      this.stuckOn(current);
 
-            if (current[y][x] == '#') {
-              if (count == 2 || count == 3) {
-                next[y][x] = '#';
-              } else {
-                next[y][x] = '.';
-              }
-            } else if (count == 3) {
+      for (int s = 0; s < steps; s += 1) {
+        current = this.nextStep(current, new char[E15D18.EDGE][E15D18.EDGE]);
+
+        this.stuckOn(current);
+      }
+
+      return this.count(current);
+    }
+
+    private void stuckOn(char[][] current) {
+      current[1][1] = '#';
+      current[1][E15D18.EDGE - 2] = '#';
+      current[E15D18.EDGE - 2][1] = '#';
+      current[E15D18.EDGE - 2][E15D18.EDGE - 2] = '#';
+    }
+
+    private char[][] nextStep(char[][] current, char[][] next) {
+      for (int y = 1; y < E15D18.EDGE - 1; y += 1) {
+        for (int x = 1; x < E15D18.EDGE - 1; x += 1) {
+          int neighbors = this.neighbors(current, y, x);
+
+          if (current[y][x] == '#') {
+            if (neighbors == 2 || neighbors == 3) {
               next[y][x] = '#';
             } else {
               next[y][x] = '.';
             }
+          } else if (neighbors == 3) {
+            next[y][x] = '#';
+          } else {
+            next[y][x] = '.';
           }
         }
-
-        current = next;
       }
 
+      current = next;
+      return current;
+    }
+
+    private int neighbors(char[][] current, int y, int x) {
+      int neighbors = 0;
+
+      for (int a = -1; a < 2; a += 1) {
+        for (int b = -1; b < 2; b += 1) {
+          if (a == 0 && b == 0) {
+            continue;
+          } else if (current[y + a][x + b] == '#') {
+            neighbors += 1;
+          }
+        }
+      }
+
+      return neighbors;
+    }
+
+    private int count(char[][] current) {
       int count = 0;
+
       for (char[] row : current) {
         for (char cell : row) {
           if (cell == '#') {
@@ -132,8 +166,7 @@ public class E15D18 implements IE15D18 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.result(886, E15D18.SOLVER.part2(IE15D18.SIZE));
   }
 
 }
