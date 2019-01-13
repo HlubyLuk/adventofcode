@@ -69,6 +69,26 @@ public class E15D19 implements IE15D19 {
 
       return buffer.size();
     }
+
+    private int part2() {
+      int count = 0;
+
+      String molecules = E15D19.PARSER.molecules;
+
+      while (!"e".equals(molecules)) {
+        for (final Same<String> item : E15D19.PARSER.replacesments) {
+          final Matcher matcher = Pattern.compile(item.b).matcher(molecules);
+
+          if (matcher.find()) {
+            molecules = matcher.replaceFirst(item.a);
+
+            count += 1;
+          }
+        }
+      }
+
+      return count;
+    }
   }
 
   private static final Parser PARSER = new Parser();
@@ -105,8 +125,6 @@ public class E15D19 implements IE15D19 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.result(195, E15D19.SOLVER.part2());
   }
-
 }
