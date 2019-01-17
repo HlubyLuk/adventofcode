@@ -20,7 +20,7 @@ public interface IDay {
 
   default String result(final int expected, final int result) {
     if (expected != result) {
-      throw new RuntimeException("Wrong!!!");
+      throw new RuntimeException("Wrong!!! " + result);
     }
 
     return String.valueOf(result);
@@ -28,7 +28,7 @@ public interface IDay {
 
   default String result(final int expected, final long result) {
     if (expected != result) {
-      throw new RuntimeException("Wrong!!!");
+      throw new RuntimeException("Wrong!!! " + result);
     }
 
     return String.valueOf(result);
@@ -36,7 +36,7 @@ public interface IDay {
 
   default String result(final String expected, final String result) {
     if (!expected.equals(result)) {
-      throw new RuntimeException("Wrong!!!");
+      throw new RuntimeException("Wrong!!! " + result);
     }
 
     return result;
