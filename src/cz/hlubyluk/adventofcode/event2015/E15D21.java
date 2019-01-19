@@ -16,12 +16,13 @@ import cz.hlubyluk.adventofcode.event2015.input.IE15D21;
  */
 public class E15D21 implements IE15D21 {
   private static class Configuration {
-    private final int damage, armour, cost;
-    private int hitPoints = 100;
-
     private static Configuration boss() {
       return new Configuration(8, 2, Integer.MAX_VALUE);
     }
+
+    private final int damage, armour, cost;
+
+    private final int hitPoints = 100;
 
     public Configuration(final int damage, final int armour, final int cost) {
       this.damage = damage;
@@ -72,6 +73,13 @@ public class E15D21 implements IE15D21 {
   private static class Item {
     private final int cost, damage, armor;
     private final String name;
+
+    private Item() {
+      this.name = null;
+      this.cost = 0;
+      this.damage = 0;
+      this.armor = 0;
+    }
 
     public Item(final String name, final int cost, final int damage, final int armor) {
       this.name = name;
@@ -139,14 +147,14 @@ public class E15D21 implements IE15D21 {
       this.wepons.add(new Item("Longsword", 40, 7, 0));
       this.wepons.add(new Item("Greataxe", 74, 8, 0));
 
-//      this.armors.add(new Item());
+      this.armors.add(new Item());
       this.armors.add(new Item("Leather", 13, 0, 1));
       this.armors.add(new Item("Chainmail", 31, 0, 2));
       this.armors.add(new Item("Splintmail", 53, 0, 3));
       this.armors.add(new Item("Bandedmail", 75, 0, 4));
       this.armors.add(new Item("Platemail", 102, 0, 5));
 
-//      this.rings.add(new Item());
+      this.rings.add(new Item());
       this.rings.add(new Item("Damage +1", 25, 1, 0));
       this.rings.add(new Item("Damage +2", 50, 2, 0));
       this.rings.add(new Item("Damage +3", 100, 3, 0));
@@ -157,7 +165,7 @@ public class E15D21 implements IE15D21 {
 
     @Override
     public String toString() {
-      return "Parser [wepons=" + wepons + ", armors=" + armors + ", rings=" + rings + "]";
+      return "Parser [wepons=" + this.wepons + ", armors=" + this.armors + ", rings=" + this.rings + "]";
     }
   }
 
@@ -166,80 +174,55 @@ public class E15D21 implements IE15D21 {
     }
 
     private int part1() {
-//    List<Configuration> players = new ArrayList<E15D21.Configuration>();
-//    for (Item w : E15D21.PARSER.wepons) {
-//      for (Item a : E15D21.PARSER.armors) {
-//        for (Item l : E15D21.PARSER.rings) {
-//          for (Item r : E15D21.PARSER.rings) {
-//            if (l != r) {
-//              int damage = w.damage + a.damage + l.damage + r.damage;
-//              int armour = w.armor + a.armor + l.armor + r.armor;
-//              int cost = w.cost + a.cost + l.cost + r.cost;
-//
-//              Configuration player = new Configuration(damage, armour, cost);
-//
-//              players.add(player);
-//            }
-//          }
-//        }
-//      }
-//    }
-
-      final List<List<Item>> ringsCombinations = new ArrayList<>();
-      final int pow = (int) Math.pow(2, E15D21.PARSER.rings.size());
-      for (int i = 0; i <= pow; i += 1) {
-        final String bin = Integer.toBinaryString(pow + i);
-
-        final List<Item> rings = new ArrayList<>();
-        for (int j = 1; j < bin.length(); j += 1) {
-          if (bin.charAt(j) == '1') {
-            rings.add(E15D21.PARSER.rings.get(j - 1));
-          }
-        }
-
-        if (rings.size() <= 2) {
-          ringsCombinations.add(rings);
-        }
-      }
-
-      List<Configuration> players = new ArrayList<E15D21.Configuration>();
-      for (Item w : E15D21.PARSER.wepons) {
-        for (Item a : E15D21.PARSER.armors) {
-          for (List<Item> rings : ringsCombinations) {
-            int dt = 0, at = 0, ct = 0;
-
-            for (Item r : rings) {
-              dt += r.damage;
-              at += r.armor;
-              ct += r.cost;
-            }
-
-            dt += w.damage + a.damage;
-            at += w.armor + a.armor;
-            ct += w.cost + a.cost;
-
-            Configuration conf = new Configuration(dt, at, ct);
-            players.add(conf);
-          }
-        }
-      }
+      final List<Configuration> players = this.players();
 
       int cost = Integer.MAX_VALUE;
-      for (Configuration player : players) {
-        Configuration boss = Configuration.boss();
-
-        do {
-          boss.hitPoints -= Math.max(1, player.damage - boss.armour);
-          player.hitPoints -= Math.max(1, boss.damage - player.armour);
-        } while (boss.hitPoints > 0 && player.hitPoints > 0);
-
-        if (boss.hitPoints <= 0 && player.hitPoints >= 0) {
-//        if (Math.max(1, player.damage - boss.armour) >= Math.max(1, boss.damage - player.armour)) {
+      final Configuration boss = Configuration.boss();
+      for (final Configuration player : players) {
+        if (Math.max(1, player.damage - boss.armour) >= Math.max(1, boss.damage - player.armour)) {
           cost = Math.min(cost, player.cost);
         }
       }
 
       return cost;
+    }
+
+    private int part2() {
+      final List<Configuration> players = this.players();
+
+      int cost = Integer.MIN_VALUE;
+      final Configuration boss = Configuration.boss();
+      for (final Configuration player : players) {
+        if (Math.max(1, player.damage - boss.armour) < Math.max(1, boss.damage - player.armour)) {
+          cost = Math.max(cost, player.cost);
+        }
+      }
+
+      return cost;
+    }
+
+    private List<Configuration> players() {
+      final List<Configuration> players = new ArrayList<>();
+
+      for (final Item w : E15D21.PARSER.wepons) {
+        for (final Item a : E15D21.PARSER.armors) {
+          for (final Item l : E15D21.PARSER.rings) {
+            for (final Item r : E15D21.PARSER.rings) {
+              if (l != r) {
+                final int damage = w.damage + a.damage + l.damage + r.damage;
+                final int armour = w.armor + a.armor + l.armor + r.armor;
+                final int cost = w.cost + a.cost + l.cost + r.cost;
+
+                final Configuration player = new Configuration(damage, armour, cost);
+
+                players.add(player);
+              }
+            }
+          }
+        }
+      }
+
+      return players;
     }
   }
 
@@ -273,8 +256,6 @@ public class E15D21 implements IE15D21 {
    */
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    return this.result(158, E15D21.SOLVER.part2());
   }
-
 }
