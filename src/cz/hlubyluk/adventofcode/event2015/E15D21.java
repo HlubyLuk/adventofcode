@@ -174,11 +174,10 @@ public class E15D21 implements IE15D21 {
     }
 
     private int part1() {
-      final List<Configuration> players = this.players();
-
       int cost = Integer.MAX_VALUE;
+
       final Configuration boss = Configuration.boss();
-      for (final Configuration player : players) {
+      for (final Configuration player : this.players()) {
         if (Math.max(1, player.damage - boss.armour) >= Math.max(1, boss.damage - player.armour)) {
           cost = Math.min(cost, player.cost);
         }
@@ -188,11 +187,10 @@ public class E15D21 implements IE15D21 {
     }
 
     private int part2() {
-      final List<Configuration> players = this.players();
-
       int cost = Integer.MIN_VALUE;
+
       final Configuration boss = Configuration.boss();
-      for (final Configuration player : players) {
+      for (final Configuration player : this.players()) {
         if (Math.max(1, player.damage - boss.armour) < Math.max(1, boss.damage - player.armour)) {
           cost = Math.max(cost, player.cost);
         }
