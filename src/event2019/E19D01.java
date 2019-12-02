@@ -6,6 +6,8 @@ package event2019;
 import java.math.BigInteger;
 
 /**
+ * https://adventofcode.com/2019/day/1
+ * 
  * @author hlubyluk
  *
  */
@@ -46,6 +48,7 @@ public class E19D01 implements IE19D01 {
 
   private BigInteger recurseSolver(String mass) {
     BigInteger tmp = this.formulae(mass);
+
     if (tmp.longValue() > 0) {
       return tmp.add(this.recurseSolver(tmp.toString()));
     }

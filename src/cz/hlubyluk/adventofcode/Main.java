@@ -27,6 +27,7 @@ import cz.hlubyluk.adventofcode.event2015.E15D19;
 import cz.hlubyluk.adventofcode.event2015.E15D21;
 import cz.hlubyluk.adventofcode.event2015.input.E15D20;
 import event2019.E19D01;
+import event2019.E19D02;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -72,7 +73,8 @@ public final class Main {
 //    days.add(new E15D19());
 //    days.add(new E15D20());
 //    days.add(new E15D21());
-    days.add(new E19D01());
+//    days.add(new E19D01());
+    days.add(new E19D02());
 
     Instant tmp = null;
     final Instant start = Instant.now();
