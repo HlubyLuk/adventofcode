@@ -17,10 +17,10 @@ public class E19D02 implements IE19D02 {
   public E19D02() {
   }
 
-  @Override
-  public String getTag() {
-    return this.getClass().getSimpleName();
-  }
+//  @Override
+//  public String getTag() {
+//    return this.getClass().getSimpleName();
+//  }
 
   @Override
   public String solveFirst() {

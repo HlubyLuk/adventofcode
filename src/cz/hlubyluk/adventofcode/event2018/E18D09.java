@@ -64,10 +64,10 @@ public class E18D09 implements IE18D09 {
     }
   }
 
-  @Override
-  public String getTag() {
-    return "2018 Day 9";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 9";
+//  }
 
   private Game parse() {
     int players = 0, points = 0, c = 0;

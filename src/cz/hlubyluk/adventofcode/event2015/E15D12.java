@@ -14,15 +14,15 @@ import java.util.Scanner;
  */
 public class E15D12 implements IE15D12 {
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 12";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 12";
+//  }
 
   /*
    * (non-Javadoc)

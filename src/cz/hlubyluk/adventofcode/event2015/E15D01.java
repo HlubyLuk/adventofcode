@@ -7,10 +7,10 @@ import cz.hlubyluk.adventofcode.IDay;
 
 public class E15D01 implements IE15D01 {
 
-  @Override
-  public String getTag() {
-    return "2015 day 1";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2015 day 1";
+//  }
 
   @Override
   public String solveFirst() {

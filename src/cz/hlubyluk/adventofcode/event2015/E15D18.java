@@ -128,15 +128,15 @@ public class E15D18 implements IE15D18 {
 
   private static final Solver SOLVER = new Solver();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 18";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 18";
+//  }
 
   /*
    * (non-Javadoc)

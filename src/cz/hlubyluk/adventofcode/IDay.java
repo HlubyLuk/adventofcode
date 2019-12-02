@@ -11,12 +11,26 @@ public interface IDay {
   int NOT_IMPLEMENT = Integer.MIN_VALUE;
   char ZERO_CHARACTER = 'A';
 
+//  /**
+//   * Get day tag.
+//   *
+//   * @return name for puzzle.
+//   */
+//  String getTag();
+
   /**
-   * Get day tag.
+   * Solve first part.
    *
-   * @return name for puzzle.
+   * @return value.
    */
-  String getTag();
+  String solveFirst();
+
+  /**
+   * Solve second part.
+   *
+   * @return value.
+   */
+  String solveSecond();
 
   default String result(final int expected, final int result) {
     if (expected != result) {
@@ -41,18 +55,4 @@ public interface IDay {
 
     return result;
   }
-
-  /**
-   * Solve first part.
-   *
-   * @return value.
-   */
-  String solveFirst();
-
-  /**
-   * Solve second part.
-   *
-   * @return value.
-   */
-  String solveSecond();
 }

@@ -204,15 +204,15 @@ public class E15D16 implements IE15D16 {
 
   private static final Solver SOLVER = new Solver();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 16";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 16";
+//  }
 
   /*
    * (non-Javadoc)

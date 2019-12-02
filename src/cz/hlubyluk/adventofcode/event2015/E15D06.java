@@ -140,15 +140,15 @@ public class E15D06 implements IE15D06 {
 
   private static final Mapper MAPPER = new Mapper();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 6";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 6";
+//  }
 
   /*
    * (non-Javadoc)

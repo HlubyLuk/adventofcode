@@ -181,10 +181,10 @@ public class E18D16 implements IE18D16 {
     }
   }
 
-  @Override
-  public String getTag() {
-    return "2018 day 16";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 day 16";
+//  }
 
   @Override
   public String solveFirst() {

@@ -88,15 +88,15 @@ public class E15D17 implements IE15D17 {
 
   private static final Solver SOLVER = new Solver();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 17";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 17";
+//  }
 
   /*
    * (non-Javadoc)

@@ -31,10 +31,10 @@ public class E18D03 implements IE18D03 {
     }
   }
 
-  @Override
-  public String getTag() {
-    return "2018 Day 3";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 3";
+//  }
 
   /*
    * (non-Javadoc)

@@ -254,15 +254,15 @@ public class E15D13 implements IE15D13 {
 
   private static final Mapper MAPPER = new Mapper();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 13";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 13";
+//  }
 
   /*
    * (non-Javadoc)

@@ -54,15 +54,15 @@ public class E15D08 implements IE15D08 {
 
   private static final Parser PARSER = new Parser();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 8";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 8";
+//  }
 
   /*
    * (non-Javadoc)

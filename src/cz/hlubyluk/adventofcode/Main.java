@@ -116,8 +116,8 @@ public final class Main {
       final String secondResult = day.solveSecond();
       final Duration secondBetween = Duration.between(tmp, Instant.now());
 
-      System.out.printf("%s%n\tpart 1 result %26s, duration %7d%n\tpart 2 result %26s, duration %7d%n", day.getTag(),
-          firstResult, firstBetween.toMillis(), secondResult, secondBetween.toMillis());
+      System.out.printf("%s%n\tpart 1 result %26s, duration %7d%n\tpart 2 result %26s, duration %7d%n",
+          day.getClass().getSimpleName(), firstResult, firstBetween.toMillis(), secondResult, secondBetween.toMillis());
     }
 
     System.out.printf("Total %d millis.%n", Duration.between(start, Instant.now()).toMillis());

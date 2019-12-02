@@ -4,10 +4,10 @@ public class E18D11 implements IE18D11 {
 
   private static final int EDGE = 301;
 
-  @Override
-  public String getTag() {
-    return "2018 Day 11";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 11";
+//  }
 
   private int powerLevel(final int x, final int y, final int serialNumber) {
     final int r = x + 10;

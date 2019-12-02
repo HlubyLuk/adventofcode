@@ -111,10 +111,10 @@ public class E18D04 implements IE18D04 {
       .appendValue(ChronoField.DAY_OF_MONTH).appendLiteral(' ').appendValue(ChronoField.HOUR_OF_DAY).appendLiteral(':')
       .appendValue(ChronoField.MINUTE_OF_HOUR).appendLiteral(']').toFormatter();
 
-  @Override
-  public String getTag() {
-    return "2018 Day 4";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 4";
+//  }
 
   private Map<Integer, int[]> shared() {
     final Set<Record> records = new TreeSet<>();

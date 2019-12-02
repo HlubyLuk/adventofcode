@@ -37,15 +37,15 @@ public class E15D10 implements IE15D10 {
 
   private static final Solver SOLVER = new Solver();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 10";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 10";
+//  }
 
   /*
    * (non-Javadoc)

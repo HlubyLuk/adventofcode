@@ -16,10 +16,10 @@ import java.util.Map.Entry;
  */
 public final class E18D02 implements IE18D02 {
 
-  @Override
-  public String getTag() {
-    return "2018 Day 2";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 2";
+//  }
 
   /*
    * (non-Javadoc)

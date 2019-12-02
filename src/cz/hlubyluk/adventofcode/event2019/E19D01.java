@@ -19,10 +19,10 @@ public class E19D01 implements IE19D01 {
   public E19D01() {
   }
 
-  @Override
-  public String getTag() {
-    return this.getClass().getSimpleName();
-  }
+//  @Override
+//  public String getTag() {
+//    return this.getClass().getSimpleName();
+//  }
 
   @Override
   public String solveFirst() {

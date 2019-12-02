@@ -7,15 +7,15 @@ import cz.hlubyluk.adventofcode.Utils;
  */
 public class E15D04 implements IE15D04 {
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 4";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 4";
+//  }
 
   /*
    * (non-Javadoc)

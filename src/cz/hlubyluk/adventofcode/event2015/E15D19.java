@@ -97,15 +97,15 @@ public class E15D19 implements IE15D19 {
     E15D19.PARSER.parse();
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 19";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 19";
+//  }
 
   /*
    * (non-Javadoc)

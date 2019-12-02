@@ -12,10 +12,10 @@ import cz.hlubyluk.adventofcode.Utils;
  */
 public class E15D03 implements IE15D03 {
 
-  @Override
-  public String getTag() {
-    return "2015 day 3";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2015 day 3";
+//  }
 
   @Override
   public String solveFirst() {

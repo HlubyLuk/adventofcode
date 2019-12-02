@@ -311,15 +311,15 @@ public class E15D09 implements IE15D09 {
 
   private static final Solver SOLVER = new Solver();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 9";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 9";
+//  }
 
   /*
    * (non-Javadoc)

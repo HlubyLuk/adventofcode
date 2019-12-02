@@ -102,10 +102,10 @@ public class E18D06 implements IE18D06 {
     }
   }
 
-  @Override
-  public String getTag() {
-    return "2018 Day 6";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 6";
+//  }
 
   /*
    * (non-Javadoc)

@@ -55,10 +55,10 @@ public class E18D08 implements IE18D08 {
     }
   }
 
-  @Override
-  public String getTag() {
-    return "2018 Day 8";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 8";
+//  }
 
   private Node parse(final Iterator<Integer> it) {
     final int data = it.next();

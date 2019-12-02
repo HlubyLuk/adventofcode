@@ -51,10 +51,10 @@ public class E18D07 implements IE18D07 {
     }
   }
 
-  @Override
-  public String getTag() {
-    return "2018 Day 7";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 7";
+//  }
 
   private Set<Node> shared() {
     final Set<Instruction> instructions = new TreeSet<>();

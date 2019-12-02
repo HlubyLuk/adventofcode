@@ -9,10 +9,10 @@ import cz.hlubyluk.adventofcode.IDay;
  */
 public class E18D05 implements IE18D05 {
 
-  @Override
-  public String getTag() {
-    return "2018 Day 5";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 5";
+//  }
 
   private StringBuilder shared(final String input) {
     final StringBuilder builder = new StringBuilder(input);

@@ -11,15 +11,15 @@ package cz.hlubyluk.adventofcode.event2015;
  */
 public class E15D20 implements IE15D20 {
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 20";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 20";
+//  }
 
   /*
    * (non-Javadoc)

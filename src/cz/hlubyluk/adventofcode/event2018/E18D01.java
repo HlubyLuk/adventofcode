@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
  */
 public final class E18D01 implements IE18D01 {
 
-  @Override
-  public String getTag() {
-    return "2018 Day 1";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 1";
+//  }
 
   @Override
   public String solveFirst() {

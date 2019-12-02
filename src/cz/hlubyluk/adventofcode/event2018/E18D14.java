@@ -11,10 +11,10 @@ public class E18D14 implements IE18D14 {
     return String.valueOf(c).toCharArray();
   }
 
-  @Override
-  public String getTag() {
-    return "2018 Day14";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day14";
+//  }
 
   private int index(final List<Character> scores, final int idx) {
     return (idx + Integer.valueOf(String.valueOf(scores.get(idx))) + 1) % scores.size();

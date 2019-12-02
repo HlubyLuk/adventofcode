@@ -178,10 +178,10 @@ public class E18D10 implements IE18D10 {
     }
   }
 
-  @Override
-  public String getTag() {
-    return "2018 Day 10";
-  }
+//  @Override
+//  public String getTag() {
+//    return "2018 Day 10";
+//  }
 
   @Override
   public String solveFirst() {

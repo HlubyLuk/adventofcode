@@ -89,15 +89,15 @@ public class E15D11 implements IE15D11 {
 
   private static final Generator GENERATOR = new Generator();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see cz.hlubyluk.adventofcode.IDay#getTag()
-   */
-  @Override
-  public String getTag() {
-    return "2015 day 11";
-  }
+//  /*
+//   * (non-Javadoc)
+//   *
+//   * @see cz.hlubyluk.adventofcode.IDay#getTag()
+//   */
+//  @Override
+//  public String getTag() {
+//    return "2015 day 11";
+//  }
 
   /*
    * (non-Javadoc)
