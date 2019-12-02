@@ -1,7 +1,6 @@
 package cz.hlubyluk.adventofcode.event2015;
 
 import cz.hlubyluk.adventofcode.Utils;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D04;
 
 /**
  * @author HlubyLuk

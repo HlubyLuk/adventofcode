@@ -16,7 +16,6 @@ import java.util.regex.Pattern;
 import cz.hlubyluk.adventofcode.IDay;
 import cz.hlubyluk.adventofcode.Utils;
 import cz.hlubyluk.adventofcode.Utils.Same;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D13;
 
 /**
  * https://adventofcode.com/2015/day/13

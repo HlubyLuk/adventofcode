@@ -4,7 +4,6 @@ import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
 import cz.hlubyluk.adventofcode.IDay;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D01;
 
 public class E15D01 implements IE15D01 {
 

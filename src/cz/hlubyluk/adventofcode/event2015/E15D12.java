@@ -7,8 +7,6 @@ import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.Scanner;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D12;
-
 /**
  * https://adventofcode.com/2015/day/12
  *

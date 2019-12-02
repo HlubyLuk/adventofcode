@@ -9,8 +9,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D15;
-
 /**
  * https://adventofcode.com/2015/day/15
  *

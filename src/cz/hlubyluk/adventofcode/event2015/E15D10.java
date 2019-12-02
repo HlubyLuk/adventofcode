@@ -3,8 +3,6 @@
  */
 package cz.hlubyluk.adventofcode.event2015;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D10;
-
 /**
  * https://adventofcode.com/2015/day/10
  *

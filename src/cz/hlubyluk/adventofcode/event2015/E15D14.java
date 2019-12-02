@@ -11,8 +11,6 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D14;
-
 /**
  * https://adventofcode.com/2015/day/14
  *

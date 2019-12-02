@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cz.hlubyluk.adventofcode.Utils.Same;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D19;
 
 /**
  * https://adventofcode.com/2015/day/19

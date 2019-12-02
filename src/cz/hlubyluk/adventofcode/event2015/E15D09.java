@@ -10,7 +10,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import cz.hlubyluk.adventofcode.Utils;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D09;
 
 /**
  * https://adventofcode.com/2015/day/9

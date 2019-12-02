@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D02;
-
 /**
  * @author HlubyLuk
  */

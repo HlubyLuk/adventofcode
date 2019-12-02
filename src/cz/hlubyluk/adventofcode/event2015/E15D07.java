@@ -9,7 +9,6 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import cz.hlubyluk.adventofcode.Utils;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D07;
 
 /**
  * https://adventofcode.com/2015/day/7

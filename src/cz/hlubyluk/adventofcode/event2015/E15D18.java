@@ -5,8 +5,6 @@ package cz.hlubyluk.adventofcode.event2015;
 
 import java.util.Scanner;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D18;
-
 /**
  * https://adventofcode.com/2015/day/18
  *

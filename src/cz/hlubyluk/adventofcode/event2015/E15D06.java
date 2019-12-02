@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import cz.hlubyluk.adventofcode.Utils.Point;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D06;
 
 /**
  * https://adventofcode.com/2015/day/6

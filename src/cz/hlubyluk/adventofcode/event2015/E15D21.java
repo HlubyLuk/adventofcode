@@ -6,8 +6,6 @@ package cz.hlubyluk.adventofcode.event2015;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D21;
-
 /**
  * https://adventofcode.com/2015/day/21
  *

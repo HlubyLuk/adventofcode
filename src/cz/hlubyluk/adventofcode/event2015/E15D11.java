@@ -6,7 +6,6 @@ package cz.hlubyluk.adventofcode.event2015;
 import java.util.regex.Pattern;
 
 import cz.hlubyluk.adventofcode.Utils;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D11;
 
 /**
  * https://adventofcode.com/2015/day/11

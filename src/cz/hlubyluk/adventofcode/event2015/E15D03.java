@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cz.hlubyluk.adventofcode.Utils;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D03;
 
 /**
  * @author HlubyLuk

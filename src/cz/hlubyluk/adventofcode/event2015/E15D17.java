@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import cz.hlubyluk.adventofcode.event2015.input.IE15D17;
-
 /**
  * https://adventofcode.com/2015/day/17
  *

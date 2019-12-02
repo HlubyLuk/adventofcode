@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import cz.hlubyluk.adventofcode.IDay;
-import cz.hlubyluk.adventofcode.event2015.input.IE15D08;
 
 /**
  * https://adventofcode.com/2015/day/8
