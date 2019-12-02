@@ -24,15 +24,44 @@ public class E19D02 implements IE19D02 {
 
   @Override
   public String solveFirst() {
+    return String.valueOf(this.solve(12, 2));
+  }
+
+  @Override
+  public String solveSecond() {
+    int max = 100;
+    int result = 19690720;
+
+    for (int i = 0; i < max; i += 1) {
+      for (int j = 0; j < max; j += 1) {
+        int solve = this.solve(i, j);
+        if (solve == result) {
+          return String.valueOf(100 * i + j);
+        }
+      }
+    }
+
+    return null;
+  }
+
+  private void caseOne(int[] opCodes, int i) {
+    opCodes[opCodes[i + 3]] = opCodes[opCodes[i + 1]] + opCodes[opCodes[i + 2]];
+  }
+
+  private void caseTwo(int[] opCodes, int i) {
+    opCodes[opCodes[i + 3]] = opCodes[opCodes[i + 1]] * opCodes[opCodes[i + 2]];
+  }
+
+  private int solve(int a, int b) {
     String input = IE19D02.INPUT;
     String[] splited = input.split(",");
-    splited[1] = "12";
-    splited[2] = "2";
 
     int[] codes = new int[splited.length];
     for (int i = 0; i < splited.length; i += 1) {
       codes[i] = Integer.valueOf(splited[i]);
     }
+    codes[1] = a;
+    codes[2] = b;
 
     for (int i = 0;; i += 4) {
       int code = codes[i];
@@ -45,22 +74,8 @@ public class E19D02 implements IE19D02 {
         this.caseTwo(codes, i);
         break;
       case 99:
-        return String.valueOf(codes[0]);
+        return codes[0];
       }
     }
-  }
-
-  @Override
-  public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  private void caseOne(int[] opCodes, int i) {
-    opCodes[opCodes[i + 3]] = opCodes[opCodes[i + 1]] + opCodes[opCodes[i + 2]];
-  }
-
-  private void caseTwo(int[] opCodes, int i) {
-    opCodes[opCodes[i + 3]] = opCodes[opCodes[i + 1]] * opCodes[opCodes[i + 2]];
   }
 }
