@@ -41,6 +41,7 @@ import cz.hlubyluk.adventofcode.event2018.E18D14;
 import cz.hlubyluk.adventofcode.event2018.E18D16;
 import cz.hlubyluk.adventofcode.event2019.E19D01;
 import cz.hlubyluk.adventofcode.event2019.E19D02;
+import cz.hlubyluk.adventofcode.event2019.E19D03;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -60,42 +61,43 @@ public final class Main {
   private static final List<IDay> DAYS = new ArrayList<>();
 
   static {
-    Main.DAYS.add(new E15D01());
-    Main.DAYS.add(new E15D02());
-    Main.DAYS.add(new E15D03());
-    Main.DAYS.add(new E15D04());
-    Main.DAYS.add(new E15D05());
-    Main.DAYS.add(new E15D06());
-    Main.DAYS.add(new E15D07());
-    Main.DAYS.add(new E15D08());
-    Main.DAYS.add(new E15D09());
-    Main.DAYS.add(new E15D10());
-    Main.DAYS.add(new E15D11());
-    Main.DAYS.add(new E15D12());
-    Main.DAYS.add(new E15D13());
-    Main.DAYS.add(new E15D14());
-    Main.DAYS.add(new E15D15());
-    Main.DAYS.add(new E15D16());
-    Main.DAYS.add(new E15D17());
-    Main.DAYS.add(new E15D18());
-    Main.DAYS.add(new E15D19());
-    Main.DAYS.add(new E15D20());
-    Main.DAYS.add(new E15D21());
-    Main.DAYS.add(new E18D01());
-    Main.DAYS.add(new E18D02());
-    Main.DAYS.add(new E18D03());
-    Main.DAYS.add(new E18D04());
-    Main.DAYS.add(new E18D05());
-    Main.DAYS.add(new E18D06());
-    Main.DAYS.add(new E18D07());
-    Main.DAYS.add(new E18D08());
-    Main.DAYS.add(new E18D09());
-    Main.DAYS.add(new E18D10());
-    Main.DAYS.add(new E18D11());
-    Main.DAYS.add(new E18D14());
-    Main.DAYS.add(new E18D16());
-    Main.DAYS.add(new E19D01());
-    Main.DAYS.add(new E19D02());
+//    Main.DAYS.add(new E15D01());
+//    Main.DAYS.add(new E15D02());
+//    Main.DAYS.add(new E15D03());
+//    Main.DAYS.add(new E15D04());
+//    Main.DAYS.add(new E15D05());
+//    Main.DAYS.add(new E15D06());
+//    Main.DAYS.add(new E15D07());
+//    Main.DAYS.add(new E15D08());
+//    Main.DAYS.add(new E15D09());
+//    Main.DAYS.add(new E15D10());
+//    Main.DAYS.add(new E15D11());
+//    Main.DAYS.add(new E15D12());
+//    Main.DAYS.add(new E15D13());
+//    Main.DAYS.add(new E15D14());
+//    Main.DAYS.add(new E15D15());
+//    Main.DAYS.add(new E15D16());
+//    Main.DAYS.add(new E15D17());
+//    Main.DAYS.add(new E15D18());
+//    Main.DAYS.add(new E15D19());
+//    Main.DAYS.add(new E15D20());
+//    Main.DAYS.add(new E15D21());
+//    Main.DAYS.add(new E18D01());
+//    Main.DAYS.add(new E18D02());
+//    Main.DAYS.add(new E18D03());
+//    Main.DAYS.add(new E18D04());
+//    Main.DAYS.add(new E18D05());
+//    Main.DAYS.add(new E18D06());
+//    Main.DAYS.add(new E18D07());
+//    Main.DAYS.add(new E18D08());
+//    Main.DAYS.add(new E18D09());
+//    Main.DAYS.add(new E18D10());
+//    Main.DAYS.add(new E18D11());
+//    Main.DAYS.add(new E18D14());
+//    Main.DAYS.add(new E18D16());
+//    Main.DAYS.add(new E19D01());
+//    Main.DAYS.add(new E19D02());
+    Main.DAYS.add(new E19D03());
   }
 
   /**
