@@ -4,10 +4,17 @@
 package cz.hlubyluk.adventofcode.event2019;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import cz.hlubyluk.adventofcode.Utils.Pair;
+import cz.hlubyluk.adventofcode.Utils.Point;
 
 /**
  * @author hlubyluk
@@ -15,14 +22,14 @@ import java.util.regex.Pattern;
 public class E19D03 implements IE19D03 {
 
   private static final Pattern PATTER = Pattern.compile("(\\w)(\\d+)");
-  private static final List<Pair> F = new ArrayList<>();
-  private static final List<Pair> S = new ArrayList<>();
+  private static final List<Pair<String, Integer>> F = new ArrayList<>();
+  private static final List<Pair<String, Integer>> S = new ArrayList<>();
 
   static {
     for (String item : IE19D03.F.split(",")) {
       Matcher matcher = E19D03.PATTER.matcher(item);
       if (matcher.find()) {
-        E19D03.F.add(new Pair(matcher.group(1), Integer.valueOf(matcher.group(2))));
+        E19D03.F.add(new Pair<>(matcher.group(1), Integer.valueOf(matcher.group(2))));
       } else {
         System.out.println(String.format("Matcher miss %s", item));
       }
@@ -31,7 +38,7 @@ public class E19D03 implements IE19D03 {
     for (String item : IE19D03.S.split(",")) {
       Matcher matcher = E19D03.PATTER.matcher(item);
       if (matcher.find()) {
-        E19D03.S.add(new Pair(matcher.group(1), Integer.valueOf(matcher.group(2))));
+        E19D03.S.add(new Pair<>(matcher.group(1), Integer.valueOf(matcher.group(2))));
       } else {
         System.out.println(String.format("Matcher miss %s", item));
       }
@@ -40,7 +47,26 @@ public class E19D03 implements IE19D03 {
 
   @Override
   public String solveFirst() {
-    // TODO Auto-generated method stub
+    Map<Point, Integer> points = new HashMap<>();
+
+    Point point = new Point(0, 0);
+    for (Pair<String, Integer> pair : E19D03.F) {
+      point = this.solve(points, point, pair);
+    }
+
+    point = new Point(0, 0);
+    for (Pair<String, Integer> pair : E19D03.S) {
+      point = this.solve(points, point, pair);
+    }
+
+    Set<Entry<Point, Integer>> set = points.entrySet();
+    int max = set.stream().max(Map.Entry.comparingByValue()).get().getValue();
+    int minX = Math.abs(set.stream().min(new PointCmpByX()).get().getKey().x);
+    int minY = Math.abs(set.stream().min(new PointCmpByY()).get().getKey().y);
+
+    set.stream().filter(i -> i.getValue() == max).map(i -> new Point(i.getKey().x + minX, i.getKey().y + minY))
+        .sorted(new ManhattanCmp()).forEach(System.out::println);
+
     return null;
   }
 
@@ -50,95 +76,63 @@ public class E19D03 implements IE19D03 {
     return null;
   }
 
-  private static class Pair {
-    private final String direction;
-    private final int steps;
+  private Point solve(Map<Point, Integer> points, Point start, Pair<String, Integer> pair) {
+    Point tmp = null;
 
-    /**
-     * @param direction
-     * @param steps
-     */
-    private Pair(String direction, int steps) {
-      super();
-      this.direction = direction;
-      this.steps = steps;
+    for (int i = 1; i <= pair.b; i += 1) {
+      switch (pair.a) {
+      case "L":
+        tmp = new Point(start.x - i, start.y);
+        break;
+      case "U":
+        tmp = new Point(start.x, start.y + i);
+        break;
+      case "R":
+        tmp = new Point(start.x + i, start.y);
+        break;
+      case "D":
+        tmp = new Point(start.x, start.y - i);
+        break;
+      default:
+        throw new IllegalArgumentException("Unknown direction!!!");
+      }
+
+      points.put(tmp, points.getOrDefault(tmp, 0) + 1);
+    }
+
+    return tmp;
+  }
+
+  private static class ManhattanCmp implements Comparator<Point> {
+
+    private ManhattanCmp() {
     }
 
     @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((direction == null) ? 0 : direction.hashCode());
-      result = prime * result + steps;
-      return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      if (this == obj)
-        return true;
-      if (obj == null)
-        return false;
-      if (getClass() != obj.getClass())
-        return false;
-      Pair other = (Pair) obj;
-      if (direction == null) {
-        if (other.direction != null)
-          return false;
-      } else if (!direction.equals(other.direction))
-        return false;
-      if (steps != other.steps)
-        return false;
-      return true;
-    }
-
-    @Override
-    public String toString() {
-      return "Pair [direction=" + direction + ", steps=" + steps + "]";
+    public int compare(Point a, Point b) {
+      return Integer.compare(Math.abs(a.x) + Math.abs(a.y), Math.abs(b.x) + Math.abs(b.y));
     }
   }
 
-  private static class Coordinate {
-    private final int x, y;
+  private static class PointCmpByX implements Comparator<Map.Entry<Point, Integer>> {
 
-    /**
-     * @param x
-     * @param y
-     */
-    private Coordinate(int x, int y) {
-      super();
-      this.x = x;
-      this.y = y;
+    private PointCmpByX() {
     }
 
     @Override
-    public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + x;
-      result = prime * result + y;
-      return result;
+    public int compare(Entry<Point, Integer> o1, Entry<Point, Integer> o2) {
+      return Integer.compare(o1.getKey().x, o2.getKey().x);
+    }
+  }
+
+  private static class PointCmpByY implements Comparator<Map.Entry<Point, Integer>> {
+
+    private PointCmpByY() {
     }
 
     @Override
-    public boolean equals(Object obj) {
-      if (this == obj)
-        return true;
-      if (obj == null)
-        return false;
-      if (getClass() != obj.getClass())
-        return false;
-      Coordinate other = (Coordinate) obj;
-      if (x != other.x)
-        return false;
-      if (y != other.y)
-        return false;
-      return true;
-    }
-
-    @Override
-    public String toString() {
-      return "Coordinate [x=" + x + ", y=" + y + "]";
+    public int compare(Entry<Point, Integer> o1, Entry<Point, Integer> o2) {
+      return Integer.compare(o1.getKey().y, o2.getKey().y);
     }
   }
 }

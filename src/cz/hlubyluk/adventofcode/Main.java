@@ -5,6 +5,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.hlubyluk.adventofcode.event2019.E19D01;
+import cz.hlubyluk.adventofcode.event2019.E19D02;
 import cz.hlubyluk.adventofcode.event2019.E19D03;
 import cz.hlubyluk.adventofcode.event2019.E19D04;
 
@@ -63,7 +65,7 @@ public final class Main {
 //    Main.DAYS.add(new E19D01());
 //    Main.DAYS.add(new E19D02());
     Main.DAYS.add(new E19D03());
-    Main.DAYS.add(new E19D04());
+//    Main.DAYS.add(new E19D04());
   }
 
   /**
