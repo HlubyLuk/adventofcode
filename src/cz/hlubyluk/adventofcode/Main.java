@@ -9,6 +9,7 @@ import cz.hlubyluk.adventofcode.event2019.E19D01;
 import cz.hlubyluk.adventofcode.event2019.E19D02;
 import cz.hlubyluk.adventofcode.event2019.E19D03;
 import cz.hlubyluk.adventofcode.event2019.E19D04;
+import cz.hlubyluk.adventofcode.event2019.E19D08;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -64,8 +65,9 @@ public final class Main {
 //    Main.DAYS.add(new E18D16());
 //    Main.DAYS.add(new E19D01());
 //    Main.DAYS.add(new E19D02());
-    Main.DAYS.add(new E19D03());
+//    Main.DAYS.add(new E19D03());
 //    Main.DAYS.add(new E19D04());
+    Main.DAYS.add(new E19D08());
   }
 
   /**
