@@ -98,12 +98,12 @@ public final class Main {
 //    Main.DAYS.add(new E18D11());
 //    Main.DAYS.add(new E18D14());
 //    Main.DAYS.add(new E18D16());
-    Main.DAYS.add(new E19D01());
-    Main.DAYS.add(new E19D02());
+//    Main.DAYS.add(new E19D01());
+//    Main.DAYS.add(new E19D02());
     Main.DAYS.add(new E19D03());
-    Main.DAYS.add(new E19D04());
-    Main.DAYS.add(new E19D06());
-    Main.DAYS.add(new E19D08());
+//    Main.DAYS.add(new E19D04());
+//    Main.DAYS.add(new E19D06());
+//    Main.DAYS.add(new E19D08());
   }
 
   /**
