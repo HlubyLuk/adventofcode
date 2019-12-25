@@ -32,7 +32,7 @@ public class E19D01 implements IE19D01 {
       buffer = buffer.add(this.formulae(mass));
     }
 
-    return buffer.toString();
+    return this.result("3317970", buffer.toString());
   }
 
   @Override
@@ -43,7 +43,7 @@ public class E19D01 implements IE19D01 {
       buffer = buffer.add(this.recurseSolver(mass));
     }
 
-    return buffer.toString();
+    return this.result("4974073", buffer.toString());
   }
 
   private BigInteger recurseSolver(String mass) {

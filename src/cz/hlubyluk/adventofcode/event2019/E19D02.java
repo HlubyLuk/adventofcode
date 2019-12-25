@@ -24,7 +24,7 @@ public class E19D02 implements IE19D02 {
 
   @Override
   public String solveFirst() {
-    return String.valueOf(this.solve(12, 2));
+    return this.result(3706713, this.solve(12, 2));
   }
 
   @Override
@@ -36,7 +36,7 @@ public class E19D02 implements IE19D02 {
       for (int j = 0; j < max; j += 1) {
         int solve = this.solve(i, j);
         if (solve == result) {
-          return String.valueOf(100 * i + j);
+          return this.result(8609, 100 * i + j);
         }
       }
     }
