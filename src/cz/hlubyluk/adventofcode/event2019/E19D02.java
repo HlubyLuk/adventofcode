@@ -3,6 +3,8 @@
  */
 package cz.hlubyluk.adventofcode.event2019;
 
+import cz.hlubyluk.adventofcode.IDay;
+
 /**
  * https://adventofcode.com/2019/day/2
  * 
@@ -16,11 +18,6 @@ public class E19D02 implements IE19D02 {
    */
   public E19D02() {
   }
-
-//  @Override
-//  public String getTag() {
-//    return this.getClass().getSimpleName();
-//  }
 
   @Override
   public String solveFirst() {
@@ -44,14 +41,6 @@ public class E19D02 implements IE19D02 {
     return null;
   }
 
-  private void caseOne(int[] opCodes, int i) {
-    opCodes[opCodes[i + 3]] = opCodes[opCodes[i + 1]] + opCodes[opCodes[i + 2]];
-  }
-
-  private void caseTwo(int[] opCodes, int i) {
-    opCodes[opCodes[i + 3]] = opCodes[opCodes[i + 1]] * opCodes[opCodes[i + 2]];
-  }
-
   private int solve(int a, int b) {
     String input = IE19D02.INPUT;
     String[] splited = input.split(",");
@@ -63,19 +52,8 @@ public class E19D02 implements IE19D02 {
     codes[1] = a;
     codes[2] = b;
 
-    for (int i = 0;; i += 4) {
-      int code = codes[i];
+    new IntcodeUtils.IntComputer().solve(codes, IDay.NOT_IMPLEMENT);
 
-      switch (code) {
-      case 1:
-        this.caseOne(codes, i);
-        break;
-      case 2:
-        this.caseTwo(codes, i);
-        break;
-      case 99:
-        return codes[0];
-      }
-    }
+    return codes[0];
   }
 }

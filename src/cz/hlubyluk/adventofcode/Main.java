@@ -5,46 +5,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.hlubyluk.adventofcode.event2015.E15D01;
-import cz.hlubyluk.adventofcode.event2015.E15D02;
-import cz.hlubyluk.adventofcode.event2015.E15D03;
-import cz.hlubyluk.adventofcode.event2015.E15D04;
-import cz.hlubyluk.adventofcode.event2015.E15D05;
-import cz.hlubyluk.adventofcode.event2015.E15D06;
-import cz.hlubyluk.adventofcode.event2015.E15D07;
-import cz.hlubyluk.adventofcode.event2015.E15D08;
-import cz.hlubyluk.adventofcode.event2015.E15D09;
-import cz.hlubyluk.adventofcode.event2015.E15D10;
-import cz.hlubyluk.adventofcode.event2015.E15D11;
-import cz.hlubyluk.adventofcode.event2015.E15D12;
-import cz.hlubyluk.adventofcode.event2015.E15D13;
-import cz.hlubyluk.adventofcode.event2015.E15D14;
-import cz.hlubyluk.adventofcode.event2015.E15D15;
-import cz.hlubyluk.adventofcode.event2015.E15D16;
-import cz.hlubyluk.adventofcode.event2015.E15D17;
-import cz.hlubyluk.adventofcode.event2015.E15D18;
-import cz.hlubyluk.adventofcode.event2015.E15D19;
-import cz.hlubyluk.adventofcode.event2015.E15D20;
-import cz.hlubyluk.adventofcode.event2015.E15D21;
-import cz.hlubyluk.adventofcode.event2018.E18D01;
-import cz.hlubyluk.adventofcode.event2018.E18D02;
-import cz.hlubyluk.adventofcode.event2018.E18D03;
-import cz.hlubyluk.adventofcode.event2018.E18D04;
-import cz.hlubyluk.adventofcode.event2018.E18D05;
-import cz.hlubyluk.adventofcode.event2018.E18D06;
-import cz.hlubyluk.adventofcode.event2018.E18D07;
-import cz.hlubyluk.adventofcode.event2018.E18D08;
-import cz.hlubyluk.adventofcode.event2018.E18D09;
-import cz.hlubyluk.adventofcode.event2018.E18D10;
-import cz.hlubyluk.adventofcode.event2018.E18D11;
-import cz.hlubyluk.adventofcode.event2018.E18D14;
-import cz.hlubyluk.adventofcode.event2018.E18D16;
-import cz.hlubyluk.adventofcode.event2019.E19D01;
 import cz.hlubyluk.adventofcode.event2019.E19D02;
-import cz.hlubyluk.adventofcode.event2019.E19D03;
-import cz.hlubyluk.adventofcode.event2019.E19D04;
-import cz.hlubyluk.adventofcode.event2019.E19D06;
-import cz.hlubyluk.adventofcode.event2019.E19D08;
+import cz.hlubyluk.adventofcode.event2019.E19D05;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -99,9 +61,10 @@ public final class Main {
 //    Main.DAYS.add(new E18D14());
 //    Main.DAYS.add(new E18D16());
 //    Main.DAYS.add(new E19D01());
-//    Main.DAYS.add(new E19D02());
-    Main.DAYS.add(new E19D03());
+    Main.DAYS.add(new E19D02());
+//    Main.DAYS.add(new E19D03());
 //    Main.DAYS.add(new E19D04());
+    Main.DAYS.add(new E19D05());
 //    Main.DAYS.add(new E19D06());
 //    Main.DAYS.add(new E19D08());
   }
