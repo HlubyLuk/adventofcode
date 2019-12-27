@@ -1,42 +1,38 @@
 /**
- * 
+ *
  */
 package cz.hlubyluk.adventofcode.event2019;
+
+import java.util.Arrays;
 
 /**
  * @author hlubyluk
  *
  */
 public class E19D05 implements IE19D05 {
+  private static final IntComputer COMPUTER = new IntComputer();
+  private static int[] DATA = null;
+
+  static {
+    var splits = IE19D05.INPUT.split(",");
+    E19D05.DATA = new int[splits.length];
+
+    for (int i = 0; i < splits.length; i += 1) {
+      E19D05.DATA[i] = Integer.valueOf(splits[i]);
+    }
+  }
 
   @Override
   public String solveFirst() {
-//    int i = 0;
-//
-//    while (true && i < E19D05.OP_CODES.length) {
-//      String tmp = String.format("%05d", E19D05.OP_CODES[i]);
-//
-//      int modeA = Character.digit(tmp.charAt(0), 10);
-//      int modeB = Character.digit(tmp.charAt(1), 10);
-//      int modeC = Character.digit(tmp.charAt(2), 10);
-//      int opCode = Integer.valueOf(tmp.substring(3, tmp.length()));
-//    }
+    E19D05.COMPUTER.solve(Arrays.copyOf(E19D05.DATA, E19D05.DATA.length), 1);
 
-    var splits = IE19D05.INPUT.split(",");
-    var data = new int[splits.length];
-
-    for (int i = 0; i < splits.length; i += 1) {
-      data[i] = Integer.valueOf(splits[i]);
-    }
-    final IntcodeUtils.IntComputer computer = new IntcodeUtils.IntComputer();
-    computer.solve(data, 1);
-
-    return this.result(13547311, computer.outputs.stream().filter(i -> i != 0).findFirst().get());
+    return this.result(13547311, E19D05.COMPUTER.outputs.stream().filter(i -> i != 0).findFirst().get());
   }
 
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    E19D05.COMPUTER.solve(Arrays.copyOf(E19D05.DATA, E19D05.DATA.length), 5);
+
+    return this.result(236453, E19D05.COMPUTER.outputs.get(E19D05.COMPUTER.outputs.size() - 1));
   }
 }

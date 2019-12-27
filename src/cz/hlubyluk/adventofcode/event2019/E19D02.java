@@ -3,6 +3,8 @@
  */
 package cz.hlubyluk.adventofcode.event2019;
 
+import java.util.Arrays;
+
 import cz.hlubyluk.adventofcode.IDay;
 
 /**
@@ -12,6 +14,16 @@ import cz.hlubyluk.adventofcode.IDay;
  *
  */
 public class E19D02 implements IE19D02 {
+  private static final IntComputer COMPUTER = new IntComputer();
+  private static int[] DATA = null;
+
+  static {
+    String[] splited = IE19D02.INPUT.split(",");
+    E19D02.DATA = new int[splited.length];
+    for (int i = 0; i < splited.length; i += 1) {
+      E19D02.DATA[i] = Integer.valueOf(splited[i]);
+    }
+  }
 
   /**
    * Default constructor.
@@ -42,18 +54,12 @@ public class E19D02 implements IE19D02 {
   }
 
   private int solve(int a, int b) {
-    String input = IE19D02.INPUT;
-    String[] splited = input.split(",");
+    E19D02.DATA[1] = a;
+    E19D02.DATA[2] = b;
 
-    int[] codes = new int[splited.length];
-    for (int i = 0; i < splited.length; i += 1) {
-      codes[i] = Integer.valueOf(splited[i]);
-    }
-    codes[1] = a;
-    codes[2] = b;
+    final int[] copy = Arrays.copyOf(E19D02.DATA, E19D02.DATA.length);
+    E19D02.COMPUTER.solve(copy, IDay.NOT_IMPLEMENT);
 
-    new IntcodeUtils.IntComputer().solve(codes, IDay.NOT_IMPLEMENT);
-
-    return codes[0];
+    return copy[0];
   }
 }
