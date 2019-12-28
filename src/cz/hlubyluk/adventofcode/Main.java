@@ -45,6 +45,7 @@ import cz.hlubyluk.adventofcode.event2019.E19D03;
 import cz.hlubyluk.adventofcode.event2019.E19D04;
 import cz.hlubyluk.adventofcode.event2019.E19D05;
 import cz.hlubyluk.adventofcode.event2019.E19D06;
+import cz.hlubyluk.adventofcode.event2019.E19D07;
 import cz.hlubyluk.adventofcode.event2019.E19D08;
 
 /**
@@ -105,6 +106,7 @@ public final class Main {
     Main.DAYS.add(new E19D04());
     Main.DAYS.add(new E19D05());
     Main.DAYS.add(new E19D06());
+    Main.DAYS.add(new E19D07());
     Main.DAYS.add(new E19D08());
   }
 

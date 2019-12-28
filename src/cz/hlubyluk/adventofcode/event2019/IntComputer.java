@@ -23,8 +23,9 @@ public final class IntComputer {
     super();
   }
 
-  public void solve(int[] data, int input) {
+  public void solve(int[] data, int... input) {
     int pointer = 0;
+    int inputCounter = 0;
 
     while (true) {
       int tmp = data[pointer];
@@ -49,11 +50,13 @@ public final class IntComputer {
           pointer += 4;
           break;
         case 3:
-          data[this.idx(data, arg1)] = input;
+          int case3Idx = (inputCounter < input.length - 1) ? inputCounter : input.length - 1;
+          data[this.idx(data, arg1)] = input[case3Idx];
           pointer += 2;
+          inputCounter += 1;
           break;
         case 4:
-          outputs.add(data[this.idx(data, arg1)]);
+          this.outputs.add(data[this.idx(data, arg1)]);
           pointer += 2;
           break;
         case 5:
