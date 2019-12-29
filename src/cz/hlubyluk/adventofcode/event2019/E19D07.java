@@ -13,16 +13,6 @@ import cz.hlubyluk.adventofcode.Utils;
  *
  */
 public class E19D07 implements IE19D07 {
-  private static int[] DATA = null;
-
-  static {
-    var splits = IE19D07.INPUT.split(",");
-    E19D07.DATA = new int[splits.length];
-
-    for (int i = 0; i < splits.length; i += 1) {
-      E19D07.DATA[i] = Integer.valueOf(splits[i]);
-    }
-  }
 
   @Override
   public String solveFirst() {
@@ -39,8 +29,18 @@ public class E19D07 implements IE19D07 {
     return null;
   }
 
-  private static final class Highest implements Utils.Generator.Permutation<Integer> {
-    private int accumulator = -1;
+  private static abstract class Perm implements Utils.Generator.Permutation<Integer> {
+    protected long accumulator = -1;
+
+    /**
+     * @return the accumulator
+     */
+    public long getAccumulator() {
+      return this.accumulator;
+    }
+  }
+
+  private static final class Highest extends Perm {
 
     /**
      * Constructor.
@@ -49,31 +49,20 @@ public class E19D07 implements IE19D07 {
       super();
     }
 
-    /**
-     * @return the accumulator
-     */
-    public int getAccumulator() {
-      return this.accumulator;
-    }
-
     @Override
     public void compute(List<Integer> list) {
-      int lastOutut = 0;
-      final IntComputer computer = new IntComputer();
-      final int[] copy = Arrays.copyOf(E19D07.DATA, E19D07.DATA.length);
+      var lastOutput = 0L;
 
-      for (int i = 0; i < list.size(); i += 1) {
-        computer.solve(copy, list.get(i), lastOutut);
-        lastOutut = computer.outputs.get(computer.outputs.size() - 1);
+      for (var phase : list) {
+        var computer = Computer2019.with(INPUT, phase);
+        computer.setNextInput(lastOutput);
+        computer.solve();
+
+        final var diagnosticCode = computer.getDiagnosticCode();
+        lastOutput = diagnosticCode;
+
+        this.accumulator = Math.max(this.accumulator, diagnosticCode);
       }
-
-      this.accumulator = Math.max(this.accumulator,
-          computer.outputs.stream().max(Integer::compare).orElseGet(() -> -1));
-    }
-
-    @Override
-    public String toString() {
-      return "Highest [accumulator=" + this.accumulator + "]";
     }
   }
 }
