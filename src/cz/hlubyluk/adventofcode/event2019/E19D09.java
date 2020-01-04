@@ -13,7 +13,6 @@ public class E19D09 implements IE19D09 {
    *
    */
   public E19D09() {
-    // TODO Auto-generated constructor stub
   }
 
   /**
@@ -29,7 +28,9 @@ public class E19D09 implements IE19D09 {
 
   @Override
   public String solveSecond() {
-    // TODO Auto-generated method stub
-    return null;
+    final var computer = Computer2019.with(IE19D09.INPUT, 2);
+    computer.solve();
+
+    return this.result("33679", String.valueOf(computer.getDiagnosticCode()));
   }
 }
