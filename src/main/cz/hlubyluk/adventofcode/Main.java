@@ -5,8 +5,7 @@ import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import main.cz.hlubyluk.adventofcode.event2021.E21D01;
-import main.cz.hlubyluk.adventofcode.event2021.E21D02;
+import main.cz.hlubyluk.adventofcode.event2021.*;
 
 /**
  * Advent of Code is an Advent calendar of small programming puzzles for a
@@ -71,7 +70,9 @@ public final class Main {
 //    Main.DAYS.add(new E19D09());
 //    Main.DAYS.add(new E19D10());
 //    Main.DAYS.add(new E21D01());
-    Main.DAYS.add(new E21D02());
+//    Main.DAYS.add(new E21D02());
+//    Main.DAYS.add(new E21D03());
+    Main.DAYS.add(new E21D04());
   }
 
   /**
