@@ -79,7 +79,8 @@ public final class Main {
 //    Main.DAYS.add(new E21D05());
 //    Main.DAYS.add(new E21D06());
 //    Main.DAYS.add(new E21D07());
-    Main.DAYS.add(new E21D08());
+//    Main.DAYS.add(new E21D08());
+    Main.DAYS.add(new E21D09());
   }
 
   /**
