@@ -59,7 +59,62 @@ class E21D11 : IDay {
     return this.result(1667, counter.sum())
   }
 
-  override fun solveSecond(): String = ""
+  override fun solveSecond(): String {
+    fun parse(input: String): Map<Point, Int> {
+      val buffer = mutableMapOf<Point, Int>().withDefault { 0 }
+      input.split('\n').forEachIndexed { y, line ->
+        line.forEachIndexed { x, value ->
+          buffer[Point(x, y)] = value.digitToInt()
+        }
+      }
+      return buffer
+    }
+
+    fun increment(input: Map<Point, Int>): Map<Point, Int> {
+      val buffer = mutableMapOf<Point, Int>().withDefault { 0 }
+      input.entries.forEach { entry -> buffer[entry.key] = entry.value + 1 }
+      return buffer
+    }
+
+    fun willFlash(map: MutableMap<Point, Int>, input: List<Point>, willFlash: List<Point>): Map<Point, Int> {
+      if (input.isEmpty()) return map
+      willFlash.forEach { point ->
+        IntRange(-1, 1).forEach { y ->
+          IntRange(-1, 1).forEach { x ->
+            val p = Point(point.x + x, point.y + y)
+            map[p] = map.getValue(p) + 1
+          }
+        }
+      }
+      val tmp = input.toMutableList()
+      val willFlash = map.filter { it.value > 9 }.map { it.key }.filter { !input.contains(it) }
+      tmp.addAll(willFlash)
+      if (tmp == input) return map
+      return willFlash(map, tmp, willFlash)
+    }
+
+    fun flash(input: Map<Point, Int>): Map<Point, Int> {
+      val tmp = input.filter { it.key.x in 0..9 && it.key.y in 0..9 }.toMutableMap().withDefault { 0 }
+      tmp.filter { it.value > 9 }.map { it.key }.forEach { point -> tmp[point] = 0 }
+      return tmp
+    }
+
+    var gridMap = parse(PUZZLE)
+
+    repeat(Int.MAX_VALUE) { r ->
+      if (gridMap.entries.map { it.value }.all { it == 0 }) {
+        gridMap.filter { it.key.x in 0..9 && it.key.y in 0..9 }
+          .entries.groupBy { it.key.y }.map { entry -> entry.value.map { it.value }.joinToString("") }.forEach(::println)
+        return r.toString()
+      }
+
+      gridMap = increment(gridMap)
+      gridMap = willFlash(gridMap.toMutableMap().withDefault { 0 }, gridMap.filter { it.value > 9 }.map { it.key }, gridMap.filter { it.value > 9 }.map { it.key })
+      gridMap = flash(gridMap)
+    }
+
+    return ""
+  }
 
 
   // NOTE E21D11
