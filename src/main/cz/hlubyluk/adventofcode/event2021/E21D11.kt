@@ -103,9 +103,7 @@ class E21D11 : IDay {
 
     repeat(Int.MAX_VALUE) { r ->
       if (gridMap.entries.map { it.value }.all { it == 0 }) {
-        gridMap.filter { it.key.x in 0..9 && it.key.y in 0..9 }
-          .entries.groupBy { it.key.y }.map { entry -> entry.value.map { it.value }.joinToString("") }.forEach(::println)
-        return r.toString()
+        return this.result(488, r)
       }
 
       gridMap = increment(gridMap)
