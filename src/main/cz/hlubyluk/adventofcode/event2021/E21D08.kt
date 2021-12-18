@@ -8,28 +8,18 @@ class E21D08 : IDay {
   // NOTE IDay
 
   override fun solveFirst(): String {
+    val input = this.readFile().dropLast(1)
+    val result = input.split('\n').flatMap { line ->
+      val (_, segments) = line.split(" | ", limit = 2)
+      val tmp = segments.split(' ').groupingBy(String::length).eachCount().withDefault { 0 }
 
-    fun isOne(input: String): Boolean = input.length == 2
-    fun isFour(input: String): Boolean = input.length == 4
-    fun isSeven(input: String): Boolean = input.length == 3
-    fun isEight(input: String): Boolean = input.length == 7
-    fun isInstance(input: String): Boolean = isOne(input) || isFour(input) || isSeven(input) || isEight(input)
+      val v1 = tmp.getValue(2)
+      val v4 = tmp.getValue(4)
+      val v7 = tmp.getValue(3)
+      val v8 = tmp.getValue(7)
 
-    val result = this.readFile().split('\n')
-      .map(PATTERN::matcher)
-      .flatMap { matcher ->
-        val find = matcher.find()
-        if (find) {
-          listOf(
-            matcher.group(1).run(::isInstance),
-            matcher.group(2).run(::isInstance),
-            matcher.group(3).run(::isInstance),
-            matcher.group(4).run(::isInstance)
-          )
-        } else {
-          listOf(false)
-        }
-      }.count { it }
+      listOf(v1, v4, v7, v8)
+    }.sum()
     return this.result(390, result)
   }
 
