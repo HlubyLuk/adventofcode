@@ -34,7 +34,28 @@ class E21D08 : IDay {
   }
 
   override fun solveSecond(): String {
-    return ""
+    val input = this.readFile().dropLast(1)
+    val result = input.split('\n').sumOf { line ->
+      val (signalWires, segments) = line.split(" | ", limit = 2)
+      val tmp = signalWires.split(' ').map(String::toSortedSet).groupBy(Set<Char>::size).withDefault { listOf() }
+
+      val v1 = tmp.getValue(2).single()
+      val v7 = tmp.getValue(3).single()
+      val v4 = tmp.getValue(4).single()
+      val v8 = tmp.getValue(7).single()
+
+      val v3 = tmp.getValue(5).single { it.minus(v1).size == 3 }
+      val v2 = tmp.getValue(5).single { it.minus(v4).size == 3 }
+      val v5 = tmp.getValue(5).single { it.minus(v4).size == 2 && it != v3 }
+
+      val v9 = tmp.getValue(6).single { it.minus(v3).size == 1 }
+      val v6 = tmp.getValue(6).single { it.minus(v5).size == 1 && it != v9 }
+      val v0 = tmp.getValue(6).single { it != v6 && it != v9 }
+
+      val of = setOf(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
+      segments.split(' ').map(String::toSortedSet).map { of.indexOf(it) }.reduce { acc, i -> 10 * acc + i }
+    }
+    return this.result(1011785, result)
   }
 
   // NOTE E21D08
@@ -52,7 +73,8 @@ class E21D08 : IDay {
     val PATTERN = " \\| (\\w+) (\\w+) (\\w+) (\\w+)".toPattern()
 
     @JvmStatic
-    val TEST = """be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
+    val TEST = """acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
+be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
 edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
 fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
 fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb
